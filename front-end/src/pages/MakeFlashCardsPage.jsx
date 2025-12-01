@@ -5,7 +5,6 @@ export default function MakeFlashCardsPage() {
     <div className="container center">
         <div className="card" >
             <h1>Generate Flash Cards with AI</h1>
-            <p><i>Feature is currently WIP. Flashcards are generated but not saved</i></p>
             <p>Paste your text below and we will generate flashcards based on the verbs and nouns within that text. <br /><i>Note: flashcards are generated with AI and subject to mistakes</i></p>
             <GenerateFlashCardList />
         </div>

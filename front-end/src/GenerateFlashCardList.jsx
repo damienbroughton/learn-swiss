@@ -69,6 +69,7 @@ export default function GenerateFlashCardList() {
             setIsSaving(true);
             setError("");
 
+            const reqBody = flashcardDeck;
             const response = await api.post(`/flashcards/bulk/`, reqBody);
             const newFlashCardList = response.data;
             setFlashcardDeck( newFlashCardList );
@@ -120,7 +121,7 @@ export default function GenerateFlashCardList() {
                                 inTranslatedLanguage: translatedLanguage
                             });
                         }}
-                    >{isSaving ? 'Saving...' : 'Saved'}</button>
+                    >{isSaving ? 'Saving...' : 'Save'}</button>
                 </div>
             )}
             <div style={{marginTop: "20px"}}>

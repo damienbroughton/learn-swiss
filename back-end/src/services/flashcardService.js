@@ -98,25 +98,40 @@ export async function createFlashcard(uid, category, firstLanguage, firstLanguag
 }
 
 /**
- * Create new flashcard
+ * Create new flashcards
  *
  */
 export async function insertFlashcards(uid, flashcards) {
     try {
         console.log(`Creating ${flashcards.length} flashcards.`);
 
-        const now = new Date();
+        const insertedFlashcards = [];
 
-        const update = await db.collection('flashcards').insertMany(flashcards.map((flashcard) => ({ 
-            ...flashcard,
-            createdBy: uid, 
-            createdAt: now,
-            updatedBy: uid, 
-            updatedAt: now
-        })), { returnDocument: 'after' });
+        // Loop through flashcards and determine whether they already exist in the system
+        for (const flashcard of flashcards)  {
+          const exisitingFlashcard = await db.collection('flashcards').findOne({ 
+            firstLanguage: flashcard.firstLanguage, 
+            firstLanguageText: flashcard.firstLanguageText, 
+            secondLanguage: flashcard.secondLanguage, 
+            secondLanguageText: flashcard.secondLanguageText
+          });
 
-        const tags = flashcards[0].tags;
-        const insertedFlashcards = await db.collection('flashcards').find({ tags }).toArray();
+          let savedFlashcard;
+
+          if(exisitingFlashcard){
+            //if the flashcard exists, update it
+            savedFlashcard = await updateFlashcard(exisitingFlashcard._id, uid, flashcard.category, 
+              flashcard.firstLanguage, flashcard.firstLanguageText, 
+              flashcard.secondLanguage, flashcard.secondLanguageText, flashcard.formal, flashcard.tags);
+          } else {
+            //otherwise create it
+            savedFlashcard = await createFlashcard(uid, flashcard.category, 
+              flashcard.firstLanguage, flashcard.firstLanguageText, 
+              flashcard.secondLanguage, flashcard.secondLanguageText, flashcard.formal, flashcard.tags);
+          }
+
+          insertedFlashcards.push(savedFlashcard);
+        };
 
         return insertedFlashcards;
     } catch (error) {
@@ -189,17 +204,17 @@ export async function guessFlashcard(id, uid, guessedCorrectly) {
 export async function generateFlashcardList(uid, category, language, textBody, translatedLanguage) {
     try {
       const prompt = `System message
-        You are a language-processing assistant that extracts all nouns and verbs from German text and returns them as flash cards.
+        You are a language-processing assistant that extracts all nouns, adjectives and verbs from ${language} text and returns them as flash cards.
         Rules:
         - The secondLanguage is always ${language}.
-        - secondLanguageText must contain the ${language} noun with its correct article (der/die/das) OR the verb in its infinitive form.
+        - secondLanguageText must contain the ${language} noun with its correct article (der/die/das) OR the verb in its infinitive form OR adjective.
         - firstLanguage is always ${translatedLanguage}.
         - firstLanguageText is the ${translatedLanguage} translation.
         - Only output unique nouns and verbs.
         - Output only valid JSON. No explanations.
         - Format the JSON as an array like this:
-        [ {"firstLanguage": "English", "firstLanguageText": "...", 
-         "secondLanguage": "German", "secondLanguageText": "...", 
+        [ {"firstLanguage": "${translatedLanguage}", "firstLanguageText": "...", 
+         "secondLanguage": "${language}", "secondLanguageText": "...", 
          "formal": false, "category": "Nouns", "tags": "Greetings"},
          ...
         ]
