@@ -20,7 +20,7 @@ export default function LoginPage() {
               console.error('No token found');
               return;
           }
-          await api.post(`/user`, null);
+          // await api.post(`/user`, null);
 
           navigate("/");
       } catch (error) {

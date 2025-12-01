@@ -1,6 +1,6 @@
 import express from "express";
-import { db } from '../config/db.js';
 import { requireAuth } from '../middleware/requireAuth.js';
+import { getUser, createUpdateUser } from "../services/userService.js";
 
 export const router = express.Router();
 
@@ -13,26 +13,11 @@ export const router = express.Router();
  */
 router.post('/', requireAuth, async (req, res) => {
   const { uid } = req.user;
+  const { username } = req.body;
+
 
   try {
-    let user = await db.collection('users').findOne({ uid });
-    const now = new Date();
-
-    if (!user) {
-      const result = await db.collection('users').insertOne({
-        uid,
-        role: 'user',
-        createdAt: now,
-        updatedAt: now
-      });
-      user = await db.collection('users').findOne({ _id: result.insertedId });
-    } else {
-      await db.collection('users').updateOne(
-        { uid },
-        { $set: { updatedAt: now } }
-      );
-    }
-
+    let user = await createUpdateUser( uid, username );
     return res.json(user);
   } catch (err) {
     console.error('Error creating or updating user:', err);
@@ -51,7 +36,7 @@ router.get('/', requireAuth, async (req, res) => {
   const { uid } = req.user;
 
   try {
-    const user = await db.collection('users').findOne({ uid });
+    const user = await getUser( uid );
 
     if (!user) {
       return res.status(401).send('Unauthorized');
