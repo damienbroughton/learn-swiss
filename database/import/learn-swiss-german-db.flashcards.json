@@ -1,0 +1,1066 @@
+[{
+  "_id": {
+    "$oid": "68adba238991b4fb8530518e"
+  },
+  "english": "Hello (formal)",
+  "swissGerman": "Grüezi",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:38:55.957Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:59:08.512Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb8530518f"
+  },
+  "english": "Hello (to several people)",
+  "swissGerman": "Grüezi mitenand",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "SH6o3qsj4fOGLeB8SL1DX82Up572",
+      "guessedCorrectly": true
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": false,
+      "guessDate": {
+        "$date": "2025-09-24T13:38:54.421Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:58:53.940Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305190"
+  },
+  "english": "Good morning",
+  "swissGerman": "Guete Morge",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:38:45.764Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:01:54.483Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305191"
+  },
+  "english": "Good day",
+  "swissGerman": "Guete Tag",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:10.229Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:58:55.893Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305192"
+  },
+  "english": "Good evening",
+  "swissGerman": "Guete Abig",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": false,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:03.181Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:59:09.752Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305193"
+  },
+  "english": "Good night (parting)",
+  "swissGerman": "Guet Nacht",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "SH6o3qsj4fOGLeB8SL1DX82Up572",
+      "guessedCorrectly": true
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:38:58.619Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:58:57.058Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305194"
+  },
+  "english": "How are you? (formal)",
+  "swissGerman": "Wie gaht es Ihne?",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "SH6o3qsj4fOGLeB8SL1DX82Up572",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:26:57.849Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:00.106Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:59:03.982Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:04:27.126Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305195"
+  },
+  "english": "Nice to meet you",
+  "swissGerman": "Freut mi, Sie z kenne",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:06.231Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:59:05.667Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305196"
+  },
+  "english": "Welcome (formal)",
+  "swissGerman": "Willkomme",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": false,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:09.358Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:01:59.073Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:04:29.169Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305197"
+  },
+  "english": "Goodbye (formal)",
+  "swissGerman": "Uf Widerluege",
+  "formal": true,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:04.342Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:58:54.503Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305198"
+  },
+  "english": "Hi",
+  "swissGerman": "Hoi",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "SH6o3qsj4fOGLeB8SL1DX82Up572",
+      "guessedCorrectly": true
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": false,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:07.150Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:58:58.259Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:04:30.001Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb85305199"
+  },
+  "english": "Hi everyone",
+  "swissGerman": "Hoi zäme",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "SH6o3qsj4fOGLeB8SL1DX82Up572",
+      "guessedCorrectly": false
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": false,
+      "guessDate": {
+        "$date": "2025-09-24T13:38:47.692Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:59:02.424Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb8530519a"
+  },
+  "english": "Hello (casual)",
+  "swissGerman": "Sali",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:12.337Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:59:01.644Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb8530519b"
+  },
+  "english": "Hello (very informal)",
+  "swissGerman": "Salü",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": false,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:05.330Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:01:55.756Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:04:28.119Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb8530519c"
+  },
+  "english": "Hey",
+  "swissGerman": "Hey",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:38:57.377Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:02:01.560Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb8530519d"
+  },
+  "english": "How are you? (informal)",
+  "swissGerman": "Wie gahts?",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": false,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:11.304Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:59:03.200Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb8530519e"
+  },
+  "english": "What’s up?",
+  "swissGerman": "Was lauft?",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "SH6o3qsj4fOGLeB8SL1DX82Up572",
+      "guessedCorrectly": true
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:38:52.327Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:59:07.270Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb8530519f"
+  },
+  "english": "See you!",
+  "swissGerman": "Bis glii",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:01.876Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:02:00.386Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a0"
+  },
+  "english": "Goodbye (informal)",
+  "swissGerman": "Tschüss",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:38:44.695Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": false,
+      "guessDate": {
+        "$date": "2025-09-24T14:01:49.886Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a1"
+  },
+  "english": "Bye everyone",
+  "swissGerman": "Tschau zäme",
+  "formal": false,
+  "category": "Greetings",
+  "guesses": [
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T13:39:08.104Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:01:57.504Z"
+      }
+    },
+    {
+      "guessedBy": "IyFsPB3LdOPuG9yBdqU47ApryeG3",
+      "guessedCorrectly": true,
+      "guessDate": {
+        "$date": "2025-09-24T14:04:25.152Z"
+      }
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a2"
+  },
+  "english": "Do you speak English? (formal)",
+  "swissGerman": "Spreched Si Englisch?",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a3"
+  },
+  "english": "Could you please repeat that?",
+  "swissGerman": "Chönd Si das bitte wiederhole?",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a4"
+  },
+  "english": "I don’t understand",
+  "swissGerman": "Ich verstoh das nöd",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a5"
+  },
+  "english": "Can you please speak slower?",
+  "swissGerman": "Chönd Si bitte langsam rede?",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a6"
+  },
+  "english": "Where is the toilet?",
+  "swissGerman": "Wo isch s’WC, bitte?",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a7"
+  },
+  "english": "How much does it cost?",
+  "swissGerman": "Was koschtet das?",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a8"
+  },
+  "english": "I need help",
+  "swissGerman": "Ich bruuche Hilf",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051a9"
+  },
+  "english": "Can you help me, please?",
+  "swissGerman": "Chönd Si mir bitte helfe?",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051aa"
+  },
+  "english": "I am lost",
+  "swissGerman": "Ich ha mi verirrt",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051ab"
+  },
+  "english": "Could you show me on the map?",
+  "swissGerman": "Chönd Si mir das uf der Charte zeige?",
+  "formal": true,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051ac"
+  },
+  "english": "Do you speak English? (informal)",
+  "swissGerman": "Schwätzisch Englisch?",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051ad"
+  },
+  "english": "Can you repeat that?",
+  "swissGerman": "Chasch das nomol säge?",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051ae"
+  },
+  "english": "I don’t get it",
+  "swissGerman": "Ich check das nöd",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051af"
+  },
+  "english": "Can you talk slower?",
+  "swissGerman": "Chasch langsamer rede?",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051b0"
+  },
+  "english": "Where’s the toilet?",
+  "swissGerman": "Wo isch s’WC?",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051b1"
+  },
+  "english": "How much is it?",
+  "swissGerman": "Was koschtet?",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051b2"
+  },
+  "english": "I need help!",
+  "swissGerman": "Ich bruuch Hilf!",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051b3"
+  },
+  "english": "Can you help me?",
+  "swissGerman": "Chasch mir helfe?",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051b4"
+  },
+  "english": "I’m lost",
+  "swissGerman": "Ich ha mi verlaufe",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68adba238991b4fb853051b5"
+  },
+  "english": "Can you show me?",
+  "swissGerman": "Chasch mir das zeige?",
+  "formal": false,
+  "category": "Survival"
+},
+{
+  "_id": {
+    "$oid": "68b059b7138a73664bcfe46e"
+  },
+  "category": "Survival",
+  "english": "I don't speak Swiss German",
+  "swissGerman": "Ich cha kai Schweizerdeutsch",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b05ace0111d2182d0aaa65"
+  },
+  "category": "Being Polite",
+  "english": "Please",
+  "swissGerman": "Bitte",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b05b0f0111d2182d0aaa66"
+  },
+  "category": "Being Polite",
+  "english": "Thank you",
+  "swissGerman": "Danke vielmal",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05bdfb663324eb5411c9a"
+  },
+  "category": "Being Polite",
+  "english": "You are welcome",
+  "swissGerman": "Gern gscheh",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05c3fb663324eb5411c9b"
+  },
+  "category": "Being Polite",
+  "english": "Excuse me",
+  "swissGerman": "Entschuldigung",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05ee64b5c6903ba52fc22"
+  },
+  "category": "Being Polite",
+  "english": "Sorry",
+  "swissGerman": "Es tuet mir leid",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05efd4b5c6903ba52fc23"
+  },
+  "category": "Being Polite",
+  "english": "After you",
+  "swissGerman": "Nach Ihne",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05f1c4b5c6903ba52fc24"
+  },
+  "category": "Being Polite",
+  "english": "Have a nice day",
+  "swissGerman": "E schöne Tag",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05f2a4b5c6903ba52fc25"
+  },
+  "category": "Being Polite",
+  "english": "Good appetite (before eating)",
+  "swissGerman": "En Guete",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05f424b5c6903ba52fc26"
+  },
+  "category": "Being Polite",
+  "english": "Bless you (after sneeze)",
+  "swissGerman": "Gesundheit",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05f4b4b5c6903ba52fc27"
+  },
+  "category": "Being Polite",
+  "english": "Congratulations",
+  "swissGerman": "Gratuliere",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b05f624b5c6903ba52fc28"
+  },
+  "category": "Being Polite",
+  "english": "Thanks (casual)",
+  "swissGerman": "Merci",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b05f704b5c6903ba52fc29"
+  },
+  "category": "Being Polite",
+  "english": "Thanks a lot (casual)",
+  "swissGerman": "Merci vielmal",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b05f7b4b5c6903ba52fc2a"
+  },
+  "category": "Being Polite",
+  "english": "No problem",
+  "swissGerman": "Kei Problem",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b05f8d4b5c6903ba52fc2b"
+  },
+  "category": "Being Polite",
+  "english": "Take care",
+  "swissGerman": "Heb der Sorg",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b05f9b4b5c6903ba52fc2c"
+  },
+  "category": "Being Polite",
+  "english": "Sleep well",
+  "swissGerman": "Schlaf guet",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b05fa94b5c6903ba52fc2d"
+  },
+  "category": "Being Polite",
+  "english": "Get well soon",
+  "swissGerman": "Werde bald gsund",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b05fb44b5c6903ba52fc2e"
+  },
+  "category": "Being Polite",
+  "english": "All the best",
+  "swissGerman": "Alles Gueti",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b060844b5c6903ba52fc2f"
+  },
+  "category": "Small Talk",
+  "english": "My name is...",
+  "swissGerman": "Ich heisse...",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b0609d4b5c6903ba52fc30"
+  },
+  "category": "Small Talk",
+  "english": "What is your name...",
+  "swissGerman": "Wie heissed Si?",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b060d34b5c6903ba52fc31"
+  },
+  "category": "Small Talk",
+  "english": "Where are you from?",
+  "swissGerman": "Woher chömed Si?",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b060e44b5c6903ba52fc32"
+  },
+  "category": "Small Talk",
+  "english": "I am from...",
+  "swissGerman": "Ich bin vo...",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b061024b5c6903ba52fc33"
+  },
+  "category": "Small Talk",
+  "english": "How long have you lived here?",
+  "swissGerman": "Wie lang lebed Si scho da?",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b061234b5c6903ba52fc34"
+  },
+  "category": "Small Talk",
+  "english": "I have lived here for...",
+  "swissGerman": "Ich bi scho seit ... da",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b061414b5c6903ba52fc35"
+  },
+  "category": "Small Talk",
+  "english": "I like...",
+  "swissGerman": "Ich ha gärn...",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b061564b5c6903ba52fc36"
+  },
+  "category": "Small Talk",
+  "english": "I love...",
+  "swissGerman": "Ich liäb...",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b0617a4b5c6903ba52fc37"
+  },
+  "category": "Small Talk",
+  "english": "It's nice to meet you",
+  "swissGerman": "Es isch schön, Si kennezlerne",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b0618b4b5c6903ba52fc38"
+  },
+  "category": "Small Talk",
+  "english": "Where do you live?",
+  "swissGerman": "Wo wohnet Si?",
+  "formal": true
+},
+{
+  "_id": {
+    "$oid": "68b061a74b5c6903ba52fc39"
+  },
+  "category": "Small Talk",
+  "english": "Hi, I'm ...",
+  "swissGerman": "Hoi, ich bi ...",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b061ba4b5c6903ba52fc3a"
+  },
+  "category": "Small Talk",
+  "english": "What’s your name?",
+  "swissGerman": "Wie heissisch?",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b061c84b5c6903ba52fc3b"
+  },
+  "category": "Small Talk",
+  "english": "Where are you from?",
+  "swissGerman": "Woher chunsch?",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b061d34b5c6903ba52fc3c"
+  },
+  "category": "Small Talk",
+  "english": "I’m from...",
+  "swissGerman": "Ich chum vo...",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b061e24b5c6903ba52fc3d"
+  },
+  "category": "Small Talk",
+  "english": "How long have you been here?",
+  "swissGerman": "Wie lang bisch scho da?",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b061ee4b5c6903ba52fc3e"
+  },
+  "category": "Small Talk",
+  "english": "I’ve been here for...",
+  "swissGerman": "Ich bi scho ... da",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b062064b5c6903ba52fc3f"
+  },
+  "category": "Small Talk",
+  "english": "Nice to meet you (informal)",
+  "swissGerman": "Schön, di z’lerne",
+  "formal": false
+},
+{
+  "_id": {
+    "$oid": "68b062134b5c6903ba52fc40"
+  },
+  "category": "Small Talk",
+  "english": "Where do you live?",
+  "swissGerman": "Wo wohnsch?",
+  "formal": false
+}]

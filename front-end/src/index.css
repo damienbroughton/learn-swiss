@@ -1,0 +1,545 @@
+/* Homepage mascot image style */
+.homepage-img {
+  width: 40vw;
+  max-width: 160px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 1.5em auto;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 2px 16px 0 rgba(44,62,80,0.08);
+}
+/* Scenario list and card styles */
+.scenario-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 0;
+
+}
+.scenario-list-item {
+  flex: 1 1 calc(50% - 16px);
+  min-width: 220px;
+  max-width: 300px;
+  display: flex;
+}
+/* On very small screens: single column */
+@media (max-width: 480px) {
+  .scenario-list-item {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+.scenario-card {
+  cursor: pointer;
+  padding: 1.2em;
+  text-align: center;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  background: var(--primary);
+  transition: box-shadow 0.2s, transform 0.1s;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline: none;
+}
+.scenario-card:hover, .scenario-card:focus {
+  box-shadow: 0 6px 32px 0 rgba(44,62,80,0.16);
+  transform: translateY(-2px) scale(1.01);
+}
+.scenario-card-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.7em;
+}
+.scenario-card-title {
+  font-weight: 600;
+  font-size: 1.1em;
+  color: var(--primary-light);
+  letter-spacing: 0.01em;
+}
+/* Modern checkbox styles for Swiss-inspired theme */
+input[type="checkbox"] {
+  accent-color: var(--primary);
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.35em;
+  border: 1.5px solid var(--primary);
+  background: var(--card-bg);
+  vertical-align: middle;
+  margin-right: 0.5em;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+input[type="checkbox"]:focus {
+  outline: 2px solid var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+input[type="checkbox"]:checked {
+  border-color: var(--accent);
+}
+/* Modern input and label styles for Swiss-inspired theme */
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5em;
+  letter-spacing: 0.02em;
+}
+
+input[type="text"] {
+  width: 90%;
+  padding: 0.7em 1em;
+  border: 1.5px solid var(--primary);
+  border-radius: var(--border-radius);
+  background: var(--card-bg);
+  color: var(--text-dark);
+  font-size: 1.1em;
+  font-family: inherit;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 1.2em;
+  outline: none;
+}
+input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+/* Modernized root styles */
+:root {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: #222;
+  background-color: #f6f8fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Swiss-inspired palette: soft red, white, neutral gray, gold accent */
+  --primary: #d72638; /* Swiss red, softened */
+  --primary-light: #f7f7f7; /* Swiss white */
+  --accent: #f4d35e; /* Gold accent */
+  --danger: #b22234; /* Muted red for errors */
+  --card-bg: #fff;
+  --shadow: 0 2px 16px 0 rgba(44,62,80,0.08);
+  --border-radius: 16px;
+  --nav-bg: #e63946; /* Slightly lighter Swiss red for nav */
+  --nav-hover: #f4d35e;
+  --text-dark: #222;
+  --text-light: #fff;
+}
+
+
+a {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+
+body {
+  margin: 0;
+  min-width: 100%;
+  min-height: 100vh;
+  background: var(--primary-light);
+  color: var(--text-dark);
+}
+
+
+h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  color: var(--primary);
+  letter-spacing: -1px;
+  text-shadow: 0 2px 8px rgba(215,38,56,0.07);
+}
+
+
+button {
+  border-radius: var(--border-radius);
+  border: none;
+  padding: 0.7em 1.5em;
+  font-size: 0.9em;
+  font-weight: 600;
+  font-family: inherit;
+  background: var(--primary);
+  color: var(--text-light);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+button:hover {
+  background: var(--accent);
+  color: var(--text-dark);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 4px 24px 0 rgba(44,62,80,0.12);
+}
+button:focus,
+button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #f6f8fa;
+  }
+  a:hover {
+    color: var(--accent);
+  }
+  button {
+    background-color: var(--primary);
+    color: #fff;
+  }
+}
+
+nav {
+  background: var(--nav-bg);
+  padding: 0.5rem 0.5rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-items: center;
+  gap: 12px;               
+}
+nav li {
+  display: block;
+  margin: 12px 0;
+}
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--border-radius);
+  transition: background 0.2s, color 0.2s;
+}
+nav a:hover {
+  background: var(--nav-hover);
+  color: var(--text-dark);
+}
+
+a h3 {
+  color: #333;
+  margin-bottom: 0.5em;
+}
+
+a p {
+  color: #666;
+  font-size: 0.9em;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+
+.flashcard {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  border: none;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+.flashcard-header {
+  display: flex;
+  justify-content: space-between; /* pushes them apart */
+  align-items: center;
+}
+.flashcard:hover {
+  box-shadow: 0 6px 32px 0 rgba(44,62,80,0.16);
+  transform: translateY(-2px) scale(1.01);
+}
+.flashcard-question {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 1em;
+  text-shadow: 0 1px 4px rgba(215,38,56,0.06);
+}
+.flashcard-answer {
+  font-size: 1.3em;
+  color: var(--danger);
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  background: #fff5f5;
+  border-radius: 8px;
+  padding: 0.3em 0.7em;
+}
+.flashcard-category {
+  font-size: 1em;
+  color: var(--primary);
+  margin: 0;
+  text-align: left;
+  opacity: 0.7;
+  font-weight: 500;
+}
+.flashcard-formality {
+  font-size: 1em;
+  color: var(--primary);
+  margin: 0;
+  text-align: right;
+  opacity: 0.7;
+  font-weight: 500;
+}
+.flashcard-previously-correct {
+  font-size: 1em;
+  color: var(--primary);
+  margin: 0;
+  text-align: right;
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.fade-in {
+  opacity: 1;
+  animation: fadeInOpacity 0.5s ease-in 1;
+}
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Utility classes for spacing and layout */
+.container {
+  margin: 0 auto;
+  padding: 1rem 0.5rem;
+}
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modern card for articles or other content */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1.5rem;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.speech-bubble-npc {
+  width: 70%;
+	position: relative;
+	background: var(--primary);
+	border-radius: 2em;
+  color: var(--text-light);
+  padding: 1em 1.5em;
+  margin: 1em 0;
+}
+
+
+.speech-bubble-user {
+  width: 90%;
+	position: relative;
+	background: var(--accent);
+	border-radius: 1em;
+  padding: 1em 1.5em;
+  margin: 1em 0;
+}
+
+.speech-bubble-user:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 55px solid transparent;
+	border-left-color: var(--accent);
+	border-right: 0;
+	border-bottom: 0;
+	margin-top: -27.5px;
+	margin-right: -55px;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+ /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--primary);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Modern select styling for Swiss-inspired theme */
+select {
+  width: 95%;
+  padding: 0.7em 1em;
+  border: 1.5px solid var(--primary);
+  border-radius: var(--border-radius);
+  background: var(--card-bg);
+  color: var(--text-dark);
+  font-size: 1.1em;
+  font-family: inherit;
+  box-shadow: var(--shadow);
+  appearance: none; /* remove default browser styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23d72638' height='16' width='16' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,12'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1em center;
+  background-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+  margin-bottom: 1.2em;
+  outline: none;
+}
+
+/* Hover */
+select:hover {
+  border-color: var(--accent);
+}
+
+/* Focus state to match inputs */
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+  outline: none;
+}
+
+/* Disabled state */
+select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #eee;
+}
+
+/* Option styling — works on Chrome/Edge/Firefox */
+select option {
+  font-size: 1em;
+  background: var(--card-bg);
+  color: var(--text-dark);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+} 
+
+/* Modern textarea styling for Swiss-inspired theme */
+textarea {
+  width: 90%;
+  min-height: 120px;
+  padding: 0.7em 1em;
+  border: 1.5px solid var(--primary);
+  border-radius: var(--border-radius);
+  background: var(--card-bg);
+  color: var(--text-dark);
+  font-size: 1.1em;
+  font-family: inherit;
+  line-height: 1.5;
+  box-shadow: var(--shadow);
+  resize: vertical; /* allow vertical resizing only */
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 1.2em;
+  outline: none;
+}
+
+/* Hover effect */
+textarea:hover {
+  border-color: var(--accent);
+}
+
+/* Focus effect (matches inputs) */
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+  outline: none;
+}
+
+/* Disabled state */
+textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #eee;
+}
