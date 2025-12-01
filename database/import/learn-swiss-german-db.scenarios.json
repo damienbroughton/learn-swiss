@@ -1,0 +1,610 @@
+[{
+  "_id": {
+    "$oid": "68cc0eb171a5c523602ca040"
+  },
+  "title": "At the Bakery",
+  "category": "shopping",
+  "difficulty": "beginner",
+  "image": "../src/assets/HedgehogBread.png",
+  "tags": [
+    "food",
+    "ordering",
+    "dialogue"
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "speaker": "npc",
+      "text": "Grüezi! Was möchted Si?",
+      "translation": "Hello! What would you like?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ich möcht.*Brot.*",
+            "Ich hätt gern.*Brot.*"
+          ],
+          "exampleResponses": [
+            "Ich möcht es Brot, bitte.",
+            "Ich möcht gern es dunkels Brot.",
+            "Ich möcht zwei Brot.",
+            "Ich hätt gern es feins Brot.",
+            "Ich hätt gern es Ruchbrot, bitte.",
+            "Ich hätt gern no es Brot und es Gipfeli."
+          ],
+          "successReply": {
+            "text": "Sehr guet, e feins Brot.",
+            "translation": "Very good, a fine bread."
+          },
+          "hints": [
+            "Use 'möchte' or 'hätt gern' to order politely."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "speaker": "npc",
+      "text": "Möchted Si no öppis?",
+      "translation": "Would you like anything else?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Nei.*das isch alles.*",
+            "Das wärs.*"
+          ],
+          "exampleResponses": [
+            "Nei, das isch alles.",
+            "Nei danke, das isch alles.",
+            "Das wärs, merci.",
+            "Das wärs, danke schön."
+          ],
+          "successReply": {
+            "text": "",
+            "translation": ""
+          },
+          "hints": [
+            "Common ways to end an order: 'Das wärs', 'Nei, das isch alles'."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "speaker": "npc",
+      "text": "Das macht fünf Franke, bitte.",
+      "translation": "That will be five francs, please.",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Da, bitte.*",
+            "Bitte schön.*"
+          ],
+          "exampleResponses": [
+            "Da, bitte.",
+            "Da, bitte schön.",
+            "Bitte schön.",
+            "Bitte schön, da händ Si’s."
+          ],
+          "successReply": {
+            "text": "Danke vielmal! En schöne Tag!",
+            "translation": "Thank you very much! Have a nice day!"
+          },
+          "hints": [
+            "Any polite way of handing over money works here: 'Da, bitte' or 'Bitte schön'"
+          ]
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68cc0eb171a5c523602ca041"
+  },
+  "title": "Joining a Boxing Class",
+  "category": "fitness",
+  "difficulty": "beginner",
+  "image": "../src/assets/HedgeHogBoxing.png",
+  "tags": [
+    "boxing",
+    "sports",
+    "conversation",
+    "registration"
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "speaker": "npc",
+      "text": "Grüezi! Interessiered Si sich für e Boxkurs?",
+      "translation": "Hello! Are you interested in a boxing class?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ja.*",
+            "Ja, ich möcht.*"
+          ],
+          "exampleResponses": [
+            "Ja.",
+            "Ja, sicher.",
+            "Ja, genau.",
+            "Ja, ich möcht gärn mitmache.",
+            "Ja, ich möcht es probiere.",
+            "Ja, ich möcht mich iischriebe."
+          ],
+          "successReply": {
+            "text": "Super!",
+            "translation": "Great!?"
+          },
+          "hints": [
+            "Start with a simple 'Ja' or 'Ja, ich möchte...'"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "speaker": "npc",
+      "text": "Hätted Si scho Erfahrung im Boxe?",
+      "translation": "Do you already have experience in boxing?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ja, ich ha scho.*",
+            "Ich bi Anfänger.*",
+            "Ich bi no.*"
+          ],
+          "exampleResponses": [
+            "Ja, ich ha scho chlii Erfahrung.",
+            "Ja, ich ha scho mol trainiert.",
+            "Ja, ich ha scho paar Joor boxt.",
+            "Ich bi Anfänger.",
+            "Ich bi no ganz neu.",
+            "Ich bi Anfänger, ha kei Erfahrung."
+          ],
+          "successReply": {
+            "text": "Alles klar. Mir hei Kurs für Anfänger und Fortgschritteni.",
+            "translation": "Alright. We have classes for beginners and advanced students."
+          },
+          "hints": [
+            "Answer with 'Ja, ich ha scho...' (Yes, I already have...)",
+            "Or 'Ich bi Anfänger' (I am a beginner)"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "speaker": "npc",
+      "text": "Eifach zum wüsse: Es einzeln Lektion koschtet 25 Franke, e Mitgliedschaft 120 Franke pro Monet. Was wär Ihne lieber?",
+      "translation": "Just so you know: A single class costs 25 francs, a membership 120 francs per month. Which would you prefer?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ich probier.*einzeln.*",
+            "Ich möcht.*Mitglied.*"
+          ],
+          "exampleResponses": [
+            "Ich probier zerscht e einzeln Lektion.",
+            "Ich probier eimal es Training.",
+            "Ich probier lieber zerscht e Probestund.",
+            "Ich möcht Mitglied werde.",
+            "Ich möcht grad es Abo neh.",
+            "Ich möcht Mitgliedschaft löse."
+          ],
+          "successReply": {
+            "text": "Guet, mir chönned grad d Formular usfülle.",
+            "translation": "Good, we can fill out the form right away."
+          },
+          "hints": [
+            "Say you want to try a single class: 'Ich probier zerscht e einzeln Lektion'",
+            "Or commit to membership: 'Ich möcht Mitglied werde'"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "speaker": "npc",
+      "text": "Chönd Si bitte das Formular usfülle?",
+      "translation": "Could you please fill out this form?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ja, natürlich.*",
+            "Sicher.*"
+          ],
+          "exampleResponses": [
+            "Ja, natürlich.",
+            "Ja, natürlich, kein Problem.",
+            "Ja, klar, natürlich.",
+            "Sicher.",
+            "Sicher, gern.",
+            "Sicher, mach ich grad."
+          ],
+          "successReply": {
+            "text": "Perfekt, merci! Ich stell Ihne dä Trainer vor.",
+            "translation": "Perfect, thank you! I’ll introduce you to the trainer."
+          },
+          "hints": [
+            "Polite confirmations: 'Ja, natürlich' or 'Sicher'"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "speaker": "npc",
+      "text": "Das isch dä Herr Meier, eusi Boxtrainer.",
+      "translation": "This is Mr. Meier, our boxing trainer.",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Freut mi.*",
+            "Hallo.*"
+          ],
+          "exampleResponses": [
+            "Freut mi.",
+            "Freut mi, Sie z kennelerne.",
+            "Freut mi sehr.",
+            "Hallo.",
+            "Hallo, freut mi.",
+            "Hallo zäme."
+          ],
+          "successReply": {
+            "text": "Sehr guet, er zeigt Ihne grad d erste Übige.",
+            "translation": "Very good, he’ll show you the first exercises."
+          },
+          "hints": [
+            "Polite introductions: 'Freut mi' (Nice to meet you) or 'Hallo'"
+          ]
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68cc0eb171a5c523602ca042"
+  },
+  "title": "Opening a Bank Account",
+  "category": "finance",
+  "difficulty": "beginner",
+  "image": "../src/assets/HedgehogGruezi.png",
+  "tags": [
+    "bank",
+    "conversation",
+    "registration",
+    "money"
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "speaker": "npc",
+      "text": "Grüezi! Wie cha i Ihne hälfe?",
+      "translation": "Hello! How can I help you?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ich möcht.*Konto.*",
+            "Ich wott.*Konto.*"
+          ],
+          "exampleResponses": [
+            "Ich möcht es Bankkonto eröffne.",
+            "Ich möcht gärn es Konto ufmache.",
+            "Ich wott es Sparkonto eröffne.",
+            "Ich wott es Konto für mi öppne."
+          ],
+          "successReply": {
+            "text": "Sehr guet, mir chönd das grad mache.",
+            "translation": "Very good, we can do that right away."
+          },
+          "hints": [
+            "Use 'möchte' or 'wott' to say you want to open an account."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "speaker": "npc",
+      "text": "Welle Si es Privatkonto oder es Sparkonto?",
+      "translation": "Would you like a personal account or a savings account?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ich möcht.*Privatkonto.*",
+            "Ich möcht.*Sparkonto.*"
+          ],
+          "exampleResponses": [
+            "Ich möcht es Privatkonto.",
+            "Ich möcht gärn es normales Privatkonto.",
+            "Ich möcht es Sparkonto.",
+            "Ich möcht gärn es Sparkonto ufmache."
+          ],
+          "successReply": {
+            "text": "Alles klar, es Konto für Sie.",
+            "translation": "Alright, an account for you."
+          },
+          "hints": [
+            "Decide between a personal (Privatkonto) or savings account (Sparkonto)."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "speaker": "npc",
+      "text": "Händ Si e Identitätskarte oder Pass debii?",
+      "translation": "Do you have an ID card or passport with you?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ja, ich ha.*",
+            "Nei, ich ha kei.*"
+          ],
+          "exampleResponses": [
+            "Ja, ich ha min Pass debii.",
+            "Ja, ich ha d Identitätskarte.",
+            "Ja, ich ha min Auswiis debii.",
+            "Nei, ich ha kei Pass grad debii.",
+            "Nei, ich ha kei ID debii."
+          ],
+          "successReply": {
+            "text": "Perfekt, mir lueged s grad a.",
+            "translation": "Perfect, we’ll take a look at it right away."
+          },
+          "hints": [
+            "A simple yes/no answer works: 'Ja, ich ha…' or 'Nei, ich ha kei…'"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "speaker": "npc",
+      "text": "Welle Si e Bankkarte zum Konto?",
+      "translation": "Would you like a bank card with the account?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ja, ich möcht.*Karte.*",
+            "Nei.*Karte.*"
+          ],
+          "exampleResponses": [
+            "Ja, ich möcht gärn e Bankkarte.",
+            "Ja, ich möcht es Debitkarte.",
+            "Ja, ich möcht gärn es Karte zum Konto.",
+            "Nei, kei Karte bitte.",
+            "Nei, ich bruch kei Karte."
+          ],
+          "successReply": {
+            "text": "Sehr guet, mir lönd Ihne e Bankkarte zustelle.",
+            "translation": "Very good, we’ll send you a bank card."
+          },
+          "hints": [
+            "Say 'Ja, ich möcht …' if you want a card, 'Nei, kei Karte' if not."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "speaker": "npc",
+      "text": "Zum Schluss: Unterzeichned Si bitte da.",
+      "translation": "Finally: please sign here.",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ja, natürlich.*",
+            "Sicher.*"
+          ],
+          "exampleResponses": [
+            "Ja, natürlich.",
+            "Ja, natürlich, kein Problem.",
+            "Sicher.",
+            "Sicher, mach ich grad."
+          ],
+          "successReply": {
+            "text": "Merci vielmal! Ihr Konto isch eröffnet.",
+            "translation": "Thank you very much! Your account has been opened."
+          },
+          "hints": [
+            "Polite confirmations: 'Ja, natürlich' or 'Sicher'"
+          ]
+        }
+      ]
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68cc0eb171a5c523602ca043"
+  },
+  "title": "At the Café",
+  "category": "shopping",
+  "difficulty": "beginner",
+  "image": "../src/assets/HedgehogGruezi.png",
+  "tags": [
+    "food",
+    "ordering",
+    "cafe",
+    "dialogue"
+  ],
+  "steps": [
+    {
+      "order": 1,
+      "speaker": "npc",
+      "text": "Grüezi! Was möchted Si trinke?",
+      "translation": "Hello! What would you like to drink?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "(Ja, )?Ich möcht.*",
+            "(Ja, )?Ich hätt gern.*"
+          ],
+          "exampleResponses": [
+            "Ich möcht es Kafi, bitte.",
+            "Ich möcht es Espresso.",
+            "Ich möcht gärn es Latte Macchiato.",
+            "Ich hätt gern es Kafi Crème.",
+            "Ich hätt gern es Cappuccino.",
+            "Ich hätt gern es Kafi mit Milch."
+          ],
+          "successReply": {
+            "text": "Sehr guet, es feins Kafi chunt grad.",
+            "translation": "Very good, a nice coffee is coming right up."
+          },
+          "nextStep": 2,
+          "hints": [
+            "Use 'möchte' or 'hätt gern' to order politely."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "speaker": "npc",
+      "text": "Welle Si öppis dezue ässe?",
+      "translation": "Would you like something to eat with that?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Ja, ich möcht.*",
+            "Ich hätt gern.*"
+          ],
+          "exampleResponses": [
+            "Ja, ich möcht es Gipfeli.",
+            "Ja, ich möcht es Schoggiwegge.",
+            "Ich hätt gern es Sandwich.",
+            "Ich hätt gern es Mandelgipfeli."
+          ],
+          "successReply": {
+            "text": "Perfekt, ich bringe Ihne das grad.",
+            "translation": "Perfect, I’ll bring that right away."
+          },
+          "nextStep": 3,
+          "hints": [
+            "Say 'Ja, ich möcht …' or 'Ich hätt gern …' to order."
+          ]
+        },
+        {
+          "patterns": [
+            "Nei.*",
+            "Das isch alles.*"
+          ],
+          "exampleResponses": [
+            "Nei, das isch alles.",
+            "Nei danke, das isch alles.",
+            "Nei, kei Meh."
+          ],
+          "successReply": {
+            "text": "Alles klar.",
+            "translation": "Alright."
+          },
+          "nextStep": 4,
+          "hints": [
+            "Say 'Nei, das isch alles' to decline politely."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "speaker": "npc",
+      "text": "Welle Si das hie trinke oder mitnäh?",
+      "translation": "Would you like that here or to take away?",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Zum hie.*"
+          ],
+          "exampleResponses": [
+            "Zum hie trinken, bitte.",
+            "Zum hie, danke."
+          ],
+          "successReply": {
+            "text": "Alles klar, ich mach das für hie.",
+            "translation": "Alright, I’ll prepare it for here."
+          },
+          "nextStep": 4,
+          "hints": [
+            "Say 'Zum hie' for here."
+          ]
+        },
+        {
+          "patterns": [
+            "Zum mitnäh.*"
+          ],
+          "exampleResponses": [
+            "Zum mitnäh, bitte.",
+            "Zum mitnäh, danke.",
+            "Zum mitnäh, i ha pressant."
+          ],
+          "successReply": {
+            "text": "Guet, ich packe das i.",
+            "translation": "Good, I’ll pack it up."
+          },
+          "nextStep": 4,
+          "hints": [
+            "Say 'Zum mitnäh' for takeaway."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "speaker": "npc",
+      "text": "Das macht sechs Franke, bitte.",
+      "translation": "That will be six francs, please.",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Da, bitte.*",
+            "Bitte schön.*"
+          ],
+          "exampleResponses": [
+            "Da, bitte.",
+            "Da, bitte schön.",
+            "Bitte schön.",
+            "Bitte schön, da händ Si's."
+          ],
+          "successReply": {
+            "text": "Merci vielmal!",
+            "translation": "Thank you very much!"
+          },
+          "nextStep": 5,
+          "hints": [
+            "Any polite way of handing over money works: 'Da, bitte' or 'Bitte schön'."
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "speaker": "npc",
+      "text": "Da isch Ihr(e) Bestellig, bitte schön. En Guete!",
+      "translation": "Here’s your order, here you go. Enjoy!",
+      "expectedResponses": [
+        {
+          "patterns": [
+            "Merci.*",
+            "Danke.*"
+          ],
+          "exampleResponses": [
+            "Merci.",
+            "Merci vielmal.",
+            "Danke.",
+            "Danke vielmal, sehr lieb."
+          ],
+          "successReply": {
+            "text": "Gern gscheh! En schöne Tag!",
+            "translation": "You’re welcome! Have a nice day!"
+          },
+          "hints": [
+            "Say 'Merci' or 'Danke vielmal' to thank politely."
+          ]
+        }
+      ]
+    }
+  ]
+}]

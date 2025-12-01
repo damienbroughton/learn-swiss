@@ -1,0 +1,63 @@
+[{
+  "_id": {
+    "$oid": "68a5bbd2441c77ea9deec4a9"
+  },
+  "name": "learn-react",
+  "upvotes": 11,
+  "comments": [
+    {
+      "postedBy": "abc",
+      "text": "Hello"
+    },
+    {
+      "postedBy": "def",
+      "text": "Hi"
+    },
+    {
+      "postedBy": "",
+      "text": ""
+    }
+  ],
+  "upvoteIds": [
+    "ZujbCUCdriZPgCUyK1I4Mu32OfX2"
+  ]
+},
+{
+  "_id": {
+    "$oid": "68a5bbd2441c77ea9deec4aa"
+  },
+  "name": "learn-node",
+  "upvotes": 13,
+  "comments": [
+    {
+      "postedBy": "Obi-Wan Kenobi",
+      "text": "Hello There"
+    },
+    {
+      "postedBy": "General Grievous",
+      "text": "General Kenobi!"
+    },
+    {
+      "postedBy": "Droid",
+      "text": "Whaaat"
+    },
+    {
+      "postedBy": "Cody",
+      "text": "Attack!"
+    }
+  ],
+  "upvoteIds": [
+    "ZujbCUCdriZPgCUyK1I4Mu32OfX2"
+  ]
+},
+{
+  "_id": {
+    "$oid": "68a5bbd2441c77ea9deec4ab"
+  },
+  "name": "mongodb",
+  "upvotes": 1,
+  "comments": [],
+  "upvoteIds": [
+    "ZujbCUCdriZPgCUyK1I4Mu32OfX2"
+  ]
+}]
