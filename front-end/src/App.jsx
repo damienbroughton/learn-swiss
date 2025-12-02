@@ -13,6 +13,8 @@ import LoginPage from './pages/LoginPage'
 import CreateAccountPage from './pages/CreateAccountPage'
 import AdminPage from './pages/AdminPage'
 import MakeFlashCardsPage from './pages/MakeFlashCardsPage'
+import StoryListPage, {loader as storyListLoader} from './pages/StoryListPage'
+import StoryPage, {loader as storyLoader} from './pages/StoryPage'
 
 const routes = [{
   path: '/',
@@ -40,6 +42,16 @@ const routes = [{
     path: '/scenarios',
     element: <ScenarioListPage />,
     loader: scenarioListLoader
+  },
+  {
+    path: '/stories',
+    element: <StoryListPage />,
+    loader: storyListLoader
+  },
+  {
+    path: '/stories/:id',
+    element: <StoryPage />,
+    loader: storyLoader
   },
   {
     path: '/scenarios/:title/:mode',

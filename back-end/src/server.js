@@ -12,6 +12,7 @@ import flashcardRoutes from './routes/flashcardRoutes.js';
 import scenarioRoutes from './routes/scenarioRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import articleRoutes from './routes/articleRoutes.js';
+import storyRoutes from './routes/storyRoutes.js';
 
 await initializeFirebase();
 
@@ -39,6 +40,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/articles", articleRoutes);
 app.use("/api/flashcards", flashcardRoutes);
 app.use("/api/scenarios", scenarioRoutes);
+app.use("/api/stories", storyRoutes);
 
 const PORT = process.env.PORT || 8000;
 
