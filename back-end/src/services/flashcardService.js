@@ -190,7 +190,18 @@ export async function guessFlashcard(id, uid, guessedCorrectly) {
       { returnDocument: 'after' }
     );
 
-    return result;
+    const response = {
+      _id: result._id,
+      category: result.category,
+      firstLanguage: result.firstLanguage,
+      firstLanguageText: result.firstLanguageText,
+      secondLanguage: result.secondLanguage,
+      secondLanguageText: result.secondLanguageText,
+      formal: result.formal,
+      tags: result.tags
+    };
+
+    return response;
   } catch (error) {
     console.error(`Error adding guess to flashcard ID "${id}":`, error);
     throw new Error('Internal server error');

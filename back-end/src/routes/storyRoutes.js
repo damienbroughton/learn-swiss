@@ -22,9 +22,10 @@ router.get('/', async (req, res) => {
  * Get Story by id
  */
 router.get('/:id', async (req, res) => {
+  const { uid } = req.user;
   const { id } = req.params;
   try {
-    const story = await getStory(id);
+    const story = await getStory(uid, id);
 
     return res.json(story);
   } catch (err) {

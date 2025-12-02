@@ -1,5 +1,5 @@
 import iggyImage from '../assets/IggyLogo.png';
-import useAppUser from '../useAppUser';
+import useAppUser from '../hooks/useAppUser';
 
 export default function Homepage() {
 

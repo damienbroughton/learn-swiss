@@ -1,5 +1,4 @@
 import express from "express";
-import { db } from '../config/db.js';
 import { requireAuth } from '../middleware/requireAuth.js';
 import { getScenarios, getScenarioByTitle, completeScenarioByTitle } from "../services/scenarioService.js";
 
