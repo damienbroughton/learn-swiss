@@ -4,7 +4,7 @@ import { useParams, useLoaderData } from "react-router-dom";
 import CommentsList from "../CommentsList";
 import AddCommentForm from "../AddCommentForm";
 import articles from "../article-content";
-import useUser from "../useUser";
+import useUser from "../hooks/useUser";
 
 export default function ArticlePage() {
     const params = useParams();

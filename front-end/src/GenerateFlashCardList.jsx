@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "./api";
-import useUser from "./useUser";
+import useUser from "./hooks/useUser";
 import EditFlashCard from "./EditFlashCard";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +26,7 @@ export default function GenerateFlashCardList() {
         }
         if(!user) {
             setError("Unable to generate! Please login or create an account to generate flashcards.");
-            navigate(`/login`);
+            navigate(`/login?prev=make-flashcards`);
             return;
         }        
         if(!textBody.length) {
@@ -67,7 +67,7 @@ export default function GenerateFlashCardList() {
     async function onSaveFlashCards({}) {
         if(!user) {
             setError("Unable to generate! Please login or create an account to generate flashcards.");
-            navigate(`/login`);
+            navigate(`/login?prev=make-flashcards`);
             return;
         }        
         if(flashcardDeck.length === 0) {
@@ -82,6 +82,7 @@ export default function GenerateFlashCardList() {
             const response = await api.post(`/flashcards/bulk/${storyId}`, reqBody);
             const newFlashCardList = response.data;
             setFlashcardDeck( newFlashCardList );
+            navigate(`/stories/${storyId}`);
         } catch (error) {
             setError(error.message);
         } finally {

@@ -1,7 +1,7 @@
 import api from "../api";
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import imgFlashCards from '../assets/HedgeHogFlashCards.png';
+import imgStories from '../assets/HedgeHogBook.png';
 
 
 export default function StoryListPage() {
@@ -24,13 +24,14 @@ export default function StoryListPage() {
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/flashcard/${story.id}`); } }}
                   aria-label={`Open flashcard category: ${story.title}`}
                 >
-                  <img src={imgFlashCards} alt={story.title} className="scenario-card-img" />
+                  <img src={imgStories} alt={story.title} className="scenario-card-img" />
                   <div className="scenario-card-title">{story.title}</div>
                 </div>
               </li>
             ))}
           </ul>
       </div>
+      <button style={{marginTop: "10px", float: "right"}} onClick={() => navigate('/make-flashcards')}>Make your own</button>
     </div>
   );
 }

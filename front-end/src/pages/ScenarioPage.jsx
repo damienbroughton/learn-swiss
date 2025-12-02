@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams, useLoaderData, useNavigate } from "react-router-dom";
 import DisplayScenario from "../DisplayScenario";
 import imgCelebration from '../assets/HedgeHogCelebration.png';
-import useUser from "../useUser";
+import useUser from "../hooks/useUser";
 
 export default function ScenarioPage() {
     const navigate = useNavigate();

@@ -8,8 +8,8 @@ import { db } from '../config/db.js';
  */
 export async function getStories() {
   try {
-    const scenarios = await db.collection('stories').find().toArray();
-    const response = scenarios.map(story => {
+    const stories = await db.collection('stories').find().toArray();
+    const response = stories.map(story => {
       return {
         id: story._id,
         title: story.title,
@@ -27,7 +27,7 @@ export async function getStories() {
  * Retreive story and linked flashcards by id
  *
  */
-export async function getStory(id) {
+export async function getStory(uid, id) {
   try {
     console.log("retrieving story by id ", id)
     const story = await db.collection('stories').aggregate([
@@ -42,8 +42,44 @@ export async function getStory(id) {
         }
     ]).next();
 
-    console.log(story);
-    return story;
+    console.log(story.flashcards);
+    const flashcards = story.flashcards.map(flashcard => {
+      const response = {
+        _id: flashcard._id,
+        category: flashcard.category,
+        firstLanguage: flashcard.firstLanguage,
+        firstLanguageText: flashcard.firstLanguageText,
+        secondLanguage: flashcard.secondLanguage,
+        secondLanguageText: flashcard.secondLanguageText,
+        formal: flashcard.formal,
+        tags: flashcard.tags
+      };
+
+      // Enrich with user's guesses if logged in
+      if (uid && Array.isArray(flashcard.guesses)) {
+        const userGuesses = flashcard.guesses.filter(g => g.guessedBy === uid);
+        if (userGuesses.length > 0) {
+          const lastGuess = userGuesses[userGuesses.length - 1];
+          response.userGuess = {
+            guessedCorrectly: lastGuess.guessedCorrectly,
+            lastGuessDate: lastGuess.guessDate,
+            totalGuesses: userGuesses.length
+          };
+        }
+      }
+
+      return response;
+    });
+
+    const response = {
+        id: story._id,
+        title: story.title,
+        language: story.language,
+        content: story.content,
+        flashcards: flashcards
+    };
+
+    return response;
     
   } catch (error) {
     console.error('Error fetching categories:', error);

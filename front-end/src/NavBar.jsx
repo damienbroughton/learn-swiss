@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import useAppUser from './useAppUser';
+import useAppUser from './hooks/useAppUser';
 import iggyImage from './assets/IggyLogo54x64.png';
 
 
@@ -15,7 +15,6 @@ export default function NavBar(){
                 <li style={{ display: 'flex', alignItems: 'center' }}><img src={iggyImage} alt="Iggy" style={{ display: 'block' }} /></li>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/flashcards">Flashcards</Link></li>
-                <li><Link to="/make-flashcards">Make Flashcards</Link></li>
                 <li><Link to="/scenarios">Scenarios</Link></li>
                 <li><Link to="/stories">Stories</Link></li>
                 {isLoading ? <li style={{ color: "white" }}>Loading...</li> : (

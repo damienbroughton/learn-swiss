@@ -2,7 +2,7 @@ import api from "../api";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import EditFlashCard from "../EditFlashCard";
-import useUser from "../useUser";
+import useUser from "../hooks/useUser";
 
 export default function AdminPage() {
     
