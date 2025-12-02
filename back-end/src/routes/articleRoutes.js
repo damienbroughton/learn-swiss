@@ -1,7 +1,6 @@
 import express from "express";
 import { db } from '../config/db.js';
 import { requireAuth } from '../middleware/requireAuth.js';
-import { generateText } from "../services/geminiService.js";
 
 export const router = express.Router();
 

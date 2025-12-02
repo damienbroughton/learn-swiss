@@ -1,8 +1,7 @@
 import { db } from '../config/db.js';
 
 /**
- * Create a new user in the database if it doesn't exist.
- * If the user already exists, update their `updatedAt` timestamp.
+ * Get user by their userid
  */
 export async function getUser(uid) {
   try {

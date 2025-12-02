@@ -2,6 +2,8 @@ import express from "express";
 import { requireAdmin } from '../middleware/requireAdmin.js';
 import { requireAuth } from '../middleware/requireAuth.js';
 import { getFlashcardCategories, getFlashcardsByCategory, createFlashcard, insertFlashcards, guessFlashcard, updateFlashcard, generateFlashcardList } from "../services/flashcardService.js";
+import { addFlashCardsToStory } from "../services/storyService.js";
+
 
 export const router = express.Router();
 
@@ -94,13 +96,18 @@ router.post('/', requireAuth, requireAdmin, async (req, res) => {
  *
  * Requires authentication and admin role.
  */
-router.post('/bulk/', requireAuth, requireAdmin, async (req, res) => {
+router.post('/bulk/:storyId', requireAuth, requireAdmin, async (req, res) => {
   const { uid } = req.user;
+  const { storyId } = req.params;
   const flashcards = req.body;
-
 
   try {
     const result = await insertFlashcards(uid, flashcards);
+    const flashCardIds = result.map((flashcard) => flashcard._id);
+
+    await addFlashCardsToStory(uid, storyId, flashCardIds);
+    console.log(flashCardIds);
+
     return res.json(result);
   } catch (error) {
     return res.status(500).send('Internal server error');

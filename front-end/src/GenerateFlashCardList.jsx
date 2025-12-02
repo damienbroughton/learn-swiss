@@ -9,6 +9,7 @@ export default function GenerateFlashCardList() {
     const [textLanguage, setTextLanguage] = useState("German");
     const [textBody, setTextBody] = useState("");
     const [category, setCategory] = useState("");
+    const [storyId, setStoryId] = useState();
     const [translatedLanguage, setTranslatedLanguage] = useState("English");
     const [flashcardDeck, setFlashcardDeck] = useState([]);
     const [isGenerating, setIsGenerating] = useState(false);
@@ -36,16 +37,24 @@ export default function GenerateFlashCardList() {
             setIsGenerating(true);
             setError("");
 
-            const strippedTextBody = inTextBody.replace(/\r?\n+/g, " ").replace(/[^\p{L}\s]/gu, "");
+            const strippedTextBody = inTextBody.replace(/[^\p{L}\s']/gu, "");
+
+            const storyReqBody = { 
+                title: inCategory,
+                language: inLanguage,
+                content: strippedTextBody
+            };
+            const storyResponse = await api.post(`/stories/`, storyReqBody);
+            setStoryId(storyResponse.data._id);
 
             const reqBody = { 
                 category: inCategory,
                 language: inLanguage,
-                textBody: strippedTextBody,
+                textBody: strippedTextBody.replace(/\r?\n+/g, " "),
                 translatedLanguage: inTranslatedLanguage
             };
-
             const response = await api.post(`/flashcards/generate/`, reqBody);
+
             const newFlashCardList = response.data;
             setFlashcardDeck( newFlashCardList );
         } catch (error) {
@@ -70,7 +79,7 @@ export default function GenerateFlashCardList() {
             setError("");
 
             const reqBody = flashcardDeck;
-            const response = await api.post(`/flashcards/bulk/`, reqBody);
+            const response = await api.post(`/flashcards/bulk/${storyId}`, reqBody);
             const newFlashCardList = response.data;
             setFlashcardDeck( newFlashCardList );
         } catch (error) {

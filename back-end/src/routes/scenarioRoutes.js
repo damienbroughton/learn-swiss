@@ -1,6 +1,7 @@
 import express from "express";
 import { db } from '../config/db.js';
 import { requireAuth } from '../middleware/requireAuth.js';
+import { getScenarios, getScenarioByTitle, completeScenarioByTitle } from "../services/scenarioService.js";
 
 export const router = express.Router();
 
@@ -14,22 +15,11 @@ export const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const uid = req.user?.uid; // undefined if not logged in
-    const scenarios = await db.collection('scenarios').find().toArray();
 
-    const response = scenarios.map(scenario => {
-      const completions = scenario.completions || [];
-      const previouslyComplete = uid && completions.includes(uid);
-
-      return {
-        title: scenario.title,
-        image: scenario.image,
-        previouslyComplete
-      };
-    });
+    const response = await getScenarios(uid);
 
     return res.json(response);
   } catch (err) {
-    console.error('Error fetching scenarios:', err);
     return res.status(500).send('Internal server error');
   }
 });
@@ -46,7 +36,7 @@ router.get('/', async (req, res) => {
 router.get('/:title', async (req, res) => {
   try {
     const { title } = req.params;
-    const scenario = await db.collection('scenarios').findOne({ title });
+    const scenario = await getScenarioByTitle( title );
 
     if (!scenario) {
       return res.status(404).send('Scenario not found');
@@ -54,7 +44,6 @@ router.get('/:title', async (req, res) => {
 
     return res.json(scenario);
   } catch (err) {
-    console.error('Error fetching scenario:', err);
     return res.status(500).send('Internal server error');
   }
 });
@@ -73,23 +62,10 @@ router.post('/:title/complete', requireAuth, async (req, res) => {
     const { title } = req.params;
     const { uid } = req.user;
 
-    const scenario = await db.collection('scenarios').findOne({ title });
-    if (!scenario) {
-      return res.status(404).send('Scenario not found');
-    }
-
-    const completions = scenario.completions || [];
-    if (uid && !completions.includes(uid)) {
-      await db.collection('scenarios').findOneAndUpdate(
-        { title },
-        { $push: { completions: uid } }
-      );
-      return res.status(200).send('OK');
-    } else {
-      return res.status(200).send('OK - Previously Completed');
-    }
+    const responseMessage = await completeScenarioByTitle(uid, title);
+    return res.status(200).send(responseMessage);
+    
   } catch (err) {
-    console.error('Error marking scenario as complete:', err);
     return res.status(500).send('Internal server error');
   }
 });

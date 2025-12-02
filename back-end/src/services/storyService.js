@@ -1,0 +1,112 @@
+import { ObjectId } from 'mongodb';
+import { db } from '../config/db.js';
+
+
+/**
+ * Retreive list of stories
+ *
+ */
+export async function getStories() {
+  try {
+    const scenarios = await db.collection('stories').find().toArray();
+    const response = scenarios.map(story => {
+      return {
+        id: story._id,
+        title: story.title,
+        language: story.language,
+      };
+    });
+
+    return response;
+  } catch (err) {
+    console.error('Error fetching scenarios:', err);
+    throw new Error('Internal server error');
+  }
+}
+/**
+ * Retreive story and linked flashcards by id
+ *
+ */
+export async function getStory(id) {
+  try {
+    console.log("retrieving story by id ", id)
+    const story = await db.collection('stories').aggregate([
+        { $match: { _id: new ObjectId(id) } },
+        {
+            $lookup: {
+                from: "flashcards",
+                localField: "flashcards",
+                foreignField: "_id",
+                as: "flashcards"
+            }
+        }
+    ]).next();
+
+    console.log(story);
+    return story;
+    
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    throw new Error('Internal server error');
+  }
+}
+
+/**
+ * Create new flashcard
+ *
+ */
+export async function createStory(uid, title, language, content) {
+    try {
+        console.log(`Creating Story: ${title}, ${language}: ${content}`);
+
+        const now = new Date();
+
+        const update = await db.collection('stories').insertOne({ 
+            createdBy: uid, 
+            createdAt: now,
+            updatedBy: uid, 
+            updatedAt: now,
+            title, 
+            language, 
+            content
+        }, { returnDocument: 'after' });
+
+        const result = await db.collection('stories').findOne({ _id: update.insertedId });
+
+        return result;
+    } catch (error) {
+        console.error('Error creating story:', error);
+        throw new Error('Internal server error');
+    }
+}
+
+/**
+ * Add flashcard references to story
+ *
+ */
+export async function addFlashCardsToStory(uid, id, flashcardIds) {
+    try {
+        const story = await db.collection('stories').findOne({ _id: new ObjectId(id) });
+
+        if (!story) {
+            throw new Error('Story not found');
+        }
+
+        console.log(`Adding ${flashcardIds.length} flashcards to Story: ${story.title}`);
+
+        const updatedStory = await db.collection('stories').findOneAndUpdate(
+            {  _id: new ObjectId(id)  },
+            {
+                $push: { flashcards: { $each: flashcardIds } },
+            },
+            { returnDocument: 'after' }
+        );
+
+        const result = await db.collection('stories').findOne({ _id: updatedStory.insertedId });
+
+        return result;
+    } catch (error) {
+        console.error('Error creating story:', error);
+        throw new Error('Internal server error');
+    }
+}
