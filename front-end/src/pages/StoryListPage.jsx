@@ -1,7 +1,8 @@
 import api from "../api";
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import imgStories from '../assets/HedgeHogBook.png';
+import imgStoriesCH from '../assets/HedgeHogBook.png';
+import imgStoriesDE from '../assets/BoarBook.png';
 
 
 export default function StoryListPage() {
@@ -24,7 +25,7 @@ export default function StoryListPage() {
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/flashcard/${story.id}`); } }}
                   aria-label={`Open flashcard category: ${story.title}`}
                 >
-                  <img src={imgStories} alt={story.title} className="scenario-card-img" />
+                  <img src={story.language === "Swiss-German" ? imgStoriesCH : imgStoriesDE} alt={story.title} className="scenario-card-img" />
                   <div className="scenario-card-title">{story.title}</div>
                 </div>
               </li>
