@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
  * Get Story by id
  */
 router.get('/:id', async (req, res) => {
-  const { uid } = req.user;
+  const uid = req.user?.uid; // undefined if not logged in
   const { id } = req.params;
   try {
     const story = await getStory(uid, id);

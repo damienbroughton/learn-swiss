@@ -177,6 +177,8 @@ button {
   box-shadow: var(--shadow);
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  max-width: 100%;
+  margin: 5px;
 }
 button:hover {
   background: var(--accent);

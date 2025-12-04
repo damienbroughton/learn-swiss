@@ -45,13 +45,13 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
       { answerChecked && (
         <>
           <p>Did you guess correctly?</p>
-          <button id="btnThumbsDown" onClick={onThumbsDown}>
-            <img src={imgThumbsDown} alt="Iggy" height="50%" width="50%" style={{ display: 'block', margin: '0 auto' }} />
-            No
-          </button>
-          <button id="btnThumbsUp" onClick={onThumbsUp} style={{ float: 'right' }}>
-            <img src={imgThumbsUp} alt="Iggy" height="50%" width="50%" style={{ display: 'block', margin: '0 auto' }} />
+          <button id="btnThumbsUp" onClick={onThumbsUp}>
+            <img src={imgThumbsUp} alt="Iggy" style={{ display: 'block', margin: '0 auto' , maxWidth: '30%' }} />
             Yes
+          </button>
+          <button id="btnThumbsDown" onClick={onThumbsDown}>
+            <img src={imgThumbsDown} alt="Iggy" style={{ display: 'block', margin: '0 auto', maxWidth: '30%' }} />
+            No
           </button>
         </>
       )}
