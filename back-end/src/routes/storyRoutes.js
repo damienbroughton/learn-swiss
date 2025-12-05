@@ -1,6 +1,7 @@
 import express from "express";
 import { requireAuth } from '../middleware/requireAuth.js';
 import { getStories, getStory, createStory } from "../services/storyService.js";
+import { createJob } from "../services/jobService.js";
 
 export const router = express.Router();
 
@@ -43,11 +44,12 @@ router.get('/:id', async (req, res) => {
  */
 router.post('/', requireAuth, async (req, res) => {
   const { uid } = req.user;
-  const { title, language, content } = req.body;
+  const { title, language, content, translatedLanguage, tags } = req.body;
 
 
   try {
     let story = await createStory( uid, title, language, content );
+    let job = await createJob(uid, "extract-flashcards", story._id, content, language, translatedLanguage, tags);
     return res.json(story);
   } catch (err) {
     console.error('Error creating or updating user:', err);

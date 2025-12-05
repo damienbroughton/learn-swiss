@@ -42,21 +42,23 @@ export default function GenerateFlashCardList() {
             const storyReqBody = { 
                 title: inCategory,
                 language: inLanguage,
-                content: strippedTextBody
+                content: strippedTextBody,
+                translatedLanguage: inTranslatedLanguage
             };
             const storyResponse = await api.post(`/stories/`, storyReqBody);
             setStoryId(storyResponse.data._id);
 
-            const reqBody = { 
-                category: inCategory,
-                language: inLanguage,
-                textBody: strippedTextBody.replace(/\r?\n+/g, " "),
-                translatedLanguage: inTranslatedLanguage
-            };
-            const response = await api.post(`/flashcards/generate/`, reqBody);
+            navigate(`/stories/${storyResponse.data._id}`);
+            // const reqBody = { 
+            //     category: inCategory,
+            //     language: inLanguage,
+            //     textBody: strippedTextBody.replace(/\r?\n+/g, " "),
+            //     translatedLanguage: inTranslatedLanguage
+            // };
+            // const response = await api.post(`/flashcards/generate/`, reqBody);
 
-            const newFlashCardList = response.data;
-            setFlashcardDeck( newFlashCardList );
+            // const newFlashCardList = response.data;
+            // setFlashcardDeck( newFlashCardList );
         } catch (error) {
             setError(error.message);
         } finally {
@@ -64,31 +66,31 @@ export default function GenerateFlashCardList() {
         }
     }
 
-    async function onSaveFlashCards({}) {
-        if(!user) {
-            setError("Unable to generate! Please login or create an account to generate flashcards.");
-            navigate(`/login?prev=make-flashcards`);
-            return;
-        }        
-        if(flashcardDeck.length === 0) {
-            setError("Unable to save! No flashcards to save.");
-            return;
-        }    
-        try{
-            setIsSaving(true);
-            setError("");
+    // async function onSaveFlashCards({}) {
+    //     if(!user) {
+    //         setError("Unable to generate! Please login or create an account to generate flashcards.");
+    //         navigate(`/login?prev=make-flashcards`);
+    //         return;
+    //     }        
+    //     if(flashcardDeck.length === 0) {
+    //         setError("Unable to save! No flashcards to save.");
+    //         return;
+    //     }    
+    //     try{
+    //         setIsSaving(true);
+    //         setError("");
 
-            const reqBody = flashcardDeck;
-            const response = await api.post(`/flashcards/bulk/${storyId}`, reqBody);
-            const newFlashCardList = response.data;
-            setFlashcardDeck( newFlashCardList );
-            navigate(`/stories/${storyId}`);
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setIsSaving(false);
-        }
-    }
+    //         const reqBody = flashcardDeck;
+    //         const response = await api.post(`/flashcards/bulk/${storyId}`, reqBody);
+    //         const newFlashCardList = response.data;
+    //         setFlashcardDeck( newFlashCardList );
+    //         navigate(`/stories/${storyId}`);
+    //     } catch (error) {
+    //         setError(error.message);
+    //     } finally {
+    //         setIsSaving(false);
+    //     }
+    // }
 
     return (
         <div>
@@ -118,7 +120,7 @@ export default function GenerateFlashCardList() {
                 }}
             >{isGenerating ? 'Generating Flashcards...' : 'Generate Flashcards'}</button>
             {error && (<p>{error}</p>)}
-            {flashcardDeck.length > 0 && (
+            {/* {flashcardDeck.length > 0 && (
                 <div>
                     <p>{flashcardDeck.length} flashcards generated. Please review, verify and save.</p>
                     <button
@@ -133,7 +135,7 @@ export default function GenerateFlashCardList() {
                         }}
                     >{isSaving ? 'Saving...' : 'Save'}</button>
                 </div>
-            )}
+            )} */}
             <div style={{marginTop: "20px"}}>
                 {isGenerating && (<p>Loading...</p>)}
                 {!isGenerating && flashcardDeck && flashcardDeck.map((flashcard, index) => (

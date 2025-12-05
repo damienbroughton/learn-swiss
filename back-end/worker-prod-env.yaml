@@ -1,0 +1,11 @@
+env_variables: 
+  MONGODB_USERNAME: learn-swss-german-server
+  GOOGLE_PROJECT_ID: 513090361622
+  GOOGLE_CLOUD_LOCATION: global
+  GOOGLE_GENAI_USE_VERTEXAI: true
+  VITE_FIREBASE_API_KEY: "AIzaSyAaqutaxTjKG-pO7ujlyoFfybbCFA2JnrY"
+  VITE_FIREBASE_AUTH_DOMAIN: "learn-swiss-german-eff37.firebaseapp.com"
+  VITE_FIREBASE_PROJECT_ID: "learn-swiss-german-eff37"
+  VITE_FIREBASE_STORAGE_BUCKET: "learn-swiss-german-eff37.firebasestorage.app"
+  VITE_FIREBASE_MESSAGING_SENDER_ID: "513090361622"
+  VITE_FIREBASE_APP_ID: "1:513090361622:web:5c220d5605098f5743d837"

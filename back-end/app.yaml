@@ -1,4 +1,10 @@
+service: default
 includes:
-  - prod-env.yaml
+  - app-prod-env.yaml
 runtime: nodejs20
 instance_class: F4
+
+# Use automatic scaling, as this service handles fluctuating web traffic.
+automatic_scaling:
+  min_instances: 0 # Scales down to zero to save costs when idle.
+  max_instances: 10
