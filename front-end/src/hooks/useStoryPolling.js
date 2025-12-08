@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 
-function useStoryPolling(storyId, initialStory, interval = 5000) {
+function useStoryPolling(storyReference, initialStory, interval = 5000) {
     const [story, setStory] = useState(initialStory);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -17,7 +17,7 @@ function useStoryPolling(storyId, initialStory, interval = 5000) {
         async function poll() {
             try {
                 // API endpoint fetches story including flashcards
-                const response = await api.get(`/stories/${storyId}`);
+                const response = await api.get(`/stories/${storyReference}`);
                 const newStory = response.data;
 
                 // Check if flashcards have been generated
@@ -41,7 +41,7 @@ function useStoryPolling(storyId, initialStory, interval = 5000) {
 
         // Clean up function to clear timer when component unmounts
         return () => clearTimeout(timerId);
-    }, [storyId, interval]);
+    }, [storyReference, interval]);
 
     return { story, isLoading };
 }

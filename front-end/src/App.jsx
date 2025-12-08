@@ -49,7 +49,7 @@ const routes = [{
     loader: storyListLoader
   },
   {
-    path: '/stories/:id',
+    path: '/stories/:reference',
     element: <StoryPage />,
     loader: storyLoader
   },

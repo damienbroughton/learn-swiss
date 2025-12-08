@@ -12,6 +12,7 @@ export async function getStories() {
     const response = stories.map(story => {
       return {
         id: story._id,
+        reference: story.reference,
         title: story.title,
         language: story.language,
       };
@@ -27,11 +28,11 @@ export async function getStories() {
  * Retreive story and linked flashcards by id
  *
  */
-export async function getStory(uid, id) {
+export async function getStory(uid, reference) {
   try {
-    console.log("retrieving story by id ", id)
+    console.log("Retrieving story by reference: ", reference)
     const story = await db.collection('stories').aggregate([
-        { $match: { _id: new ObjectId(id) } },
+        { $match: { reference } },
         {
             $lookup: {
                 from: "flashcards",
@@ -42,7 +43,6 @@ export async function getStory(uid, id) {
         }
     ]).next();
 
-    console.log(story.flashcards);
     const flashcards = story.flashcards.map(flashcard => {
       const response = {
         _id: flashcard._id,
@@ -73,6 +73,7 @@ export async function getStory(uid, id) {
 
     const response = {
         id: story._id,
+        reference: story.reference,
         title: story.title,
         language: story.language,
         content: story.content,
@@ -95,9 +96,15 @@ export async function createStory(uid, title, language, content) {
     try {
         console.log(`Creating Story: ${title}, ${language}: ${content}`);
 
+        let reference = title.replace(/[^\p{L}\s]/gu, "").replaceAll(" ", "-").toLowerCase();
+        const existingReferences = await db.collection('stories').find({ reference }).toArray();
+        if(existingReferences.length > 0)
+          reference = `${reference}-${existingReferences.length}`;
+
         const now = new Date();
 
         const update = await db.collection('stories').insertOne({ 
+            reference,
             createdBy: uid, 
             createdAt: now,
             updatedBy: uid, 

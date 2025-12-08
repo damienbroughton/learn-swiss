@@ -12,7 +12,7 @@ export default function StoryPage() {
     const [showFlashCards, setShowFlashCards] = useState(true);
     const [showStory, setShowStory] = useState(false);
 
-    const { story, isLoading } = useStoryPolling(initialStory.id, initialStory);
+    const { story, isLoading } = useStoryPolling(initialStory.reference, initialStory);
     console.log(story);
 
     const hasFlashcards = story?.flashcards?.length > 0;
@@ -58,7 +58,7 @@ export default function StoryPage() {
 }
 
 export async function loader ({params}) {
-  const response = await api.get(`/stories/${params.id}`);
+  const response = await api.get(`/stories/${params.reference}`);
   const story = response.data;
   return {story};
 }
