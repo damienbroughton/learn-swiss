@@ -16,14 +16,14 @@ export default function StoryListPage() {
         <h1>Stories</h1>
           <ul className="scenario-list">
             {stories.map(story => (
-              <li key={story.title} className="scenario-list-item">
+              <li key={story.reference} className="scenario-list-item">
                 <div
                   className="scenario-card"
-                  onClick={() => navigate(`/stories/${story.id}`)}
+                  onClick={() => navigate(`/stories/${story.reference}`)}
                   tabIndex={0}
                   role="button"
-                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/flashcard/${story.id}`); } }}
-                  aria-label={`Open flashcard category: ${story.title}`}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/stories/${story.reference}`); } }}
+                  aria-label={`Open flashcard category: ${story.reference}`}
                 >
                   <img src={story.language === "Swiss-German" ? imgStoriesCH : imgStoriesDE} alt={story.title} className="scenario-card-img" />
                   <div className="scenario-card-title">{story.title}</div>

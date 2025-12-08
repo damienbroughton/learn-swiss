@@ -22,11 +22,11 @@ router.get('/', async (req, res) => {
 /**
  * Get Story by id
  */
-router.get('/:id', async (req, res) => {
+router.get('/:reference', async (req, res) => {
   const uid = req.user?.uid; // undefined if not logged in
-  const { id } = req.params;
+  const { reference } = req.params;
   try {
-    const story = await getStory(uid, id);
+    const story = await getStory(uid, reference);
 
     return res.json(story);
   } catch (err) {
