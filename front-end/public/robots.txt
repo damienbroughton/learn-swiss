@@ -1,0 +1,10 @@
+# Allow all major search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Ensure Google can crawl assets for rendering (CSS, JS)
+User-agent: Googlebot
+Allow: /*.js$
+Allow: /*.css$
+
+Sitemap: https://www.learn-swiss.ch/sitemap.xml
