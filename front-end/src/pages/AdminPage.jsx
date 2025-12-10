@@ -1,15 +1,17 @@
 import api from "../api";
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import EditFlashCard from "../EditFlashCard";
 import useUser from "../hooks/useUser";
 
 export default function AdminPage() {
-    
     const { categories } = useLoaderData();
     const [flashcardDeck, setFlashcardDeck] = useState(null);
     const [category, setCategory] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    const title = `Learn-Swiss: Admin`;
 
     const { user } = useUser();
 
@@ -67,6 +69,11 @@ export default function AdminPage() {
     }
 
   return (
+    <>
+    <Helmet>
+        {/* Dynamic Meta Tags */}
+        <title>{title}</title>
+    </Helmet>
     <div className="container center">
       <div className="card" >
         <h1>Administration</h1>
@@ -83,5 +90,6 @@ export default function AdminPage() {
           {!isLoading && flashcardDeck && <button onClick={onAddFlashCard}>Add Flash Card</button>}
       </div>
     </div>
+    </>
   );
 }

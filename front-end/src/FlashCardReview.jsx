@@ -28,8 +28,9 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
 
   return (
     <div>
-      <h2>Flash Cards</h2>
       {flashcard && (
+        <>
+        <h1>{flashcard.category}</h1>
         <DisplayFlashCard 
           key={flashcard._id} 
           category={flashcard.category} 
@@ -39,6 +40,7 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
           previouslyCorrect={flashcard.userGuess?.guessedCorrectly} 
           setAnswerChecked={setAnswerChecked} 
         />
+        </>
       )}
       
       {/* Display Thumbs Up/Down buttons if answer is checked */}

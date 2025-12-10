@@ -1,6 +1,7 @@
 import api from "../api";
 import { useState } from "react";
 import { useParams, useLoaderData, useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import DisplayScenario from "../DisplayScenario";
 import imgCelebration from '../assets/HedgeHogCelebration.png';
 import useUser from "../hooks/useUser";
@@ -10,6 +11,11 @@ export default function ScenarioPage() {
     const { mode } = useParams();
     const {title, category, difficulty, tags, steps} = useLoaderData();
     const { user } = useUser();
+
+    const pageTitle = `Learn-Swiss: ${title}`;
+    const description = `Practice vocabulary the scenario '${title}' in Swiss-German.`;
+    const canonicalUrl = `https://learn-swiss.ch/stories/${title}/${mode}`;
+    const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": pageTitle, "description": description, "url": canonicalUrl };
 
     const [shownSteps, setShownSteps] = useState([steps[0]]); // start with first step
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -55,6 +61,17 @@ export default function ScenarioPage() {
 
   return (
     <>
+    <Helmet>
+        {/* Dynamic Meta Tags */}
+        <title>{pageTitle}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
+    </Helmet>
     <div>
       <h1>{title}</h1>
       <p>Category: {category} | Difficulty: {difficulty} | Tags: {tags.join(', ')}</p>

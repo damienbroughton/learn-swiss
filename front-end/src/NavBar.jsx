@@ -12,8 +12,7 @@ export default function NavBar(){
     return (
         <nav>
             <ul>
-                <li style={{ display: 'flex', alignItems: 'center' }}><img src={iggyImage} alt="Iggy" style={{ display: 'block' }} /></li>
-                <li><Link to="/">Home</Link></li>
+                <li style={{ display: 'flex', alignItems: 'center' }}><Link to="/"><img src={iggyImage} alt="Iggy" style={{ display: 'block' }} /></Link></li>
                 <li><Link to="/flashcards">Flashcards</Link></li>
                 <li><Link to="/scenarios">Scenarios</Link></li>
                 <li><Link to="/stories">Stories</Link></li>

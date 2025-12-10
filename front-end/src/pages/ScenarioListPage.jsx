@@ -2,9 +2,15 @@ import api from "../api";
 import { useState, useEffect } from "react"
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 export default function ScenarioListPage() {
   const {scenarios} = useLoaderData();
+
+  const title = `Learn-Swiss: Scenarios`;
+  const description = `Learn Swiss-German stories by practicing common scenarios!`;
+  const canonicalUrl = `https://learn-swiss.ch/scenarios`;
+  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   const [practiceMode, setPracticeMode] = useState(() => {
     const saved = localStorage.getItem("practiceMode");
@@ -18,9 +24,22 @@ export default function ScenarioListPage() {
   const navigate = useNavigate();
 
   return (
+    <>
+    <Helmet>
+        {/* Dynamic Meta Tags */}
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
+    </Helmet>
     <div className="container center">
       <div className="card" >
         <h1>Scenarios</h1>
+        <p>{description}</p>
         <div>
             <label className="switch">
               <input type="checkbox" checked={practiceMode} onChange={e => setPracticeMode(e.target.checked)} />
@@ -50,6 +69,7 @@ export default function ScenarioListPage() {
           </ul>
         </div>
     </div>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import api from "../api";
 import { useEffect, useState } from "react";
 import { useNavigate, useLoaderData } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import imgStoriesCH from '../assets/HedgeHogBook.png';
 import imgStoriesDE from '../assets/BoarBook.png';
 
@@ -13,6 +14,11 @@ export default function StoryListPage() {
   const [secondLanguage, setSecondLanguage] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const title = `Learn-Swiss: Stories`;
+  const description = `Learn Swiss-German stories by building vocabulary with flashcards. You can generate your own with AI!`;
+  const canonicalUrl = `https://learn-swiss.ch/stories/`;
+  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+
   useEffect(() => {
     const lowerQuery = searchQuery.toLowerCase();
     const filteredStories = initialStories.filter((story) =>
@@ -23,9 +29,22 @@ export default function StoryListPage() {
   const navigate = useNavigate();
 
   return (
+    <>
+    <Helmet>
+        {/* Dynamic Meta Tags */}
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
+    </Helmet>
     <div className="container center">
       <div className="card" >
         <h1>Stories</h1>
+        <p>{description}</p>
           <div style={{display: "flex"}}>
             <label>First Language: 
               <select id="firstLanguage" value={firstLanguage} onChange={e => setFirstLanguage(e.target.value)} >
@@ -41,7 +60,8 @@ export default function StoryListPage() {
             </label>
             <label htmlFor='search-query'>Search:
               <input 
-              type="text"
+                id="search-query"
+                type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -67,6 +87,7 @@ export default function StoryListPage() {
       </div>
       <button style={{marginTop: "10px", float: "right"}} onClick={() => navigate('/make-flashcards')}>Make your own</button>
     </div>
+    </>
   );
 }
 
