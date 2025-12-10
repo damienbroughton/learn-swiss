@@ -11,10 +11,11 @@ export async function getStories() {
     const stories = await db.collection('stories').find().toArray();
     const response = stories.map(story => {
       return {
-        id: story._id,
+        _id: story._id,
         reference: story.reference,
         title: story.title,
         language: story.language,
+        translatedLanguage: story.translatedLanguage,
       };
     });
 
