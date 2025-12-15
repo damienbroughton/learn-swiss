@@ -31,7 +31,10 @@ export async function createJob(uid, type, storyId, content, language, translate
             category
         });
         const result = await db.collection('jobs').findOne({ _id: update.insertedId });
-        return result;
+        if (result)
+            return result;
+        else
+            throw new Error('Newly insterted job could not be retreived.');
     }
     catch (error) {
         console.error('Error creating story:', error);
@@ -64,7 +67,7 @@ export async function getOldestPendingJob() {
  * @param {string} status - The new status ('processing', 'completed', 'failed').
  * @param {string | null} result - Optional result or error message.
  */
-export async function updateJobStatus(id, status, result = "") {
+export async function updateJobStatus(id, status, result) {
     if (!db)
         throw new Error('Database connection not initialized. Check connectToDB call.');
     const updatePayload = {
@@ -74,7 +77,7 @@ export async function updateJobStatus(id, status, result = "") {
         result: {}
     };
     if (result !== null && status === 'failed') {
-        updatePayload.error = result;
+        updatePayload.error = result.message;
     }
     else if (result !== null && status === 'result') {
         updatePayload.result = result;

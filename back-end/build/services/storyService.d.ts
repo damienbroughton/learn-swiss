@@ -32,5 +32,5 @@ export declare function createStory(uid: string, title: string, language: string
  * Add flashcard references to story
  *
  */
-export declare function addFlashCardsToStory(uid: string, id: string, flashcardIds: ObjectId[]): Promise<import("mongodb").WithId<import("bson").Document> | null>;
+export declare function addFlashCardsToStory(uid: string, id: ObjectId, flashcardIds: ObjectId[]): Promise<import("mongodb").WithId<import("bson").Document> | null>;
 //# sourceMappingURL=storyService.d.ts.map

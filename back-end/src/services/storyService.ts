@@ -110,7 +110,7 @@ export async function createStory(uid: string, title: string, language: string, 
  * Add flashcard references to story
  *
  */
-export async function addFlashCardsToStory(uid: string, id: string, flashcardIds: ObjectId[]) {
+export async function addFlashCardsToStory(uid: string, id: ObjectId, flashcardIds: ObjectId[]) {
     try {
         if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
         const story = await db.collection('stories').findOne({ _id: new ObjectId(id) });

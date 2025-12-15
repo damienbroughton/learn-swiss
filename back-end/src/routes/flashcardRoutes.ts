@@ -15,7 +15,7 @@ import { addFlashCardsToStory } from "../services/storyService.js";
 import type { Response } from 'express';
 // Assuming this imports the type that extends Request with user and userRecord
 import type { EnrichedRequest } from '../types/requestInterfaces.js'; 
-import type { ObjectId } from "mongodb";
+import { ObjectId } from "mongodb";
 
 
 export const router = express.Router();
@@ -137,7 +137,7 @@ router.post('/bulk/:storyId', requireAuth, requireAdmin, async (req: EnrichedReq
         if(!storyId)
           throw new Error("Missing Story Id");
 
-        await addFlashCardsToStory(uid, storyId, flashCardIds);
+        await addFlashCardsToStory(uid, new ObjectId(storyId), flashCardIds);
         console.log("Inserted and linked flashcard IDs:", flashCardIds);
 
         return res.json(result);

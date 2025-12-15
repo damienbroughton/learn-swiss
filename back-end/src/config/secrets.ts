@@ -17,7 +17,6 @@ const client: SecretManagerServiceClient = new SecretManagerServiceClient();
  * @throws {Error} Throws an error if the `GOOGLE_PROJECT_ID` is missing or if the secret access fails.
  */
 export async function getSecret(name: string): Promise<string> {
-    
     const projectId: string | undefined = process.env.GOOGLE_PROJECT_ID;
     
     // --- 1. Validation ---
@@ -28,6 +27,7 @@ export async function getSecret(name: string): Promise<string> {
     // --- 2. Construct Resource Name ---
     const secretResourceName: string = `projects/${projectId}/secrets/${name}/versions/latest`;
     
+
     try {
         // --- 3. Access Secret Version (Using Type Inference) ---
         
@@ -47,6 +47,7 @@ export async function getSecret(name: string): Promise<string> {
              return "";
         }
         
+
         return payload.toString(); 
         
     } catch (error) {

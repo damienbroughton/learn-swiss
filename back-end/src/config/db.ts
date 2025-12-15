@@ -31,7 +31,6 @@ export async function connectToDB(): Promise<void> {
     // Check for required username/password to determine the URI style
     const isCloudCluster: boolean = mongodbUserName !== undefined && mongodbPassword !== undefined;
 
-    
     const uri = isCloudCluster
         ? `mongodb+srv://${mongodbUserName}:${mongodbPassword}@${mongodbDB}/?retryWrites=true&w=majority&appName=Cluster0`
         : 'mongodb://localhost:27017'; // Fallback to local MongoDB
@@ -52,9 +51,7 @@ export async function connectToDB(): Promise<void> {
 
         // Use the database name provided by the secret, 
         // falling back to a known default if necessary for local setup
-        const databaseName = isCloudCluster ? mongodbDB : 'learn-swiss-german-db'; 
-        console.log(databaseName);
-
+        const databaseName = 'learn-swiss-german-db';
         
         // --- 5. Assign the Db Instance ---
         db = client.db(databaseName);

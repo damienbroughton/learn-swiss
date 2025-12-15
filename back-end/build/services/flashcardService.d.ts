@@ -21,17 +21,17 @@ export declare function getFlashcardsByCategory(uid: string | undefined, categor
  * Create new flashcard
  *
  */
-export declare function createFlashcard(uid: string, category: string, firstLanguage: string, firstLanguageText: string, secondLanguage: string, secondLanguageText: string, formal: boolean, tags: string[]): Promise<import("mongodb").WithId<import("bson").Document> | null>;
+export declare function createFlashcard(uid: string, category: string, firstLanguage: string, firstLanguageText: string, secondLanguage: string, secondLanguageText: string, formal: boolean, tags: string[]): Promise<FlashcardDocument>;
 /**
  * Create new flashcards
  *
  */
-export declare function insertFlashcards(uid: string, flashcards: FlashcardDocument[]): Promise<(import("mongodb").WithId<import("bson").Document> | null)[]>;
+export declare function insertFlashcards(uid: string, flashcards: FlashcardDocument[]): Promise<FlashcardDocument[]>;
 /**
  * Update exisiting flashcard
  *
  */
-export declare function updateFlashcard(id: string, uid: string, category: string, firstLanguage: string, firstLanguageText: string, secondLanguage: string, secondLanguageText: string, formal: boolean, tags: string[]): Promise<import("mongodb").WithId<import("bson").Document> | null>;
+export declare function updateFlashcard(id: string, uid: string, category: string, firstLanguage: string, firstLanguageText: string, secondLanguage: string, secondLanguageText: string, formal: boolean, tags: string[]): Promise<FlashcardDocument>;
 /**
  * Update exisiting flashcard with a guess from user
  *
@@ -50,5 +50,5 @@ export declare function guessFlashcard(id: string, uid: string, guessedCorrectly
  * Generate new flashcard list using gemini ai
  *
  */
-export declare function generateFlashcardList(uid: string, category: string, language: string, textBody: string, translatedLanguage: string): Promise<any>;
+export declare function generateFlashcardList(uid: string, category: string, language: string, textBody: string, translatedLanguage: string): Promise<FlashcardDocument[]>;
 //# sourceMappingURL=flashcardService.d.ts.map
