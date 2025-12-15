@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 /**
  * Interface for the nested 'result' object in the Job document.
  */
-interface JobResult {
+export interface JobResult {
     cardCount: number;
     message: string;
     [key: string]: any;
@@ -42,5 +42,4 @@ export interface JobDocument {
     /** Nested object containing the successful outcome or metrics of the job. */
     result: JobResult | null;
 }
-export {};
 //# sourceMappingURL=jobInterfaces.d.ts.map

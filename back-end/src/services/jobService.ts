@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { db } from '../config/db.js';
-import type { JobDocument } from '../types/jobInterfaces.js'; // Import interfaces
+import type { JobDocument, JobResult } from '../types/jobInterfaces.js'; // Import interfaces
 
 /**
  * Creates a new job in the database.
@@ -14,7 +14,7 @@ import type { JobDocument } from '../types/jobInterfaces.js'; // Import interfac
  * @param {string} category - The category to tag against the story
  */
 export async function createJob(uid: string, type: string, storyId: ObjectId, content: string, 
-    language: string, translatedLanguage: string, category: string) {
+    language: string, translatedLanguage: string, category: string): Promise<JobDocument> {
     try {
         if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
 
@@ -37,8 +37,10 @@ export async function createJob(uid: string, type: string, storyId: ObjectId, co
         });
 
         const result = await db.collection<JobDocument>('jobs').findOne({ _id: update.insertedId });
-
-        return result;
+        if(result)
+            return result;
+        else
+            throw new Error('Newly insterted job could not be retreived.');
     } catch (error) {
         console.error('Error creating story:', error);
         throw new Error('Internal server error');
@@ -48,11 +50,11 @@ export async function createJob(uid: string, type: string, storyId: ObjectId, co
 /**
  * Gets the oldest pending job in the database.
  */
-export async function getOldestPendingJob(){
+export async function getOldestPendingJob(): Promise<JobDocument | null>{
     const now = new Date();
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
 
-    const job = await db.collection('jobs').findOneAndUpdate(
+    const job = await db.collection<JobDocument>('jobs').findOneAndUpdate(
         { 
             status: 'pending'
         },
@@ -77,7 +79,7 @@ export async function getOldestPendingJob(){
  * @param {string} status - The new status ('processing', 'completed', 'failed').
  * @param {string | null} result - Optional result or error message.
  */
-export async function updateJobStatus(id: ObjectId, status: string, result: string = "") {
+export async function updateJobStatus(id: ObjectId, status: string, result: JobResult) {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
 
     const updatePayload = {
@@ -87,7 +89,7 @@ export async function updateJobStatus(id: ObjectId, status: string, result: stri
         result: {}
     };
     if (result !== null && status === 'failed') {
-        updatePayload.error = result;
+        updatePayload.error = result.message;
     } else if (result !== null && status === 'result') {
         updatePayload.result = result;
     }

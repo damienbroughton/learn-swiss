@@ -4,6 +4,7 @@ import { requireAuth } from '../middleware/requireAuth.js';
 import { optionalAuth } from '../middleware/optionalAuth.js'; // Import the new middleware
 import { getFlashcardCategories, getFlashcardsByCategory, createFlashcard, insertFlashcards, guessFlashcard, updateFlashcard, generateFlashcardList } from "../services/flashcardService.js";
 import { addFlashCardsToStory } from "../services/storyService.js";
+import { ObjectId } from "mongodb";
 export const router = express.Router();
 /**
  * GET /categories
@@ -109,7 +110,7 @@ router.post('/bulk/:storyId', requireAuth, requireAdmin, async (req, res) => {
         // Link the newly created flashcards to the story
         if (!storyId)
             throw new Error("Missing Story Id");
-        await addFlashCardsToStory(uid, storyId, flashCardIds);
+        await addFlashCardsToStory(uid, new ObjectId(storyId), flashCardIds);
         console.log("Inserted and linked flashcard IDs:", flashCardIds);
         return res.json(result);
     }

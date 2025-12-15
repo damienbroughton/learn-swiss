@@ -96,7 +96,10 @@ export async function createFlashcard(uid, category, firstLanguage, firstLanguag
             tags
         });
         const result = await db.collection('flashcards').findOne({ _id: update.insertedId });
-        return result;
+        if (result)
+            return result;
+        else
+            throw new Error('Newly insterted job could not be retreived.');
     }
     catch (error) {
         console.error('Error creating flashcard:', error);
@@ -130,10 +133,14 @@ export async function insertFlashcards(uid, flashcards) {
                 //otherwise create it
                 savedFlashcard = await createFlashcard(uid, flashcard.category, flashcard.firstLanguage, flashcard.firstLanguageText, flashcard.secondLanguage, flashcard.secondLanguageText, flashcard.formal, flashcard.tags);
             }
-            insertedFlashcards.push(savedFlashcard);
+            if (savedFlashcard)
+                insertedFlashcards.push(savedFlashcard);
         }
         ;
-        return insertedFlashcards;
+        if (insertedFlashcards)
+            return insertedFlashcards;
+        else
+            throw new Error('Newly insterted job could not be retreived.');
     }
     catch (error) {
         console.error('Error creating flashcard:', error);
@@ -162,7 +169,10 @@ export async function updateFlashcard(id, uid, category, firstLanguage, firstLan
                 formal,
                 tags
             } }, { returnDocument: 'after' });
-        return result;
+        if (result)
+            return result;
+        else
+            throw new Error('Newly insterted job could not be retreived.');
     }
     catch (error) {
         console.error(`Error updating flashcard ID "${id}":`, error);

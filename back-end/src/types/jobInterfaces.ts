@@ -3,7 +3,7 @@ import { ObjectId } from 'mongodb';
 /**
  * Interface for the nested 'result' object in the Job document.
  */
-interface JobResult {
+export interface JobResult {
     cardCount: number;
     message: string;
     // Add other properties that might be returned in the result object

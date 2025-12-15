@@ -82,7 +82,7 @@ export async function getFlashcardsByCategory(uid: string | undefined, category:
  *
  */
 export async function createFlashcard(uid: string, category: string, firstLanguage: string, firstLanguageText: string, 
-  secondLanguage: string, secondLanguageText: string, formal: boolean, tags: string[]) {
+  secondLanguage: string, secondLanguageText: string, formal: boolean, tags: string[]): Promise<FlashcardDocument> {
     try {
         console.log(`Creating Flash Card: ${category}, ${firstLanguage}: ${firstLanguageText}, formal=${formal}`);
         console.log(`${secondLanguage}: ${secondLanguageText} ${firstLanguageText}, ${tags}, User=${uid}`);
@@ -105,9 +105,12 @@ export async function createFlashcard(uid: string, category: string, firstLangua
             tags
         });
 
-        const result = await db.collection('flashcards').findOne({ _id: update.insertedId });
+        const result = await db.collection<FlashcardDocument>('flashcards').findOne({ _id: update.insertedId });
 
-        return result;
+        if(result)
+            return result;
+        else
+            throw new Error('Newly insterted job could not be retreived.');
     } catch (error) {
         console.error('Error creating flashcard:', error);
         throw new Error('Internal server error');
@@ -118,13 +121,13 @@ export async function createFlashcard(uid: string, category: string, firstLangua
  * Create new flashcards
  *
  */
-export async function insertFlashcards(uid: string, flashcards: FlashcardDocument[]) {
+export async function insertFlashcards(uid: string, flashcards: FlashcardDocument[]): Promise<FlashcardDocument[]> {
     try {
         console.log(`Creating ${flashcards.length} flashcards.`);
 
         if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
 
-        const insertedFlashcards = [];
+        const insertedFlashcards: FlashcardDocument[] = [];
 
         // Loop through flashcards and determine whether they already exist in the system
         for (const flashcard of flashcards)  {
@@ -148,11 +151,13 @@ export async function insertFlashcards(uid: string, flashcards: FlashcardDocumen
               flashcard.firstLanguage, flashcard.firstLanguageText, 
               flashcard.secondLanguage, flashcard.secondLanguageText, flashcard.formal, flashcard.tags);
           }
-
-          insertedFlashcards.push(savedFlashcard);
+          if(savedFlashcard)
+            insertedFlashcards.push(savedFlashcard);
         };
-
-        return insertedFlashcards;
+        if(insertedFlashcards)
+            return insertedFlashcards;
+        else
+            throw new Error('Newly insterted job could not be retreived.');
     } catch (error) {
         console.error('Error creating flashcard:', error);
         throw new Error('Internal server error');
@@ -164,7 +169,7 @@ export async function insertFlashcards(uid: string, flashcards: FlashcardDocumen
  *
  */
 export async function updateFlashcard(id: string, uid: string, category: string, firstLanguage: string, 
-  firstLanguageText: string, secondLanguage: string, secondLanguageText: string, formal: boolean, tags: string[]) {
+  firstLanguageText: string, secondLanguage: string, secondLanguageText: string, formal: boolean, tags: string[]): Promise<FlashcardDocument> {
   try {
         console.log(`Creating Flash Card: ${category}, ${firstLanguage}: ${firstLanguageText}, formal=${formal}`);
         console.log(`${secondLanguage}: ${secondLanguageText} ${firstLanguageText}, ${tags}, User=${uid}`);
@@ -173,7 +178,7 @@ export async function updateFlashcard(id: string, uid: string, category: string,
 
         const now = new Date();
 
-        const result = await db.collection('flashcards').findOneAndUpdate(
+        const result = await db.collection<FlashcardDocument>('flashcards').findOneAndUpdate(
             { _id: new ObjectId(id) },
             { $set: {             
                 updatedBy: uid, 
@@ -188,7 +193,10 @@ export async function updateFlashcard(id: string, uid: string, category: string,
             } }, { returnDocument: 'after' }
         );
 
-        return result;
+        if(result)
+            return result;
+        else
+            throw new Error('Newly insterted job could not be retreived.');
     } catch (error) {
         console.error(`Error updating flashcard ID "${id}":`, error);
         throw new Error('Internal server error');
@@ -240,7 +248,7 @@ export async function guessFlashcard(id: string, uid: string, guessedCorrectly: 
  * Generate new flashcard list using gemini ai
  *
  */
-export async function generateFlashcardList(uid: string, category: string, language: string, textBody: string, translatedLanguage: string) {
+export async function generateFlashcardList(uid: string, category: string, language: string, textBody: string, translatedLanguage: string): Promise<FlashcardDocument[]> {
     try {
       const prompt = `System message
         You are a language-processing assistant that extracts all nouns, adjectives and verbs from ${language} text and returns them as flash cards.
