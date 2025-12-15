@@ -1,0 +1,21 @@
+import type { Response, NextFunction } from 'express';
+import type { EnrichedRequest } from '../types/requestInterfaces.js'; 
+
+/**
+ * Middleware to ensure the user is authenticated.
+ *
+ * Checks for `req.user`, which should be set by a preceding authentication
+ * middleware (e.g., optionalAuth or authenticateToken).
+ *
+ * Responds with 401 Unauthorized if the user is not authenticated.
+ *
+ * @param {import('express').Request} req
+ * @param {import('express').Response} res
+ * @param {import('express').NextFunction} next
+ */
+export function requireAuth(req: EnrichedRequest, res: Response, next: NextFunction)  {
+  if (!req.user) {
+    return res.status(401).send('Unauthorized');
+  }
+  next();
+}

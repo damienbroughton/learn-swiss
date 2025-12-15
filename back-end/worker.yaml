@@ -5,7 +5,7 @@ manual_scaling:
 instance_class: B2
 # The entrypoint is the command to starts worker script.
 # App Engine will run this command instead of the default 'npm start'.
-entrypoint: node workers/worker.js
+entrypoint: node build/workers/worker.js
 
 includes:
   - worker-prod-env.yaml
