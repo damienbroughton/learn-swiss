@@ -1,0 +1,1 @@
+{"version":3,"file":"enrichUser.d.ts","sourceRoot":"","sources":["../../src/middleware/enrichUser.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAGtD,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,+BAA+B,CAAC;AAErE;;;;;;;;;;;;;GAaG;AACH,wBAAsB,UAAU,CAAC,GAAG,EAAE,eAAe,EAAE,GAAG,EAAE,QAAQ,EAAE,IAAI,EAAE,YAAY,GAAG,OAAO,CAAC,IAAI,CAAC,CA0BvG"}
