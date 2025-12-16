@@ -138,5 +138,7 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-back-end/build/*
+**/back-end/build/**/*.map
+**/back-end/build/**/*.js
+
 back-end/prod-env.yaml
