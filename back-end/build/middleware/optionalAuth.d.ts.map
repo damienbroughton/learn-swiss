@@ -1,1 +1,0 @@
-{"version":3,"file":"optionalAuth.d.ts","sourceRoot":"","sources":["../../src/middleware/optionalAuth.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAEtD,OAAO,KAAK,EAAE,eAAe,EAAE,MAAM,+BAA+B,CAAC;AAErE;;;;;;;;;;;;;GAaG;AACH,wBAAsB,YAAY,CAAC,GAAG,EAAE,eAAe,EAAE,GAAG,EAAE,QAAQ,EAAE,IAAI,EAAE,YAAY,iBAgBzF"}
