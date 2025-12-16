@@ -42,7 +42,7 @@ export default function FlashCardPage() {
 }
 
 export async function loader ({params}) {
-  const response = await api.get(`/flashcards/${params.category}`);
+  const response = await api.get(`/flashcards/${params.category}/Swiss-German`);
   const flashcards = response.data;
   return {flashcards};
 }

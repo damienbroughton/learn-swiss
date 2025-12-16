@@ -1,5 +1,5 @@
 import api from "../api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import EditFlashCard from "../EditFlashCard";
@@ -10,21 +10,32 @@ export default function AdminPage() {
     const [flashcardDeck, setFlashcardDeck] = useState(null);
     const [category, setCategory] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [firstLanguage, setFirstLanguage] = useState("English");
+    const [secondLanguage, setSecondLanguage] = useState("Swiss-German");
+    const [error, setError] = useState(null);
 
     const title = `Learn-Swiss: Admin`;
 
     const { user } = useUser();
 
-    async function onClickCategory ({category}) {
+    useEffect(() => {
         if (isLoading) return; // prevent multiple simultaneous requests
-        setIsLoading(true);
+        if (!category) return;
 
-        const response = await api.get(`/flashcards/${category}`);
-        const flashcards = response.data;
-        setCategory(category);
-        setFlashcardDeck(flashcards);
-        setIsLoading(false);
-    }
+        async function getFlashcards(){
+          try {
+            setIsLoading(true);
+            const response = await api.get(`/flashcards/${category}/${secondLanguage}`);
+            const flashcards = response.data;
+            setFlashcardDeck(flashcards);
+          } catch (error) {
+            setError(error.message)
+          } finally {
+            setIsLoading(false);
+          }
+        }
+        getFlashcards();
+    }, [category, secondLanguage])
 
     async function onUpdateFlashCard({flashcard, newFirstLanguage, newFirstLanguageText, newSecondLanguage, newSecondLanguageText, newCategory, newFormal, newTags}, callback) {
       const token = user && await user.getIdToken();
@@ -78,8 +89,21 @@ export default function AdminPage() {
       <div className="card" >
         <h1>Administration</h1>
         <h2>Flash Cards</h2>
+        <div className="filters">
+          <label>First Language: 
+            <select id="firstLanguage" value={firstLanguage} onChange={e => setFirstLanguage(e.target.value)} >
+                <option value="English">English</option>
+            </select>
+          </label>
+          <label>Second Language: 
+            <select id="secondLanguage" value={secondLanguage} onChange={e => setSecondLanguage(e.target.value)} >
+                <option value="Swiss-German">Swiss-German</option>
+                <option value="German">German</option>
+            </select>
+          </label>
+          </div>
           {!isLoading && categories.map(category => (
-          <button key={category} style={{ margin: '10px' }} onClick={() => onClickCategory({category})}>{category}</button>
+          <button key={category} style={{ margin: '10px' }} onClick={() => setCategory(category)}>{category}</button>
           ))}
           <div id="flashcards">
             {!isLoading && flashcardDeck && <h3>Cards in deck:</h3> }

@@ -7,10 +7,10 @@ import type { FlashcardDocument, EnrichedFlashcardSummary } from '../types/flash
  * Retreive list of flashcard categories
  *
  */
-export async function getFlashcardCategories() {
+export async function getFlashcardCategories(secondLanguage: string) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
-    const flashcards = await db.collection<FlashcardDocument>('flashcards').find().toArray();
+    const flashcards = await db.collection<FlashcardDocument>('flashcards').find({secondLanguage}).toArray();
     const categories = [...new Set(flashcards.map(flashcard => flashcard.category))];
     return categories;
   } catch (error) {
@@ -62,12 +62,12 @@ export function enrichFlashcard(flashcard: FlashcardDocument, uid: string | unde
  * Retreive list of flashcards by category
  *
  */
-export async function getFlashcardsByCategory(uid: string | undefined, category: string) {
+export async function getFlashcardsByCategory(uid: string | undefined, category: string, secondLanguage: string) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
-    const flashcards = await db.collection<FlashcardDocument>('flashcards').find({ category }).toArray();
+    const flashcards = await db.collection<FlashcardDocument>('flashcards').find({ category, secondLanguage }).toArray();
 
-    console.log(`Found ${flashcards.length} flashcards in category ${category}, User: ${uid}`);
+    console.log(`Found ${flashcards.length} flashcards in category ${category}, second language: ${secondLanguage}, User: ${uid}`);
 
     const result = flashcards.map(flashcard => enrichFlashcard(flashcard, uid));
     return result;

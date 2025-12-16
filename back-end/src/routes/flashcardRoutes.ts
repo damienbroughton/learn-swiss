@@ -26,10 +26,13 @@ export const router = express.Router();
  *
  * Public endpoint. Uses optionalAuth to allow the request to proceed.
  */
-router.get('/categories', optionalAuth, async (req: EnrichedRequest, res: Response) => {
+router.get('/categories/:secondLanguage', optionalAuth, async (req: EnrichedRequest, res: Response) => {
+    const { secondLanguage } = req.params;
     try {
-        const categories = await getFlashcardCategories();
-        console.log("Retrieving categories", categories);
+        if(secondLanguage === undefined)
+            throw new Error("No second language provided.")
+        const categories = await getFlashcardCategories(secondLanguage);
+        console.log("Retrieved categories", categories);
         return res.json(categories);
     } catch (error) {
         console.error('Error in /categories:', error);
@@ -45,16 +48,17 @@ router.get('/categories', optionalAuth, async (req: EnrichedRequest, res: Respon
  * Public endpoint, but uses optionalAuth to enrich flashcards with previous guesses
  * if the user is logged in.
  */
-router.get('/:category', optionalAuth, async (req: EnrichedRequest, res: Response) => {
-    const { category } = req.params;
-    // req.user?.uid is correctly accessed here due to optionalAuth
+router.get('/:category/:secondLanguage', optionalAuth, async (req: EnrichedRequest, res: Response) => {
+    const { category, secondLanguage } = req.params;
     const uid = req.user?.uid; 
 
     try {
       if(category === undefined)
         throw new Error("No category provided.")
+    if(secondLanguage === undefined)
+        throw new Error("No second language provided.")
 
-      const result = await getFlashcardsByCategory(uid, category);
+      const result = await getFlashcardsByCategory(uid, category, secondLanguage);
       return res.json(result);
     } catch (error) {
         console.error(`Error in /${category}:`, error);
