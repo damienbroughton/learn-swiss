@@ -45,7 +45,7 @@ export default function StoryListPage() {
       <div className="card" >
         <h1>Stories</h1>
         <p>{description}</p>
-          <div style={{display: "flex"}}>
+          <div className="filters">
             <label>First Language: 
               <select id="firstLanguage" value={firstLanguage} onChange={e => setFirstLanguage(e.target.value)} >
                   <option value="English">English</option>

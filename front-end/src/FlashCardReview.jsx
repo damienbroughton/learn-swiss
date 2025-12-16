@@ -29,8 +29,6 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
   return (
     <div>
       {flashcard && (
-        <>
-        <h1>{flashcard.category}</h1>
         <DisplayFlashCard 
           key={flashcard._id} 
           category={flashcard.category} 
@@ -40,31 +38,28 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
           previouslyCorrect={flashcard.userGuess?.guessedCorrectly} 
           setAnswerChecked={setAnswerChecked} 
         />
-        </>
       )}
       
       {/* Display Thumbs Up/Down buttons if answer is checked */}
       { answerChecked && (
-        <>
+        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
           <p>Did you guess correctly?</p>
           <button id="btnThumbsUp" onClick={onThumbsUp}>
-            <img src={imgThumbsUp} alt="Iggy" style={{ display: 'block', margin: '0 auto' , maxWidth: '30%' }} />
+            <img src={imgThumbsUp} alt="Iggy" style={{ display: 'block', margin: '0 auto' , maxWidth: '70%' }} />
             Yes
           </button>
           <button id="btnThumbsDown" onClick={onThumbsDown}>
-            <img src={imgThumbsDown} alt="Iggy" style={{ display: 'block', margin: '0 auto', maxWidth: '30%' }} />
+            <img src={imgThumbsDown} alt="Iggy" style={{ display: 'block', margin: '0 auto', maxWidth: '70%' }} />
             No
           </button>
-        </>
+        </div>
       )}
 
       {/* Display Score and Remaining Cards */}
       <div className="container">
-        <div className="card" style={{ maxWidth: 400, width: '100%', margin: '0 auto', padding: '2.5em 2em', boxSizing: 'border-box', textAlign: 'center' }}>
-          <p>Number correct: {numCorrect}</p>
-          <p>Number incorrect: {numIncorrect}</p>
-          <p>Number remaining: {flashcardDeckLength}</p>
-          <p>Previous Score: {previousScore} / {totalCards}</p>
+        <div className="card" style={{ maxWidth: 400, width: '100%', margin: '0 auto', padding: '1.5em 1em', boxSizing: 'border-box', textAlign: 'center' }}>
+          <p>👍 {numCorrect} | 👎 {numIncorrect} | Remaining: {flashcardDeckLength}</p>
+          {previousScore > 0 && <p>Previous Score: {previousScore} / {totalCards}</p>}
           
           {/* Display completion message if the deck is empty */}
           {!flashcard && (

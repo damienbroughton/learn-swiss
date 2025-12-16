@@ -9,7 +9,7 @@ export default function FlashCardListPage() {
   const {categories} = useLoaderData();
   
   const title = `Learn-Swiss: Flashcards`;
-  const description = `Learn Swiss-German stories by practicing with flashcards!`;
+  const description = `Build your Swiss-German vocabulary by practicing with flashcards!`;
   const canonicalUrl = `https://learn-swiss.ch/flashcards`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
@@ -31,6 +31,7 @@ export default function FlashCardListPage() {
     <div className="container center">
       <div className="card" >
         <h1>Flashcards</h1>
+          <p>{description}</p>
           <ul className="scenario-list">
             {categories.map(category => (
               <li key={category} className="scenario-list-item">
@@ -55,7 +56,7 @@ export default function FlashCardListPage() {
 }
 
 export async function loader () {
-  const response = await api.get(`/flashcards/categories`);
+  const response = await api.get(`/flashcards/categories/Swiss-German`);
   const categories = response.data;
   return {categories};
 }
