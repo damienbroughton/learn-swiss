@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 import { db } from '../config/db.js';
 import { generateText } from "./geminiService.js";
-import type { FlashcardDocument, EnrichedFlashcardSummary } from '../types/flashcardInterfaces.js'; // Import interfaces
+import type { FlashcardDocument, EnrichedFlashcardSummary, FlashcardError } from '../types/flashcardInterfaces.js'; // Import interfaces
 
 /**
  * Retreive list of flashcard categories
@@ -248,7 +248,7 @@ export async function guessFlashcard(id: string, uid: string, guessedCorrectly: 
  * Generate new flashcard list using gemini ai
  *
  */
-export async function generateFlashcardList(uid: string, category: string, language: string, textBody: string, translatedLanguage: string): Promise<FlashcardDocument[]> {
+export async function generateFlashcardList(uid: string, category: string, language: string, textBody: string, translatedLanguage: string): Promise<FlashcardDocument[] | FlashcardError> {
     try {
       const prompt = `System message
         You are a language-processing assistant that extracts all nouns, adjectives and verbs from ${language} text and returns them as flash cards.
@@ -262,18 +262,28 @@ export async function generateFlashcardList(uid: string, category: string, langu
         - Format the JSON as an array like this:
         [ {"firstLanguage": "${translatedLanguage}", "firstLanguageText": "...", 
          "secondLanguage": "${language}", "secondLanguageText": "...", 
-         "formal": false, "category": "Nouns", "tags": "Greetings"},
+         "formal": false, "category": "${category}", "tags": "Greetings, Gruß"},
          ...
         ]
+         - In the event of an error return an error message in JSON form:
+        {"errorMessage": "No ${language} text provided."}
         Extract all nouns (with articles) and verbs (infinitives) from the following text 
         and return them in the JSON flashcard format described above with the tags 
         "${category}":${textBody}`;
-        console.info(`Generating Flashcards with prompt: ${prompt}`);
+
         const response: string = await generateText(prompt);
-        console.info(`Generated Flashcards: ${response}`);
+
         const cleanedJsonString = response.replace(/^```json\n/, '').replace(/\n```$/, '');
-        const flashcardArray = JSON.parse(cleanedJsonString);
-        return flashcardArray;
+
+        const parsedData = JSON.parse(cleanedJsonString);
+
+        // Is it the error object?
+        if (parsedData && !Array.isArray(parsedData) && 'errorMessage' in parsedData) {
+            return parsedData as FlashcardError;
+        }
+
+        // Otherwise, assume it is the array
+        return parsedData as FlashcardDocument[];
     } catch (error) {
         console.error('Error generating flashcards:', error);
         throw new Error('Internal server error');

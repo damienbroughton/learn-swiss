@@ -48,6 +48,9 @@ export interface StoryDocument {
     /** The display title of the story (e.g., "Det äne am Bergli"). */
     title: string;
 
+    /** The category of the story (e.g., "Childrens Story"). */
+    category: string;
+
     /** The language of the story (e.g., "Swiss-German"). */
     language: string;
 

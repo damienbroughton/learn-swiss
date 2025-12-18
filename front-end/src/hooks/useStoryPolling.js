@@ -6,7 +6,16 @@ function useStoryPolling(storyReference, initialStory, interval = 5000) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect (() => {
-        if(story?.flashcards?.length > 0){
+        function allSectionsLoaded(story){
+            const allSectionsFinished = story.sections && story.sections.length > 0 && story.sections.every(section => {
+                const hasFlashcards = section.flashcards && section.flashcards.length > 0;
+                const hasError = section.error !== undefined;
+                return hasFlashcards || hasError;
+            });
+            return(allSectionsFinished);
+        }
+
+        if(allSectionsLoaded(initialStory)){
             setIsLoading(false);
             return;
         }
@@ -20,14 +29,8 @@ function useStoryPolling(storyReference, initialStory, interval = 5000) {
                 const response = await api.get(`/stories/${storyReference}`);
                 const newStory = response.data;
 
-                const allSectionsFinished = newStory.sections && newStory.sections.length > 0 && newStory.sections.every(section => {
-                    const hasFlashcards = section.flashcards && section.flashcards.length > 0;
-                    const hasError = section.error !== undefined;
-                    return hasFlashcards || hasError;
-                });
-
                 // Check if flashcards have been generated
-                if(allSectionsFinished) {
+                if(allSectionsLoaded(newStory)) {
                     setStory(newStory);
                     setIsLoading(false);
                     isPolling = false;

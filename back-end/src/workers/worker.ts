@@ -68,31 +68,30 @@ async function processJob(): Promise<boolean> {
 async function procesStorySection(storyId: ObjectId, sectionId: number, createdBy: string, category: string, 
     language: string, content: string, translatedLanguage: string): Promise<number> {
     // 1. Generate flashcards using the language model service
-    const generatedCards: FlashcardDocument[] = await generateFlashcardList(
+    const result = await generateFlashcardList(
         createdBy, 
         category ?? "", 
         language, 
         content, 
         translatedLanguage
     );
-    console.log(`Story: ${storyId.toHexString()} section: ${sectionId} generated ${generatedCards.length} flashcards.`);
 
-    if(generatedCards.length === 0){
-        const errorMessage = "No flashcards generated.";
-        await addErrorToStorySection(createdBy, storyId, sectionId, errorMessage);
+    if (Array.isArray(result)) {
+        // 'result' is FlashcardDocument[]
+        console.log(`Story: ${storyId.toHexString()} section: ${sectionId} generated ${result.length} flashcards.`);
+        // 2. Save flashcards to database
+        const insertedCards: FlashcardDocument[] = await insertFlashcards(createdBy, result);
+        console.log(`Story: ${storyId.toHexString()} section: ${sectionId}  inserted ${result.length} flashcards.`);
+        // 3. Link flashcards to story
+        const flashCardIds: ObjectId[] = insertedCards.map((flashcard) => flashcard._id);
+        await addFlashCardsToStorySection(createdBy, storyId, sectionId, flashCardIds);
+        return insertedCards.length;
+    } else {
+        // 'result' is FlashcardError
+        await addErrorToStorySection(createdBy, storyId, sectionId, result.errorMessage);
+        console.error("API Error:", result.errorMessage);
         return 0;
     }
-
-    // 2. Save flashcards to database
-    const insertedCards: FlashcardDocument[] = await insertFlashcards(createdBy, generatedCards);
-    console.log(`Story: ${storyId.toHexString()} section: ${sectionId}  inserted ${generatedCards.length} flashcards.`);
-
-    // 3. Link flashcards to story
-    const flashCardIds: ObjectId[] = insertedCards.map((flashcard) => flashcard._id);
-    
-    await addFlashCardsToStorySection(createdBy, storyId, sectionId, flashCardIds);
-
-    return insertedCards.length;
 }
 
 /**

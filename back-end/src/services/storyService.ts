@@ -18,6 +18,7 @@ export async function getStories() {
         _id: story._id,
         reference: story.reference,
         title: story.title,
+        category: story.category,
         language: story.language,
         translatedLanguage: story.translatedLanguage,
       };
@@ -107,7 +108,7 @@ export async function getStoryByReference(uid: string | undefined, reference: st
  * Create new flashcard
  *
  */
-export async function createStory(uid: string, title: string, language: string, content: string) {
+export async function createStory(uid: string, title: string, category: string, language: string, content: string) {
     try {
         if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
         console.log(`Creating Story: ${title}, ${language}: ${content}`);
@@ -148,6 +149,7 @@ export async function createStory(uid: string, title: string, language: string, 
             updatedBy: uid, 
             updatedAt: now,
             title, 
+            category,
             language, 
             content,
             sections
