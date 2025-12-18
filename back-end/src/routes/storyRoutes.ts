@@ -1,7 +1,7 @@
 import express from "express";
 import type { Response } from 'express';
 import { requireAuth } from '../middleware/requireAuth.js';
-import { getStories, getStory, createStory } from "../services/storyService.js";
+import { getStories, getStoryByReference, createStory } from "../services/storyService.js";
 import { createJob } from "../services/jobService.js";
 import type { EnrichedRequest } from '../types/requestInterfaces.js'; 
 
@@ -32,7 +32,7 @@ router.get('/:reference', async (req: EnrichedRequest, res: Response) => {
     if (!reference) 
       return res.status(400).send('No reference Provided.');
 
-    const story = await getStory(uid, reference);
+    const story = await getStoryByReference(uid, reference);
 
     return res.json(story);
   } catch (err) {

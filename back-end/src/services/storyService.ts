@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { db } from '../config/db.js';
-import type { StoryDocument } from '../types/storyInterfaces.js'; // Import interfaces
+import type { StoryDocument, StorySection } from '../types/storyInterfaces.js'; // Import interfaces
 import type { FlashcardDocument } from '../types/flashcardInterfaces.js'; // Import interfaces
 import { enrichFlashcard } from "./flashcardService.js";
 
@@ -30,10 +30,29 @@ export async function getStories() {
   }
 }
 /**
- * Retreive story and linked flashcards by id
+ * Retreive story by id
  *
  */
-export async function getStory(uid: string | undefined, reference: string) {
+export async function getStory(id: ObjectId): Promise<StoryDocument> {
+  try {
+    if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
+    const result = await db.collection<StoryDocument>('stories').findOne({ _id: id });
+
+    if(result)
+        return result;
+    else
+        throw new Error(`Story ${id.toHexString()} could not be retreived.`);
+
+  } catch (err) {
+    console.error('Error retrieving story:', err);
+    throw new Error('Internal server error');
+  }
+}
+/**
+ * Retreive story and linked flashcards by reference
+ *
+ */
+export async function getStoryByReference(uid: string | undefined, reference: string) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
     console.log("Retrieving story by reference: ", reference)
@@ -42,16 +61,30 @@ export async function getStory(uid: string | undefined, reference: string) {
         {
             $lookup: {
                 from: "flashcards",
-                localField: "flashcards",
+                localField: "sections.flashcards",
                 foreignField: "_id",
-                as: "flashcards"
+                as: "sectionsFlashcardsData"
             }
         }
     ]).next();
 
-    if(!story) throw new Error(`Story with reference ${reference} was not found.`)
-    const flashcards = story?.flashcards as FlashcardDocument[];
-    const flashcardsMapped = flashcards.map(flashcard => enrichFlashcard(flashcard, uid));
+    console.log(story);
+
+    if(!story) throw new Error(`Story with reference ${reference} was not found.`);
+
+    const allSectionFlashcards = (story.sectionsFlashcardsData || []) as FlashcardDocument[];
+
+    const enrichedSections = story.sections.map((section: StorySection) => {
+        // Find the full flashcard documents that belong to this section
+        const sectionFcs = allSectionFlashcards.filter(fc => 
+            section.flashcards != null && section.flashcards.some(id => id.equals(fc._id))
+        );
+        
+        return {
+            ...section,
+            flashcards: sectionFcs.map(fc => enrichFlashcard(fc, uid))
+        };
+    });
 
     const response = {
         id: story._id,
@@ -59,7 +92,7 @@ export async function getStory(uid: string | undefined, reference: string) {
         title: story.title,
         language: story.language,
         content: story.content,
-        flashcards: flashcardsMapped
+        sections: enrichedSections
     };
 
     return response;
@@ -79,10 +112,32 @@ export async function createStory(uid: string, title: string, language: string, 
         if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
         console.log(`Creating Story: ${title}, ${language}: ${content}`);
 
-        let reference = title.replace(/[^\p{L}\s]/gu, "").replaceAll(" ", "-").toLowerCase();
-        const existingReferences = await db.collection('stories').find({ reference }).toArray();
-        if(existingReferences.length > 0)
-          reference = `${reference}-${existingReferences.length}`;
+        let baseReference = title.replace(/[^\p{L}\s]/gu, "").replaceAll(/\s+/g, "-").toLowerCase();
+        const pattern = new RegExp(`^${baseReference}(-\\d+)?$`); //Find all documents where the reference starts with the base
+        const existingStories = await db.collection('stories').find({ reference: { $regex: pattern } }).project({ reference: 1 }).toArray();
+        
+        let reference = "";
+        if (existingStories.length > 0) {
+          const numbers = existingStories.map(s => {
+              const match = s.reference.match(/-(\d+)$/);
+              return match ? parseInt(match[1]) : 0;
+          });
+
+          // Find the highest number used and add 1
+          const maxNumber = Math.max(...numbers);
+          reference = `${baseReference}-${maxNumber + 1}`;
+        } else {
+          reference = baseReference;
+        }
+
+        const sections = content.split(/\n\s*\n/)
+          .filter(para => para.trim() !== "")
+          .map((para, idx) => (
+          {
+            "sectionId": idx + 1,
+            "sectionContent": para
+          }
+        ));
 
         const now = new Date();
 
@@ -94,7 +149,8 @@ export async function createStory(uid: string, title: string, language: string, 
             updatedAt: now,
             title, 
             language, 
-            content
+            content,
+            sections
         });
 
         const result = await db.collection<StoryDocument>('stories').findOne({ _id: update.insertedId });
@@ -110,27 +166,89 @@ export async function createStory(uid: string, title: string, language: string, 
  * Add flashcard references to story
  *
  */
-export async function addFlashCardsToStory(uid: string, id: ObjectId, flashcardIds: ObjectId[]) {
+export async function addFlashCardsToStorySection(uid: string, id: ObjectId, sectionId: number, flashcardIds: ObjectId[]) {
     try {
-        if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
+        if (!db) {
+            console.error('Database connection not initialized. Check connectToDB call.');
+            throw new Error('Database connection not initialized.');
+        }
         const story = await db.collection('stories').findOne({ _id: new ObjectId(id) });
 
         if (!story) {
-            throw new Error('Story not found');
+            throw new Error(`Story not found with ID: ${id.toHexString()}`);
+        }
+
+        const sectionExists = story.sections.some((s: { sectionId: number }) => s.sectionId === sectionId);
+        if (!sectionExists) {
+             throw new Error(`Section not found with ID: ${sectionId} in Story: ${story.title}`);
         }
 
         console.log(`Adding ${flashcardIds.length} flashcards to Story: ${story.title}`);
 
-        const updatedStory = await db.collection<StoryDocument>('stories').findOneAndUpdate(
-            {  _id: new ObjectId(id)  },
+        const updateResult = await db.collection<StoryDocument>('stories').findOneAndUpdate(
+            { 
+                _id: id,
+                'sections.sectionId': sectionId
+            },
             {
-                $push: { flashcards: { $each: flashcardIds } },
+                $push: { 'sections.$.flashcards': { $each: flashcardIds } },
+                $set: { 
+                    updatedAt: new Date(),
+                    updatedBy: uid
+                }
+            },
+            {
+                // Ensure the updated document is returned
+                returnDocument: 'after' 
             }
         );
 
-        const result = await db.collection('stories').findOne({ _id: new ObjectId(id) });
+        return updateResult;
+    } catch (error) {
+        console.error('Error creating story:', error);
+        throw new Error('Internal server error');
+    }
+}
 
-        return result;
+/**
+ * Add error message to the story
+ *
+ */
+export async function addErrorToStorySection(uid: string, id: ObjectId, sectionId: number, errorMessage: string) {
+     try {
+        if (!db) {
+            console.error('Database connection not initialized. Check connectToDB call.');
+            throw new Error('Database connection not initialized.');
+        }
+        const story = await db.collection('stories').findOne({ _id: new ObjectId(id) });
+
+        if (!story) {
+            throw new Error(`Story not found with ID: ${id.toHexString()}`);
+        }
+
+        const sectionExists = story.sections.some((s: { sectionId: number }) => s.sectionId === sectionId);
+        if (!sectionExists) {
+             throw new Error(`Section not found with ID: ${sectionId} in Story: ${story.title}`);
+        }
+
+        const updateResult = await db.collection<StoryDocument>('stories').findOneAndUpdate(
+            { 
+                _id: id,
+                'sections.sectionId': sectionId
+            },
+            {
+                $set: { 
+                    'sections.$.error': errorMessage,
+                    updatedAt: new Date(),
+                    updatedBy: uid
+                }
+            },
+            {
+                returnDocument: 'after' 
+            }
+        );
+
+        return updateResult;
     } catch (error) {
         console.error('Error creating story:', error);
         throw new Error('Internal server error');

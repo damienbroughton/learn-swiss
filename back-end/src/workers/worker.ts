@@ -5,8 +5,9 @@ import { connectToDB } from '../config/db.js';
 import { ObjectId } from 'mongodb';
 import { generateFlashcardList, insertFlashcards } from '../services/flashcardService.js'
 import { getOldestPendingJob, updateJobStatus } from '../services/jobService.js'
-import { addFlashCardsToStory } from "../services/storyService.js";
+import { getStory, addFlashCardsToStorySection, addErrorToStorySection } from "../services/storyService.js";
 import type { FlashcardDocument } from '../types/flashcardInterfaces.js'; 
+import type { StoryDocument } from '../types/storyInterfaces.js'; 
 import type { JobDocument, JobResult } from "../types/jobInterfaces.js";
 
 // Worker loop settings
@@ -33,29 +34,18 @@ async function processJob(): Promise<boolean> {
     console.log(`Processing Job ${jobId.toHexString()} for Story ${storyId.toHexString()}`);
 
     try {
-        // 1. Generate flashcards using the language model service
-        const generatedCards: FlashcardDocument[] = await generateFlashcardList(
-            createdBy, 
-            category ?? "", 
-            language, 
-            content, 
-            translatedLanguage
-        );
-        console.log(`Job ${jobId.toHexString()} generated ${generatedCards.length} flashcards.`);
+        const story: StoryDocument = await getStory(storyId);
 
-        // 2. Save flashcards to database
-        const insertedCards: FlashcardDocument[] = await insertFlashcards(createdBy, generatedCards);
-        console.log(`Job ${jobId.toHexString()} inserted ${insertedCards.length} flashcards.`);
-
-        // 3. Link flashcards to story
-        const flashCardIds: ObjectId[] = insertedCards.map((flashcard) => flashcard._id);
-        
-        await addFlashCardsToStory(createdBy, storyId, flashCardIds);
-    
+        let insertFlashcardCount = 0;
+        for (const section of story.sections)  {  
+            let count = await procesStorySection( storyId, section.sectionId, createdBy, 
+                category, language, section.sectionContent, translatedLanguage);
+            insertFlashcardCount += count;
+        }
         // 4. Update job status to complete
         const result: JobResult = {
-            cardCount: insertedCards.length,
-            message: 'Flashcards generated and saved successfully'
+            cardCount: insertFlashcardCount,
+            message: 'Flashcards generated/updated and saved successfully'
         };
         await updateJobStatus(jobId, 'completed', result);
 
@@ -73,6 +63,36 @@ async function processJob(): Promise<boolean> {
         console.error(`Job ${jobId.toHexString()} failed: ${result.message}`);
         return true; // Still return true because a job was found and processed (failed or not)
     }
+}
+
+async function procesStorySection(storyId: ObjectId, sectionId: number, createdBy: string, category: string, 
+    language: string, content: string, translatedLanguage: string): Promise<number> {
+    // 1. Generate flashcards using the language model service
+    const generatedCards: FlashcardDocument[] = await generateFlashcardList(
+        createdBy, 
+        category ?? "", 
+        language, 
+        content, 
+        translatedLanguage
+    );
+    console.log(`Story: ${storyId.toHexString()} section: ${sectionId} generated ${generatedCards.length} flashcards.`);
+
+    if(generatedCards.length === 0){
+        const errorMessage = "No flashcards generated.";
+        await addErrorToStorySection(createdBy, storyId, sectionId, errorMessage);
+        return 0;
+    }
+
+    // 2. Save flashcards to database
+    const insertedCards: FlashcardDocument[] = await insertFlashcards(createdBy, generatedCards);
+    console.log(`Story: ${storyId.toHexString()} section: ${sectionId}  inserted ${generatedCards.length} flashcards.`);
+
+    // 3. Link flashcards to story
+    const flashCardIds: ObjectId[] = insertedCards.map((flashcard) => flashcard._id);
+    
+    await addFlashCardsToStorySection(createdBy, storyId, sectionId, flashCardIds);
+
+    return insertedCards.length;
 }
 
 /**

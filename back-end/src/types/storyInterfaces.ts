@@ -7,6 +7,21 @@ import { ObjectId } from 'mongodb';
 export type ContentReferences = ObjectId[];
 
 /**
+ * Smaller unit of text within a story.
+ * This is useful for incremental reading, display, or generating flashcards per section.
+ */
+export interface StorySection {
+    /** The index or ID of the section within the story. */
+    sectionId: number;
+
+    /** The text content of this specific section. */
+    sectionContent: string;
+
+    /** Array of ObjectIds linking to Flashcard documents extracted from this section. */
+    flashcards: ContentReferences;
+}
+
+/**
  * Interface representing the full Story Document stored in the MongoDB collection.
  * Stories are typically longer pieces of text (like songs or short stories) 
  * used for reading practice and linked to flashcards.
@@ -41,6 +56,9 @@ export interface StoryDocument {
 
     /** The main text content of the story. */
     content: string;
+
+    /** An array of structured sections derived from the main content. */
+    sections: StorySection[];
 
     /** Array of ObjectIds linking to Flashcard documents extracted from this story. */
     flashcards: ContentReferences;
