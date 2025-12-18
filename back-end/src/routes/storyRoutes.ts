@@ -54,14 +54,14 @@ router.post('/', requireAuth, async (req: EnrichedRequest, res: Response) => {
   if (!uid) 
     return res.status(401).send('Unauthorized. User not logged in.');
 
-  const { title, language, content, translatedLanguage, tags } = req.body;
+  const { title, category, language, content, translatedLanguage, tags } = req.body;
 
   try {
-    let story = await createStory( uid, title, language, content );
+    let story = await createStory( uid, title, category, language, content );
     if(!story)
       return res.status(400).send('Error creating story.');
     
-    let job = await createJob(uid, "extract-flashcards", story._id, content, language, translatedLanguage, tags);
+    let job = await createJob(uid, "extract-flashcards", story._id, content, language, translatedLanguage, category);
     return res.json(story);
   } catch (err) {
     console.error('Error creating story:', err);

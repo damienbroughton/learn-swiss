@@ -1,5 +1,5 @@
 import api from "../api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import useStoryPolling from "../hooks/useStoryPolling.js"
@@ -8,6 +8,8 @@ import DisplayStorySection from "../DisplayStorySection";
 import imgStoriesCH from '../assets/IgelFlashCardWriting.png';
 import imgStoriesDE from '../assets/EberFlashCardWriting.png';
 import imgError from '../assets/ErrorImage.png';
+import gifLoading from '../assets/LoadingAnimation.gif';
+
 
 
 export default function StoryPage() {
@@ -19,6 +21,10 @@ export default function StoryPage() {
         : {sectionId: initialStory.id, sectionContent: initialStory.content});
 
     const { story, isLoading } = useStoryPolling(initialStory.reference, initialStory);
+
+    useEffect(() => {
+        setCurrentSection(story.sections[0] );
+    }, [story]);
 
     const title = `Learn-Swiss: ${story.title}`;
     const description = `Practice vocabulary from the story '${story.title}' in ${story.language}.`;
@@ -38,6 +44,11 @@ export default function StoryPage() {
         setShowStory(true);
     };
 
+    const handleSectionButton = (section) => {
+        setCurrentSection(section);
+        setShowFlashCards(true);
+    }
+
     return (
         <>
         <Helmet>
@@ -54,10 +65,11 @@ export default function StoryPage() {
         <div>
             <h1>{story.title}</h1>
             <ul className="scenario-list">
-                {story.sections && story.sections.map(section => (
+                {isLoading && <img src={gifLoading} style={{ width: '30px', height: '30px'}}/>}
+                {!isLoading && story.sections && story.sections.map(section => (
                 <li key={section.sectionId} style={{listStyle: "none"}}>
                     <button
-                    onClick={() => setCurrentSection({...story.sections[section.sectionId-1]})}
+                    onClick={() => handleSectionButton({...story.sections[section.sectionId-1]})}
                     disabled={section.sectionId === currentSection.sectionId}
                     >{section.sectionId}</button>
                 </li>
@@ -73,8 +85,7 @@ export default function StoryPage() {
                     <img src={imgError} alt="Flash Cards Loading..." />
                 </div>
             }
-            {!hasFlashcards && currentSection.sectionId !== story.id && currentSection.error === undefined
-                && 
+            {isLoading && 
                 <div className="card" style={{textAlign: "center"}}>
                     <h2>Please wait... {story.language === "Swiss-German" ? "Iggy" : "Eber"} is busy writing your flashcards... </h2>
                     <img src={story.language === "Swiss-German" ? imgStoriesCH : imgStoriesDE} alt="Flash Cards Loading..." />

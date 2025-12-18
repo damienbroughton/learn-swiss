@@ -16,6 +16,14 @@ export interface FlashcardGuess {
 }
 
 /**
+ * The error message that occured during flashcard generation.
+ */
+export interface FlashcardError {
+    /** The error message that occured during flashcard generation. */
+    errorMessage: string;
+}
+
+/**
  * Interface representing the full Flashcard Document stored in the MongoDB collection.
  * Contains the core linguistic content and metadata.
  */

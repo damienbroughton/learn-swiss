@@ -13,6 +13,7 @@ export default function StoryListPage() {
   const [firstLanguage, setFirstLanguage] = useState("English");
   const [secondLanguage, setSecondLanguage] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [category, setCategory] = useState("All");
 
   const title = `Learn-Swiss: Stories`;
   const description = `Learn Swiss-German stories by building vocabulary with flashcards. You can generate your own with AI!`;
@@ -22,9 +23,11 @@ export default function StoryListPage() {
   useEffect(() => {
     const lowerQuery = searchQuery.toLowerCase();
     const filteredStories = initialStories.filter((story) =>
-        (story.language === secondLanguage || secondLanguage === "All") && story.title.toLowerCase().includes(lowerQuery));
+        (story.language === secondLanguage || secondLanguage === "All")
+        && (story.category === category || category === "All")
+        && story.title.toLowerCase().includes(lowerQuery));
       setStories(filteredStories);
-  }, [initialStories, secondLanguage, searchQuery])
+  }, [initialStories, secondLanguage, searchQuery, category])
 
   const navigate = useNavigate();
 
@@ -46,16 +49,33 @@ export default function StoryListPage() {
         <h1>Stories</h1>
         <p>{description}</p>
           <div className="filters">
-            <label>First Language: 
+            {/* <label>First Language: 
               <select id="firstLanguage" value={firstLanguage} onChange={e => setFirstLanguage(e.target.value)} >
                   <option value="English">English</option>
               </select>
-            </label>
+            </label> */}
             <label>Second Language: 
               <select id="secondLanguage" value={secondLanguage} onChange={e => setSecondLanguage(e.target.value)}  >
                   <option value="All">All</option>
                   <option value="Swiss-German">Swiss-German</option>
                   <option value="German">German</option>
+              </select>
+            </label>
+            <label>Category: 
+              <select value={category} onChange={e => setCategory(e.target.value)}>
+                  <option value="All">All</option>
+                  <option value="Recipe">Recipe</option>
+                  <option value="News Article">News Article</option>
+                  <option value="Letter/Email">Letter or Email</option>
+                  <option value="Fairy Tale">Fairy Tale</option>
+                  <option value="Instructions">Instructions</option>
+                  <option value="Travel Itinerary">Travel Itinerary</option>
+                  <option value="Product Review">Product Review</option>
+                  <option value="Movie Script">Movie Script</option>
+                  <option value="Poem">Poem</option>
+                  <option value="Job Description">Job Description</option>
+                  <option value="Childrens Story">Childrens Story</option>
+                  <option value="Song Lyrics">Song Lyrics</option>
               </select>
             </label>
             <label htmlFor='search-query'>Search:
