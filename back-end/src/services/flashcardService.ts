@@ -254,7 +254,7 @@ export async function generateFlashcardList(uid: string, category: string, langu
         You are a language-processing assistant that extracts all nouns, adjectives and verbs from ${language} text and returns them as flash cards.
         Rules:
         - The secondLanguage is always ${language}.
-        - secondLanguageText must contain the ${language} noun with its correct article (der/die/das) OR the verb in its infinitive form OR adjective.
+        - secondLanguageText must contain the ${language} noun with its correct article (der/die/das) OR the verb in its infinitive form OR adjective OR adverb.
         - firstLanguage is always ${translatedLanguage}.
         - firstLanguageText is the ${translatedLanguage} translation.
         - Only output unique nouns and verbs.

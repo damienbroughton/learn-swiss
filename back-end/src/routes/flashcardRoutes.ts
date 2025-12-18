@@ -11,7 +11,7 @@ import {
     updateFlashcard, 
     generateFlashcardList 
 } from "../services/flashcardService.js";
-import { addFlashCardsToStory } from "../services/storyService.js";
+// import { addFlashCardsToStory } from "../services/storyService.js";
 import type { Response } from 'express';
 // Assuming this imports the type that extends Request with user and userRecord
 import type { EnrichedRequest } from '../types/requestInterfaces.js'; 
@@ -127,29 +127,29 @@ router.post('/', requireAuth, requireAdmin, async (req: EnrichedRequest, res: Re
  *
  * Requires authentication and admin role.
  */
-router.post('/bulk/:storyId', requireAuth, requireAdmin, async (req: EnrichedRequest, res: Response) => {
-    const uid = req.user!.uid;
-    const { storyId } = req.params;
-    const flashcards = req.body; // Array of flashcard creation objects
+// router.post('/bulk/:storyId', requireAuth, requireAdmin, async (req: EnrichedRequest, res: Response) => {
+//     const uid = req.user!.uid;
+//     const { storyId } = req.params;
+//     const flashcards = req.body; // Array of flashcard creation objects
 
-    try {
-        const result = await insertFlashcards(uid, flashcards);
-        // Extract the MongoDB ObjectIds from the inserted documents
-        const flashCardIds = result.map((flashcard) => flashcard?._id).filter((id): id is ObjectId => !!id); // Filter out undefined/null and assert type
+//     try {
+//         const result = await insertFlashcards(uid, flashcards);
+//         // Extract the MongoDB ObjectIds from the inserted documents
+//         const flashCardIds = result.map((flashcard) => flashcard?._id).filter((id): id is ObjectId => !!id); // Filter out undefined/null and assert type
 
-        // Link the newly created flashcards to the story
-        if(!storyId)
-          throw new Error("Missing Story Id");
+//         // Link the newly created flashcards to the story
+//         if(!storyId)
+//           throw new Error("Missing Story Id");
 
-        await addFlashCardsToStory(uid, new ObjectId(storyId), flashCardIds);
-        console.log("Inserted and linked flashcard IDs:", flashCardIds);
+//         await addFlashCardsToStory(uid, new ObjectId(storyId), flashCardIds);
+//         console.log("Inserted and linked flashcard IDs:", flashCardIds);
 
-        return res.json(result);
-    } catch (error) {
-        console.error('Error in POST /bulk/:storyId:', error);
-        return res.status(500).send('Internal server error');
-    }
-});
+//         return res.json(result);
+//     } catch (error) {
+//         console.error('Error in POST /bulk/:storyId:', error);
+//         return res.status(500).send('Internal server error');
+//     }
+// });
 
 
 /**

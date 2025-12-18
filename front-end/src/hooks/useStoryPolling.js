@@ -20,8 +20,14 @@ function useStoryPolling(storyReference, initialStory, interval = 5000) {
                 const response = await api.get(`/stories/${storyReference}`);
                 const newStory = response.data;
 
+                const allSectionsFinished = newStory.sections && newStory.sections.length > 0 && newStory.sections.every(section => {
+                    const hasFlashcards = section.flashcards && section.flashcards.length > 0;
+                    const hasError = section.error !== undefined;
+                    return hasFlashcards || hasError;
+                });
+
                 // Check if flashcards have been generated
-                if(newStory.flashcards && newStory.flashcards.length > 0) {
+                if(allSectionsFinished) {
                     setStory(newStory);
                     setIsLoading(false);
                     isPolling = false;

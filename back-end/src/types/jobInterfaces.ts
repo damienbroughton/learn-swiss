@@ -50,7 +50,7 @@ export interface JobDocument {
     translatedLanguage: string;
 
     /** The category associated with the job, which can be null. */
-    category: string | null;
+    category: string;
 
     /** Error message if the job failed, which can be null. */
     error: string | null;

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import api from "../api"; 
 import useUser from "./useUser"; 
 
@@ -9,7 +9,7 @@ import useUser from "./useUser";
  */
 export function useFlashCardReview(initialFlashcards) {
   // Use a copy of the initial array for the deck state
-  const [flashcardDeck, setFlashcardDeck] = useState([...initialFlashcards]);
+  const [flashcardDeck, setFlashcardDeck] = useState([]);
   const [numCorrect, setNumCorrect] = useState(0);
   const [numIncorrect, setNumIncorrect] = useState(0);
   const [answerChecked, setAnswerChecked] = useState(false);
@@ -31,6 +31,22 @@ export function useFlashCardReview(initialFlashcards) {
 
     return randomCard;
   }, []); // Dependencies are empty as it relies only on internal state/logic
+
+  useEffect(() => {
+    if (initialFlashcards && initialFlashcards.length > 0) {
+      const cards = [...initialFlashcards];
+      setNumCorrect(0);
+      setNumIncorrect(0);
+      setAnswerChecked(false);
+      
+      // Die erste Karte und das restliche Deck initialisieren
+      const firstCard = getNextCard(cards);
+      setFlashcard(firstCard);
+    } else {
+      setFlashcard(null);
+      setFlashcardDeck([]);
+    }
+  }, [initialFlashcards, getNextCard]);
 
   // Initialize the current flashcard
   const [flashcard, setFlashcard] = useState(() => getNextCard([...initialFlashcards]));

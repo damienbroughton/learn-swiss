@@ -59,7 +59,7 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
       <div className="container">
         <div className="card" style={{ maxWidth: 400, width: '100%', margin: '0 auto', padding: '1.5em 1em', boxSizing: 'border-box', textAlign: 'center' }}>
           <p>👍 {numCorrect} | 👎 {numIncorrect} | Remaining: {flashcardDeckLength}</p>
-          {previousScore > 0 && <p>Previous Score: {previousScore} / {totalCards}</p>}
+          {/* {previousScore > 0 && <p>Previous Score: {previousScore} / {totalCards}</p>} */}
           
           {/* Display completion message if the deck is empty */}
           {!flashcard && (
