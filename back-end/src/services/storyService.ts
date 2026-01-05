@@ -69,8 +69,6 @@ export async function getStoryByReference(uid: string | undefined, reference: st
         }
     ]).next();
 
-    console.log(story);
-
     if(!story) throw new Error(`Story with reference ${reference} was not found.`);
 
     const allSectionFlashcards = (story.sectionsFlashcardsData || []) as FlashcardDocument[];

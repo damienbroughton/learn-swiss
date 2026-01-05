@@ -1,43 +1,56 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import express  from 'express';
+import type { Request, Response } from 'express';
 import { connectToDB } from '../config/db.js';
 import { ObjectId } from 'mongodb';
 import { generateFlashcardList, insertFlashcards } from '../services/flashcardService.js'
-import { getOldestPendingJob, updateJobStatus } from '../services/jobService.js'
+import { getJob, updateJobStatus } from '../services/jobService.js'
 import { getStory, addFlashCardsToStorySection, addErrorToStorySection } from "../services/storyService.js";
 import type { FlashcardDocument } from '../types/flashcardInterfaces.js'; 
 import type { StoryDocument } from '../types/storyInterfaces.js'; 
 import type { JobDocument, JobResult } from "../types/jobInterfaces.js";
 
-// Worker loop settings
-const POLL_INTERVAL = 5000; // 5 seconds
-const JOB_TIMEOUT = 300000; // 5 min lock timeout
+const app = express();
+app.use(express.json());
+
+const PORT = process.env.PORT || 8080;
 
 /**
  * Core function that looks for and processes a single pending job.
  * It handles the full lifecycle: finding, processing, and updating status (completed or failed).
  * @returns {Promise<boolean>} True if a job was found and processed (regardless of success), false otherwise.
  */
-async function processJob(): Promise<boolean> {
+app.post('/process-job', async (req: Request, res: Response) => {
+    const { jobId } = req.body;
+
+    if (!jobId) {
+        console.error("No jobId provided in task request.");
+        return res.status(400).send("No jobId provided");
+    }
+
     // Attempt to find the oldest pending job
-    const job: JobDocument | null = await getOldestPendingJob();
+    const job: JobDocument = await getJob(jobId);
 
     if (job === null) {
         return false;
     }
 
     // Safely extract properties
-    const jobId: ObjectId = job._id;
     const { storyId, createdBy, category, language, content, translatedLanguage } = job;
 
-    console.log(`Processing Job ${jobId.toHexString()} for Story ${storyId.toHexString()}`);
+    console.log(`Processing Job ${jobId} for Story ${storyId.toHexString()}`);
 
     try {
         const story: StoryDocument = await getStory(storyId);
 
         let insertFlashcardCount = 0;
         for (const section of story.sections)  {  
+            if(section.flashcards && section.flashcards.length > 0) {
+                console.log(`Story: ${storyId.toHexString()} section: ${section.sectionId} already has flashcards. Skipping.`);
+                continue;
+            }
             let count = await procesStorySection( storyId, section.sectionId, createdBy, 
                 category, language, section.sectionContent, translatedLanguage);
             insertFlashcardCount += count;
@@ -49,9 +62,9 @@ async function processJob(): Promise<boolean> {
         };
         await updateJobStatus(jobId, 'completed', result);
 
-        console.log(`Job ${jobId.toHexString()} completed successfully.`);
+        console.log(`Job ${jobId} completed successfully.`);
 
-        return true;
+        res.status(200).send(`Job ${jobId} processed successfully.`);
     } catch (error) {
         // 5. Update job status to failed on error
         const result: JobResult = {
@@ -59,11 +72,10 @@ async function processJob(): Promise<boolean> {
             message: error instanceof Error ? error.message : 'An unknown error occurred during processing.'
         };
         await updateJobStatus(jobId, 'failed', result);
-        
-        console.error(`Job ${jobId.toHexString()} failed: ${result.message}`);
-        return true; // Still return true because a job was found and processed (failed or not)
+        console.error(`Job ${jobId} failed: ${result.message}`);
+        res.status(500).send("Internal Server Error. Cloud Tasks will retry.");
     }
-}
+});
 
 async function procesStorySection(storyId: ObjectId, sectionId: number, createdBy: string, category: string, 
     language: string, content: string, translatedLanguage: string): Promise<number> {
@@ -94,31 +106,8 @@ async function procesStorySection(storyId: ObjectId, sectionId: number, createdB
     }
 }
 
-/**
- * Starts the continuous worker loop.
- */
-async function startWorker(): Promise<void> {
+// Start the server
+app.listen(PORT, async () => {
     await connectToDB();
-    console.log('Worker started. Looking for pending jobs...');
-    
-    // Use an immediate recursive function call with a delay
-    const loop = async (): Promise<void> => {
-        try {
-            const jobProcessed = await processJob();
-            
-            // If a job was processed, try again immediately to handle the queue quickly.
-            const delay = jobProcessed ? 0 : POLL_INTERVAL;
-            setTimeout(loop, delay);
-        } catch (error) {
-            console.error('Fatal error in worker loop:', error);
-            // Wait for the polling interval before attempting to restart the loop
-            setTimeout(loop, POLL_INTERVAL);
-        }
-    };
-    
-    // Start the loop
-    loop();
-}
-
-// Execute the worker startup
-startWorker();
+    console.log(`Worker service listening on port ${PORT}`);
+});

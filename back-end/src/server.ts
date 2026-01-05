@@ -8,6 +8,7 @@ import { connectToDB } from './config/db.js';
 import { initializeFirebase } from './config/firebase.js';
 import { authenticateToken } from './middleware/authenticateToken.js';
 import { enrichUser } from './middleware/enrichUser.js';
+import { initTasks } from './config/tasks.js';
 import flashcardRoutes from './routes/flashcardRoutes.js';
 import scenarioRoutes from './routes/scenarioRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -46,6 +47,7 @@ const PORT = process.env.PORT || 8000;
 
 async function startServer() {
   await connectToDB();
+  await initTasks();
 
   app.listen(PORT, function() {
     console.log('Server is running on port ' + PORT);
