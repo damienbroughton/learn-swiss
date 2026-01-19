@@ -4,14 +4,10 @@
 }
 /* Homepage mascot image style */
 .homepage-img {
-  width: 40vw;
   max-width: 160px;
   height: auto;
   object-fit: contain;
   margin: 0 auto 1.5em auto;
-  display: block;
-  border-radius: 50%;
-  box-shadow: 0 2px 16px 0 rgba(44,62,80,0.08);
 }
 /* Scenario list and card styles */
 .scenario-list {
@@ -547,4 +543,143 @@ textarea:disabled {
   opacity: 0.6;
   cursor: not-allowed;
   background: #eee;
+}
+
+/* Table container for horizontal scrolling on small screens */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+/* Base table */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+/* Table header */
+.table thead {
+  background: var(--primary);
+  color: var(--text-light);
+}
+
+.table thead th {
+  padding: 0.9em 1em;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Rounded header corners */
+.table thead th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+.table thead th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+/* Table body rows */
+.table tbody tr {
+  background: var(--card-bg);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Zebra striping */
+.table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* Row hover */
+.table tbody tr:hover {
+  background: #fff5f5;
+}
+
+/* Table cells */
+.table td {
+  padding: 0.85em 1em;
+  border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+  vertical-align: middle;
+  color: var(--text-dark);
+}
+
+/* Last row cleanup */
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Optional numeric alignment */
+.table td.numeric,
+.table th.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Status / badge cells */
+.table .badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  border-radius: 999px;
+  font-size: 0.75em;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--text-dark);
+}
+
+/* Action buttons inside tables */
+.table button {
+  padding: 0.4em 0.9em;
+  font-size: 0.8em;
+  margin: 0;
+}
+
+/* Compact table variant */
+.table.compact th,
+.table.compact td {
+  padding: 0.55em 0.7em;
+  font-size: 0.85rem;
+}
+
+/* Responsive stacking for very small screens */
+@media (max-width: 600px) {
+  .table,
+  .table thead,
+  .table tbody,
+  .table tr,
+  .table th,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .table td {
+    justify-content: space-between;
+    padding: 0.7em 1em;
+    border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--primary);
+    margin-right: 1em;
+  }
+
+  .table tr:last-child td:last-child {
+    border-bottom: none;
+  }
 }
