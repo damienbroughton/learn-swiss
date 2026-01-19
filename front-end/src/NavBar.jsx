@@ -16,6 +16,7 @@ export default function NavBar(){
                 <li><Link to="/flashcards">Flashcards</Link></li>
                 <li><Link to="/scenarios">Scenarios</Link></li>
                 <li><Link to="/stories">Stories</Link></li>
+                <li><Link to="/challenges">Challenges</Link></li>
                 {isLoading ? <li style={{ color: "white" }}>Loading...</li> : (
                     <>
                     {appUser && appUser.role == "admin" && (<li><Link to="/admin">Admin</Link></li>)}
