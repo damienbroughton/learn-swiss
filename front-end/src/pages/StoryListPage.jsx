@@ -16,7 +16,7 @@ export default function StoryListPage() {
   const [category, setCategory] = useState("All");
 
   const title = `Learn-Swiss: Stories`;
-  const description = `Learn Swiss-German stories by building vocabulary with flashcards. You can generate your own with AI!`;
+  const description = `Learn Swiss-German and German stories by building vocabulary with flashcards. You can generate your own with AI!`;
   const canonicalUrl = `https://learn-swiss.ch/stories/`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
