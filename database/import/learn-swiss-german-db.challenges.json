@@ -1,0 +1,930 @@
+[{
+  "reference": "adjective-declination",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Das ist der {{target}} Mantel.",
+    "baseWord": "warm",
+    "correctAnswer": "wärmere",
+    "options": [
+      "wärmer",
+      "wärmere",
+      "wärmeren",
+      "wärmeres"
+    ]
+  },
+  "metadata": {
+    "noun": "der Mantel",
+    "gender": "masculine",
+    "case": "Nominativ",
+    "articleType": "definite",
+    "degree": "comparative",
+    "explanation": "Masculine Nominative with a definite article ('der') in the comparative degree ('wärmer') takes an '-e' ending."
+  },
+  "tags": [
+    "clothing",
+    "nominativ",
+    "comparative",
+    "weak_declension"
+  ],
+  "title": "Adjective Declination",
+  "language": "German"
+},
+{
+  "reference": "adjective-declination",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Ich kaufe das {{target}} Kleid.",
+    "baseWord": "kurz",
+    "correctAnswer": "kürzeste",
+    "options": [
+      "kürzeste",
+      "kürzesten",
+      "kürzester",
+      "kürzest"
+    ]
+  },
+  "metadata": {
+    "noun": "das Kleid",
+    "gender": "neuter",
+    "case": "Akkusativ",
+    "articleType": "definite",
+    "degree": "superlative",
+    "explanation": "Neuter Accusative with a definite article ('das') in the superlative degree ('kürzest-') takes an '-e' ending."
+  },
+  "tags": [
+    "clothing",
+    "akkusativ",
+    "superlative",
+    "weak_declension"
+  ],
+  "title": "Adjective Declination",
+  "language": "German"
+},
+{
+  "reference": "adjective-declination",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Dort steht eine {{target}} Jacke.",
+    "baseWord": "schön",
+    "correctAnswer": "schönere",
+    "options": [
+      "schöner",
+      "schönere",
+      "schöneren",
+      "schöneres"
+    ]
+  },
+  "metadata": {
+    "noun": "die Jacke",
+    "gender": "feminine",
+    "case": "Nominativ",
+    "articleType": "indefinite",
+    "degree": "comparative",
+    "explanation": "Feminine Nominative with an indefinite article ('eine') in the comparative degree ('schöner') takes an '-e' ending."
+  },
+  "tags": [
+    "clothing",
+    "nominativ",
+    "comparative",
+    "mixed_declension"
+  ],
+  "title": "Adjective Declination",
+  "language": "German"
+},
+{
+  "reference": "adjective-declination",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Ich trage die {{target}} Schuhe.",
+    "baseWord": "hoch",
+    "correctAnswer": "höchsten",
+    "options": [
+      "höchstem",
+      "höchsten",
+      "höchster",
+      "höchste"
+    ]
+  },
+  "metadata": {
+    "noun": "die Schuhe",
+    "gender": "plural",
+    "case": "Akkusativ",
+    "articleType": "definite",
+    "degree": "superlative",
+    "explanation": "Plural Accusative with a definite article ('die') in the superlative degree ('höchst-') takes an '-en' ending."
+  },
+  "tags": [
+    "clothing",
+    "akkusativ",
+    "superlative",
+    "weak_declension"
+  ],
+  "title": "Adjective Declination",
+  "language": "German"
+},
+{
+  "reference": "adjective-declination",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Er trinkt {{target}} Wasser.",
+    "baseWord": "kalt",
+    "correctAnswer": "kaltes",
+    "options": [
+      "kalt",
+      "kalte",
+      "kalten",
+      "kaltes"
+    ]
+  },
+  "metadata": {
+    "noun": "das Wasser",
+    "gender": "neuter",
+    "case": "Akkusativ",
+    "articleType": "none",
+    "degree": "positive",
+    "explanation": "Neuter Accusative with no article (zero article) takes the 'strong' ending '-es'."
+  },
+  "tags": [
+    "drinks",
+    "akkusativ",
+    "positive",
+    "strong_declension"
+  ],
+  "title": "Adjective Declination",
+  "language": "German"
+},
+{
+  "reference": "adjective-declination",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Wir wohnen bei {{target}} Wetter.",
+    "baseWord": "gut",
+    "correctAnswer": "bestem",
+    "options": [
+      "bestem",
+      "besten",
+      "beste",
+      "bester"
+    ]
+  },
+  "metadata": {
+    "noun": "das Wetter",
+    "gender": "neuter",
+    "case": "Dativ",
+    "articleType": "none",
+    "degree": "superlative",
+    "explanation": "Neuter Dative with no article in the superlative degree ('best-') takes the strong ending '-em'."
+  },
+  "tags": [
+    "weather",
+    "dativ",
+    "superlative",
+    "strong_declension"
+  ],
+  "title": "Adjective Declination",
+  "language": "German"
+},
+{
+  "reference": "adjective-declination",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Ich helfe einem {{target}} Mann.",
+    "baseWord": "alt",
+    "correctAnswer": "alten",
+    "options": [
+      "alter",
+      "altem",
+      "alten",
+      "altes"
+    ]
+  },
+  "metadata": {
+    "noun": "der Mann",
+    "gender": "masculine",
+    "case": "Dativ",
+    "articleType": "indefinite",
+    "degree": "positive",
+    "explanation": "Masculine Dative following an indefinite article ('einem') always takes the '-en' ending."
+  },
+  "tags": [
+    "people",
+    "dativ",
+    "positive",
+    "mixed_declension"
+  ],
+  "title": "Adjective Declination",
+  "language": "German"
+},
+{
+  "reference": "adjective-declination",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Sie spricht mit {{target}} Kindern.",
+    "baseWord": "nett",
+    "correctAnswer": "netten",
+    "options": [
+      "nette",
+      "netter",
+      "netten",
+      "nettes"
+    ]
+  },
+  "metadata": {
+    "noun": "die Kinder",
+    "gender": "plural",
+    "case": "Dativ",
+    "articleType": "none",
+    "degree": "positive",
+    "explanation": "Plural Dative with no article takes the strong ending '-en'."
+  },
+  "tags": [
+    "people",
+    "dativ",
+    "positive",
+    "strong_declension"
+  ],
+  "title": "Adjective Declination",
+  "language": "German"
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Hast du die {{target}} Zeitung gelesen?",
+    "baseWord": "spannend",
+    "correctAnswer": "spannende",
+    "options": [
+      "spannende",
+      "spannenden",
+      "spannender",
+      "spannendes"
+    ]
+  },
+  "metadata": {
+    "noun": "die Zeitung",
+    "gender": "feminine",
+    "case": "Akkusativ",
+    "articleType": "definite",
+    "degree": "positive",
+    "explanation": "Feminine Accusative with a definite article ('die') takes the weak ending '-e'."
+  },
+  "tags": [
+    "media",
+    "akkusativ",
+    "positive",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Dort rennt ein {{target}} Hund.",
+    "baseWord": "klein",
+    "correctAnswer": "kleiner",
+    "options": [
+      "kleine",
+      "kleiner",
+      "kleinen",
+      "kleines"
+    ]
+  },
+  "metadata": {
+    "noun": "der Hund",
+    "gender": "masculine",
+    "case": "Nominativ",
+    "articleType": "indefinite",
+    "degree": "positive",
+    "explanation": "Masculine Nominative with an indefinite article ('ein') takes the mixed ending '-er' to signal the gender."
+  },
+  "tags": [
+    "animals",
+    "nominativ",
+    "positive",
+    "mixed_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Wir sitzen in dem {{target}} Park.",
+    "baseWord": "grün",
+    "correctAnswer": "grünen",
+    "options": [
+      "grüne",
+      "grüner",
+      "grünen",
+      "grünem"
+    ]
+  },
+  "metadata": {
+    "noun": "der Park",
+    "gender": "masculine",
+    "case": "Dativ",
+    "articleType": "definite",
+    "degree": "positive",
+    "explanation": "Masculine Dative with a definite article ('dem') takes the weak ending '-en'."
+  },
+  "tags": [
+    "nature",
+    "dativ",
+    "positive",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "{{target}} Äpfel schmecken am besten.",
+    "baseWord": "frisch",
+    "correctAnswer": "frische",
+    "options": [
+      "frische",
+      "frischen",
+      "frischer",
+      "frisches"
+    ]
+  },
+  "metadata": {
+    "noun": "die Äpfel",
+    "gender": "plural",
+    "case": "Nominativ",
+    "articleType": "none",
+    "degree": "positive",
+    "explanation": "Plural Nominative with no article (zero article) takes the strong ending '-e'."
+  },
+  "tags": [
+    "food",
+    "nominativ",
+    "positive",
+    "strong_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Bei {{target}} Wetter bleibe ich zu Hause.",
+    "baseWord": "kalt",
+    "correctAnswer": "kälterem",
+    "options": [
+      "kältere",
+      "kälterem",
+      "kälteren",
+      "kälterer"
+    ]
+  },
+  "metadata": {
+    "noun": "das Wetter",
+    "gender": "neuter",
+    "case": "Dativ",
+    "articleType": "none",
+    "degree": "comparative",
+    "explanation": "Neuter Dative with no article in the comparative degree takes the strong ending '-em'."
+  },
+  "tags": [
+    "weather",
+    "dativ",
+    "comparative",
+    "strong_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Ich suche eine {{target}} Tasche.",
+    "baseWord": "groß",
+    "correctAnswer": "größere",
+    "options": [
+      "größerer",
+      "größere",
+      "größeren",
+      "größeres"
+    ]
+  },
+  "metadata": {
+    "noun": "die Tasche",
+    "gender": "feminine",
+    "case": "Akkusativ",
+    "articleType": "indefinite",
+    "degree": "comparative",
+    "explanation": "Feminine Accusative with an indefinite article ('eine') in the comparative degree takes the ending '-e'."
+  },
+  "tags": [
+    "shopping",
+    "akkusativ",
+    "comparative",
+    "mixed_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Das {{target}} Auto hat gewonnen.",
+    "baseWord": "schnell",
+    "correctAnswer": "schnellste",
+    "options": [
+      "schnellste",
+      "schnellsten",
+      "schnellster",
+      "schnellstes"
+    ]
+  },
+  "metadata": {
+    "noun": "das Auto",
+    "gender": "neuter",
+    "case": "Nominativ",
+    "articleType": "definite",
+    "degree": "superlative",
+    "explanation": "Neuter Nominative with a definite article ('das') in the superlative degree takes the weak ending '-e'."
+  },
+  "tags": [
+    "vehicles",
+    "nominativ",
+    "superlative",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "In den {{target}} Nächten friert es.",
+    "baseWord": "kalt",
+    "correctAnswer": "kältesten",
+    "options": [
+      "kälteste",
+      "kältesten",
+      "kältester",
+      "kältestes"
+    ]
+  },
+  "metadata": {
+    "noun": "die Nächte",
+    "gender": "plural",
+    "case": "Dativ",
+    "articleType": "definite",
+    "degree": "superlative",
+    "explanation": "Plural Dative with a definite article ('den') in the superlative degree takes the ending '-en'."
+  },
+  "tags": [
+    "weather",
+    "dativ",
+    "superlative",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Wir trinken {{target}} Tee.",
+    "baseWord": "heiß",
+    "correctAnswer": "heißen",
+    "options": [
+      "heiße",
+      "heißen",
+      "heißer",
+      "heißes"
+    ]
+  },
+  "metadata": {
+    "noun": "der Tee",
+    "gender": "masculine",
+    "case": "Akkusativ",
+    "articleType": "none",
+    "degree": "positive",
+    "explanation": "Masculine Accusative with no article takes the strong ending '-en'."
+  },
+  "tags": [
+    "drinks",
+    "akkusativ",
+    "positive",
+    "strong_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Ich helfe einer {{target}} Frau.",
+    "baseWord": "alt",
+    "correctAnswer": "alten",
+    "options": [
+      "alte",
+      "alter",
+      "alten",
+      "altes"
+    ]
+  },
+  "metadata": {
+    "noun": "die Frau",
+    "gender": "feminine",
+    "case": "Dativ",
+    "articleType": "indefinite",
+    "degree": "positive",
+    "explanation": "Feminine Dative following an indefinite article ('einer') always takes the '-en' ending."
+  },
+  "tags": [
+    "people",
+    "dativ",
+    "positive",
+    "mixed_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Ich habe einen {{target}} Bruder.",
+    "baseWord": "groß",
+    "correctAnswer": "großen",
+    "options": [
+      "großer",
+      "große",
+      "großen",
+      "großes"
+    ]
+  },
+  "metadata": {
+    "noun": "der Bruder",
+    "gender": "masculine",
+    "case": "Akkusativ",
+    "articleType": "indefinite",
+    "degree": "positive",
+    "explanation": "Masculine Accusative with an indefinite article ('einen') takes the mixed ending '-en'."
+  },
+  "tags": [
+    "family",
+    "akkusativ",
+    "positive",
+    "mixed_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Die {{target}} Katze schläft auf dem Sofa.",
+    "baseWord": "klein",
+    "correctAnswer": "kleinere",
+    "options": [
+      "kleinere",
+      "kleineren",
+      "kleinerer",
+      "kleineres"
+    ]
+  },
+  "metadata": {
+    "noun": "die Katze",
+    "gender": "feminine",
+    "case": "Nominativ",
+    "articleType": "definite",
+    "degree": "comparative",
+    "explanation": "Feminine Nominative with a definite article ('die') in the comparative degree takes the weak ending '-e'."
+  },
+  "tags": [
+    "animals",
+    "nominativ",
+    "comparative",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "In dem {{target}} Haus wohne ich.",
+    "baseWord": "schön",
+    "correctAnswer": "schönsten",
+    "options": [
+      "schönste",
+      "schönsten",
+      "schönster",
+      "schönstes"
+    ]
+  },
+  "metadata": {
+    "noun": "das Haus",
+    "gender": "neuter",
+    "case": "Dativ",
+    "articleType": "definite",
+    "degree": "superlative",
+    "explanation": "Neuter Dative with a definite article ('dem') in the superlative degree takes the ending '-en'."
+  },
+  "tags": [
+    "housing",
+    "dativ",
+    "superlative",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Ich spreche mit meinen {{target}} Freunden.",
+    "baseWord": "nett",
+    "correctAnswer": "netten",
+    "options": [
+      "nette",
+      "netter",
+      "netten",
+      "nettes"
+    ]
+  },
+  "metadata": {
+    "noun": "die Freunde",
+    "gender": "plural",
+    "case": "Dativ",
+    "articleType": "possessive",
+    "degree": "positive",
+    "explanation": "Plural Dative following a possessive article ('meinen') takes the ending '-en'."
+  },
+  "tags": [
+    "people",
+    "dativ",
+    "positive",
+    "mixed_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Mit {{target}} Kaffee fängt der Tag gut an.",
+    "baseWord": "stark",
+    "correctAnswer": "stärkerem",
+    "options": [
+      "stärkerer",
+      "stärkeren",
+      "stärkerem",
+      "stärkere"
+    ]
+  },
+  "metadata": {
+    "noun": "der Kaffee",
+    "gender": "masculine",
+    "case": "Dativ",
+    "articleType": "none",
+    "degree": "comparative",
+    "explanation": "Masculine Dative with no article (zero article) in the comparative degree takes the strong ending '-em'."
+  },
+  "tags": [
+    "drinks",
+    "dativ",
+    "comparative",
+    "strong_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Sie sucht die {{target}} Qualität.",
+    "baseWord": "gut",
+    "correctAnswer": "beste",
+    "options": [
+      "beste",
+      "besten",
+      "bester",
+      "bestes"
+    ]
+  },
+  "metadata": {
+    "noun": "die Qualität",
+    "gender": "feminine",
+    "case": "Akkusativ",
+    "articleType": "definite",
+    "degree": "superlative",
+    "explanation": "Feminine Accusative with a definite article ('die') in the superlative degree takes the weak ending '-e'."
+  },
+  "tags": [
+    "abstract",
+    "akkusativ",
+    "superlative",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Das ist ein {{target}} Buch.",
+    "baseWord": "interessant",
+    "correctAnswer": "interessantes",
+    "options": [
+      "interessante",
+      "interessanter",
+      "interessanten",
+      "interessantes"
+    ]
+  },
+  "metadata": {
+    "noun": "das Buch",
+    "gender": "neuter",
+    "case": "Nominativ",
+    "articleType": "indefinite",
+    "degree": "positive",
+    "explanation": "Neuter Nominative with an indefinite article ('ein') takes the mixed ending '-es' to indicate gender."
+  },
+  "tags": [
+    "media",
+    "nominativ",
+    "positive",
+    "mixed_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Wir brauchen {{target}} Eier für den Kuchen.",
+    "baseWord": "billig",
+    "correctAnswer": "billigere",
+    "options": [
+      "billigere",
+      "billigeren",
+      "billigerer",
+      "billigeres"
+    ]
+  },
+  "metadata": {
+    "noun": "die Eier",
+    "gender": "plural",
+    "case": "Akkusativ",
+    "articleType": "none",
+    "degree": "comparative",
+    "explanation": "Plural Accusative with no article in the comparative degree takes the strong ending '-e'."
+  },
+  "tags": [
+    "food",
+    "akkusativ",
+    "comparative",
+    "strong_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Der {{target}} Berg Deutschlands ist die Zugspitze.",
+    "baseWord": "hoch",
+    "correctAnswer": "höchste",
+    "options": [
+      "höchste",
+      "höchsten",
+      "höchster",
+      "höchstes"
+    ]
+  },
+  "metadata": {
+    "noun": "der Berg",
+    "gender": "masculine",
+    "case": "Nominativ",
+    "articleType": "definite",
+    "degree": "superlative",
+    "explanation": "Masculine Nominative with a definite article ('der') in the superlative degree takes the weak ending '-e'."
+  },
+  "tags": [
+    "geography",
+    "nominativ",
+    "superlative",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "An der {{target}} Straße stehen viele Bäume.",
+    "baseWord": "lang",
+    "correctAnswer": "langen",
+    "options": [
+      "lange",
+      "langer",
+      "langen",
+      "langes"
+    ]
+  },
+  "metadata": {
+    "noun": "die Straße",
+    "gender": "feminine",
+    "case": "Dativ",
+    "articleType": "definite",
+    "degree": "positive",
+    "explanation": "Feminine Dative with a definite article ('der') takes the weak ending '-en'."
+  },
+  "tags": [
+    "city",
+    "dativ",
+    "positive",
+    "weak_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Ich wünsche mir ein {{target}} Auto.",
+    "baseWord": "schnell",
+    "correctAnswer": "schnelleres",
+    "options": [
+      "schnellere",
+      "schnelleren",
+      "schnellerer",
+      "schnelleres"
+    ]
+  },
+  "metadata": {
+    "noun": "das Auto",
+    "gender": "neuter",
+    "case": "Akkusativ",
+    "articleType": "indefinite",
+    "degree": "comparative",
+    "explanation": "Neuter Accusative with an indefinite article ('ein') in the comparative degree takes the mixed ending '-es'."
+  },
+  "tags": [
+    "vehicles",
+    "akkusativ",
+    "comparative",
+    "mixed_declension"
+  ]
+},
+{
+  "reference": "adjective-declination",
+  "title": "Adjective Declination",
+  "language": "German",
+  "difficulty": "B1",
+  "content": {
+    "sentenceTemplate": "Die {{target}} Leute tanzen im Club.",
+    "baseWord": "jung",
+    "correctAnswer": "jungen",
+    "options": [
+      "junge",
+      "jungen",
+      "junger",
+      "junges"
+    ]
+  },
+  "metadata": {
+    "noun": "die Leute",
+    "gender": "plural",
+    "case": "Nominativ",
+    "articleType": "definite",
+    "degree": "positive",
+    "explanation": "Plural Nominative with a definite article ('die') takes the weak ending '-en'."
+  },
+  "tags": [
+    "people",
+    "nominativ",
+    "positive",
+    "weak_declension"
+  ]
+}]

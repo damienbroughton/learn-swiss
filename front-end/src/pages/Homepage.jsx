@@ -29,9 +29,11 @@ export default function Homepage() {
         <h1>Welcome to the World of Schwiizertüütsch!</h1>
         <div style={{ display: 'flex' }}>
           <img src={iggyImage} alt="Iggy the Hedgehog mascot" className="homepage-img" />
-          <p>Grüezi! If you’ve ever stepped off a train in Zurich or walked through a village in the Alps and thought, "I studied German in school, but I have no idea what these people are saying,"—don't worry, you aren’t alone.</p>
+          <div>
+            <p>Grüezi! If you’ve ever stepped off a train in Zurich or walked through a village in the Alps and thought, "I studied German in school, but I have no idea what these people are saying,"—don't worry, you aren’t alone.</p>
+            <p>You’ve just encountered Swiss German (or Schwiizertüütsch), a vibrant, soulful, and surprisingly diverse collection of Alemannic dialects that serve as the heartbeat of everyday life in Switzerland.</p>
+          </div>
         </div>
-        <p>You’ve just encountered Swiss German (or Schwiizertüütsch), a vibrant, soulful, and surprisingly diverse collection of Alemannic dialects that serve as the heartbeat of everyday life in Switzerland.</p>
         <hr />
         <h2>Is it different from High German?</h2>
         <p>In short: Yes. While "High German" (Hochdeutsch) is what you’ll find in textbooks or on the evening news, Swiss German is what people actually use to joke with friends, order coffee, and talk to their families.

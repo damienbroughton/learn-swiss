@@ -17,6 +17,7 @@ async function generateSitemap() {
         { url: '/make-flashcards', changefreq: 'weekly', priority: 0.8 },
         { url: '/flashcards', changefreq: 'weekly', priority: 0.7 },
         { url: '/scenarios', changefreq: 'weekly', priority: 0.6 },
+        { url: '/challenges', changefreq: 'weekly', priority: 0.5 },
         { url: '/stories', changefreq: 'weekly', priority: 0.8 },
         { url: '/login', changefreq: 'weekly', priority: 0.5 },
         { url: '/create-account', changefreq: 'weekly', priority: 0.5 }

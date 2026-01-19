@@ -7,6 +7,8 @@ import ScenarioListPage, {loader as scenarioListLoader} from './pages/ScenarioLi
 import ScenarioPage, {loader as scenarioLoader} from './pages/ScenarioPage'
 import ArticlesList from './pages/ArticlesListPage'
 import ArticlePage, {loader as articleLoader} from './pages/ArticlePage'
+import ChallengeListPage, {loader as challengeListLoader} from './pages/ChallengeListPage'
+import ChallengePage, {loader as challengeLoader} from './pages/ChallengePage'
 import Layout from './Layout'
 import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from './pages/LoginPage'
@@ -52,6 +54,21 @@ const routes = [{
     path: '/stories/:reference',
     element: <StoryPage />,
     loader: storyLoader
+  },
+  {
+    path: '/stories/:reference',
+    element: <StoryPage />,
+    loader: storyLoader
+  },
+  {
+    path: '/challenges',
+    element: <ChallengeListPage />,
+    loader: challengeListLoader
+  },
+  {
+    path: '/challenges/:reference/:mode',
+    element: <ChallengePage />,
+    loader: challengeLoader
   },
   {
     path: '/scenarios/:title/:mode',
