@@ -12,6 +12,7 @@ import { initTasks } from './config/tasks.js';
 import flashcardRoutes from './routes/flashcardRoutes.js';
 import scenarioRoutes from './routes/scenarioRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import userProgressRoutes from './routes/userProgressRoutes.js';
 import articleRoutes from './routes/articleRoutes.js';
 import storyRoutes from './routes/storyRoutes.js';
 import challengeRoutes from './routes/challengeRoutes.js';
@@ -39,6 +40,7 @@ app.use(enrichUser);
 // ROUTING
 
 app.use("/api/user", userRoutes);
+app.use("/api/userProgress", userProgressRoutes);
 app.use("/api/articles", articleRoutes);
 app.use("/api/flashcards", flashcardRoutes);
 app.use("/api/scenarios", scenarioRoutes);
