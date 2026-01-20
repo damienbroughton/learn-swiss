@@ -80,13 +80,4 @@ export interface ChallengeDocument {
 
     /** Timestamp when the challenge was last updated. */
     updatedAt: Date;
-
-    /** Timestamp when the challenge was last updated. */
-    completions: UserCompletion[];
-}
-
-export interface UserCompletion {
-  completedBy: string;
-  mostRecentCompletionDate: Date;
-  completionCount: number;
 }

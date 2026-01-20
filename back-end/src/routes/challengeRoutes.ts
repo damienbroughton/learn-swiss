@@ -1,20 +1,22 @@
 import express from "express";
 import type { Response } from 'express';
-import { getChallengesByReference, getChallengeTitles } from "../services/challengeService.js";
+import { getChallenges, getChallengesByReference } from "../services/challengeService.js";
 import type { EnrichedRequest } from '../types/requestInterfaces.js'; 
-import { requireAuth } from "../middleware/requireAuth.js";
+import { optionalAuth } from "../middleware/optionalAuth.js";
 
 export const router = express.Router();
 
+
 /**
- * GET /titles
+ * GET /
  * Retrieve a list of unique challenge references.
  *
  * Public endpoint. Uses optionalAuth to allow the request to proceed.
  */
-router.get('/titles', async (req: EnrichedRequest, res: Response) => {
+router.get('/', optionalAuth, async (req: EnrichedRequest, res: Response) => {
     try {
-        const titles = await getChallengeTitles();
+        const uid = req.user?.uid; // undefined if not logged in
+        const titles = await getChallenges(uid);
         return res.json(titles);
     } catch (error) {
         console.error('Error retreiving titles:', error);

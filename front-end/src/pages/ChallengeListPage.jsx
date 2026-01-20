@@ -6,7 +6,7 @@ import imgStoriesDE from '../assets/BoarBook.png';
 
 
 export default function ChallengeListPage() {
-  const {challengeReferences} = useLoaderData();
+  const {challenges} = useLoaderData();
   
   const title = `Learn-Swiss: Challenges`;
   const description = `Challenge your Swiss-German & German knowledge!`;
@@ -33,18 +33,18 @@ export default function ChallengeListPage() {
         <h1>Challenges</h1>
           <p>{description}</p>
           <ul className="scenario-list">
-            {challengeReferences.map(reference => (
-              <li key={reference} className="scenario-list-item">
+            {challenges.map(challenge => (
+              <li key={challenge.reference} className="scenario-list-item">
                 <div
                   className="scenario-card"
-                  onClick={() => navigate(`/challenges/${reference}/practice`)}
+                  onClick={() => navigate(`/challenges/${challenge.reference}/practice`)}
                   tabIndex={0}
                   role="button"
-                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/challenges/${reference}/practice`); } }}
-                  aria-label={`Open Challenge title: ${reference}`}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/challenges/${challenge.reference}/practice`); } }}
+                  aria-label={`Open Challenge title: ${challenge.title}`}
                 >
-                  <img src={imgStoriesDE} alt={reference} className="scenario-card-img" />
-                  <div className="scenario-card-title">{reference.replace("-", " ")}</div>
+                  <img src={imgStoriesDE} alt={challenge.title} className="scenario-card-img" />
+                  <div className="scenario-card-title">{challenge.title} <br />({Math.trunc(challenge.completedByUser/challenge.totalChallenges * 100)}% complete)</div>
                 </div>
               </li>
             ))}
@@ -56,7 +56,7 @@ export default function ChallengeListPage() {
 }
 
 export async function loader () {
-  const response = await api.get(`/challenges/titles`);
-  const challengeReferences = response.data;
-  return {challengeReferences};
+  const response = await api.get(`/challenges/`);
+  const challenges = response.data;
+  return {challenges};
 }
