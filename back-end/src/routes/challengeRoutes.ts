@@ -38,7 +38,7 @@ router.get('/:reference', async (req: EnrichedRequest, res: Response) => {
     if (!reference) 
       return res.status(400).send('No reference Provided.');
 
-    const challenges = await getChallengesByReference(reference);
+    const challenges = await getChallengesByReference(reference, uid);
 
     return res.json(challenges);
   } catch (err) {
