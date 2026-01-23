@@ -85,19 +85,75 @@ export async function getChallenges(uid?: string): Promise<ChallengeCategory[]> 
 }
 
 /**
- * Retreive list of challenges by reference
- *
+ * Retrieve a sample of 10 challenges by reference, 
+ * including progress stats if a uid is provided.
  */
-export async function getChallengesByReference(reference: string) {
+export async function getChallengesByReference(reference: string, uid?: string) {
   try {
-    if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
-    const challenges = await db.collection<ChallengeDocument>('challenges').aggregate([
+    if (!db) throw new Error('Database connection not initialized.');
+
+    const pipeline: any[] = [
+      // 1. Filter by reference and take a random sample of 10
       { $match: { reference } },
       { $sample: { size: 10 } }
-    ]).toArray();
+    ];
+
+    // 2. If user is logged in, join with userProgress collection
+    if (uid) {
+      pipeline.push(
+        {
+          $lookup: {
+            from: 'userProgress',
+            let: { challengeId: '$_id' },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $and: [
+                      { $eq: ['$contentId', '$$challengeId'] },
+                      { $eq: ['$uid', uid] },
+                      { $eq: ['$contentType', 'challenge'] }
+                    ]
+                  }
+                }
+              }
+            ],
+            as: 'userProgress'
+          }
+        },
+        // 3. Flatten the progress array into specific fields
+        {
+          $addFields: {
+            // Get the first item from lookup, or a default empty object
+            progress: { $arrayElemAt: ['$userProgress', 0] }
+          }
+        },
+        {
+          $addFields: {
+            attempts: { $ifNull: ['$progress.attempts', 0] },
+            successes: { $ifNull: ['$progress.successes', 0] },
+            lastCompletedAt: { $ifNull: ['$progress.lastCompletedAt', null] }
+          }
+        },
+        // 4. Remove the temporary array field
+        { $project: { userProgress: 0, progress: 0 } }
+      );
+    } else {
+      // 5. For guests, provide empty progress fields so the UI remains consistent
+      pipeline.push({
+        $addFields: {
+          attempts: 0,
+          successes: 0,
+          lastCompletedAt: null
+        }
+      });
+    }
+
+    const challenges = await db.collection<ChallengeDocument>('challenges').aggregate(pipeline).toArray();
     return challenges;
+
   } catch (error) {
-    console.error('Error fetching categories:', error);
+    console.error(`Error fetching challenges for reference "${reference}":`, error);
     throw new Error('Internal server error');
   }
 }
