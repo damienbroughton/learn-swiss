@@ -1,5 +1,8 @@
 import { useState, useRef } from "react"
-import imgChat from './assets/BoarBook.png';
+import imgNeutralDE from './assets/Eber-Neutral.png';
+import imgConfusedDE from './assets/Eber-Confused.png';
+import imgHappyDE from './assets/Eber-Happy.png';
+
 
 export default function DisplayChallenge({challenge, mode, onNext, recordSuccess }) {
 
@@ -8,6 +11,7 @@ export default function DisplayChallenge({challenge, mode, onNext, recordSuccess
     const [isChecking, setIsChecking] = useState(false);
     const [isCorrect, setIsCorrect] = useState();
     const [attemptNumber, setAttemptNumber] = useState(0);
+    const [image, setImage] = useState(imgNeutralDE);
 
     const sentenceParts = challenge.content.sentenceTemplate.split("{{target}}");
 
@@ -19,12 +23,14 @@ export default function DisplayChallenge({challenge, mode, onNext, recordSuccess
       setIsChecking(true);
       if (text.trim().toLowerCase() === challenge.content.correctAnswer.toLowerCase()) {
         setIsCorrect(true);
+        setImage(imgHappyDE);
         setHintText(`Correct! ${challenge.metadata.explanation}`);
         // Record success only on first attempt
         if(attemptNumber < 1){
           await recordSuccess(challenge._id);
         }
       } else {
+        setImage(imgConfusedDE);
         setHintText("Incorrect! Try again or click here to reveal a hint");
         setIsCorrect(false);
       }
@@ -36,7 +42,7 @@ export default function DisplayChallenge({challenge, mode, onNext, recordSuccess
         <>
         <div key={challenge.reference}>
           <div className="speech-bubble-npc fade-in" style={{width: "87%"}}>
-            <img src={imgChat} alt="Chatting Hedgehog" style={{ float:'left', marginRight: '10px' }} />
+            <img src={image} alt="Chatting Hedgehog" style={{ float:'left', marginRight: '10px', maxWidth: '180px', width: '50%' }} />
             <h4>{sentenceParts[0]}<u>{currentOption}</u>{sentenceParts[1]}</h4>
             <br />
             <div>

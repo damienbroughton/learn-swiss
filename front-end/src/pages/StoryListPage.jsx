@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import imgStoriesCH from '../assets/HedgeHogBook.png';
-import imgStoriesDE from '../assets/BoarBook.png';
+import imgStoriesDE from '../assets/Eber-Neutral.png';
 
 
 export default function StoryListPage() {
