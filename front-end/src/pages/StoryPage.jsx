@@ -6,7 +6,7 @@ import useStoryPolling from "../hooks/useStoryPolling.js"
 import FlashCardReview from "../FlashCardReview";
 import DisplayStorySection from "../DisplayStorySection";
 import imgStoriesCH from '../assets/IgelFlashCardWriting.png';
-import imgStoriesDE from '../assets/EberFlashCardWriting.png';
+import imgStoriesDE from '../assets/Eber-FlashCardWriting.png';
 import imgError from '../assets/ErrorImage.png';
 import gifLoading from '../assets/LoadingAnimation.gif';
 

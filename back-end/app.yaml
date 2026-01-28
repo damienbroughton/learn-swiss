@@ -8,3 +8,12 @@ instance_class: F1
 automatic_scaling:
   min_instances: 0 # Scales down to zero to save costs when idle.
   max_instances: 10
+
+handlers:
+  - url: /(.*\.(html|json|ico))$
+    static_files: dist/\1
+    upload: dist/.*\.(html|json|ico)$
+    expiration: "0s"
+    secure: always  # <--- Forces HTTPS
+    http_headers:
+      Cache-Control: "no-store, no-cache, must-revalidate"

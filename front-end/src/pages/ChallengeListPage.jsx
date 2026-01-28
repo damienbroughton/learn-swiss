@@ -2,7 +2,7 @@ import api from "../api";
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
-import imgStoriesDE from '../assets/BoarBook.png';
+import imgDE from '../assets/Eber-Happy.png';
 
 
 export default function ChallengeListPage() {
@@ -43,7 +43,7 @@ export default function ChallengeListPage() {
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/challenges/${challenge.reference}/practice`); } }}
                   aria-label={`Open Challenge title: ${challenge.title}`}
                 >
-                  <img src={imgStoriesDE} alt={challenge.title} className="scenario-card-img" />
+                  <img src={imgDE} alt={challenge.title} className="scenario-card-img" />
                   <div className="scenario-card-title">{challenge.title} <br />({Math.trunc(challenge.completedByUser/challenge.totalChallenges * 100)}% complete)</div>
                 </div>
               </li>
