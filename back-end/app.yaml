@@ -1,7 +1,7 @@
 service: default
 includes:
   - app-prod-env.yaml
-runtime: nodejs20
+runtime: nodejs22
 instance_class: F1
 
 # Use automatic scaling, as this service handles fluctuating web traffic.

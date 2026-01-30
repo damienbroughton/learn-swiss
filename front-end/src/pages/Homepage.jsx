@@ -50,24 +50,22 @@ export default function Homepage() {
         <hr />
         <h2>Identity and the Written Word</h2>
         <p>For the Swiss, speaking dialect is a massive part of their national identity. It’s a way of saying, "I’m home." However, you’ll rarely see Swiss German in a newspaper or a legal document. </p>
-        <p>Switzerland operates under a system of diglossia:
+        <p>Switzerland operates under a system of diglossia:</p>
           <ul>
             <li><strong>High German</strong> is used for writing, formal education, and official news.</li>
             <li><strong>Swiss German</strong> is used for speaking in almost every other situation.</li>
           </ul>
           Even when texting friends, many Swiss people write in dialect using their own phonetic spelling—which is exactly what we’re going to help you navigate!
-        </p>
         <hr />
         <h2>The Golden Rule: Just Add "-li"</h2>
         <p>Before you dive into your first lesson, here is a secret weapon for sounding more "Swiss": The Diminutive.</p>
-        <p>The Swiss love to make things smaller and cuter. In High German, you might add -chen or -lein, but in Switzerland, we use -li.
+        <p>The Swiss love to make things smaller and cuter. In High German, you might add -chen or -lein, but in Switzerland, we use -li.</p>
           <ul>
             <li>A house (Haus) becomes a Hüs<strong>li</strong>.</li>
             <li>A cookie (Guetz<strong>li</strong>) is basically mandatory with coffee.</li>
             <li>Even a cat (Chatz) becomes a Chätz<strong>li</strong>.</li>
           </ul>
           If you want to sound friendly and local, adding a -li to the end of a noun is the fastest way to a Swiss person’s heart!
-        </p>
         <hr />
         <h2>Some words & phrases to get you started</h2>
         <div className="table-wrapper">

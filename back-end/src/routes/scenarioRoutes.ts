@@ -38,7 +38,7 @@ router.get('/:title', async (req: EnrichedRequest, res: Response) => {
   try {
     const { title } = req.params;
 
-    if (!title) 
+    if (!title || typeof title !== 'string') 
       return res.status(400).send('No Title Provided.');
 
     const scenario = await getScenarioByTitle( title );
@@ -70,7 +70,7 @@ router.post('/:title/complete', requireAuth, async (req: EnrichedRequest, res: R
     if (!uid) 
       return res.status(401).send('Unauthorized. User not logged in.');
 
-    if (!title) 
+    if (!title || typeof title !== 'string') 
       return res.status(400).send('No Title Provided.');
 
     const responseMessage = await completeScenarioByTitle(uid, title);

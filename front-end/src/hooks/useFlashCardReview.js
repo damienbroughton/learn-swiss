@@ -57,6 +57,9 @@ export function useFlashCardReview(initialFlashcards) {
 
     if (user !== null) {
       await api.post(`/flashcards/${cardToComplete._id}/guess`, { guessedCorrectly });
+
+      const requestBody = { contentId: cardToComplete._id, type: 'flashcard', isCorrect: guessedCorrectly, mode: 'practice' };
+      await api.post(`/userProgress`, requestBody);
     }
   }, [user]);
 

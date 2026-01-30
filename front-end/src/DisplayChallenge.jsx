@@ -6,7 +6,7 @@ import imgHappyDE from './assets/Eber-Happy.png';
 
 export default function DisplayChallenge({challenge, mode, onNext, recordSuccess }) {
 
-    const [currentOption, setCurrentOption] = useState(challenge.content.baseWord + "___");
+    const [currentOption, setCurrentOption] = useState(challenge.content.showBaseWord ? challenge.content.baseWord + "___" : "______");
     const [hintText, setHintText] = useState("Hint: Click to reveal");
     const [isChecking, setIsChecking] = useState(false);
     const [isCorrect, setIsCorrect] = useState();

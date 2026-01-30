@@ -9,15 +9,15 @@ import useUser from "../hooks/useUser";
 export default function ScenarioPage() {
     const navigate = useNavigate();
     const { mode } = useParams();
-    const {title, category, difficulty, tags, steps} = useLoaderData();
+    const {scenario} = useLoaderData();
     const { user } = useUser();
 
-    const pageTitle = `Learn-Swiss: ${title}`;
-    const description = `Practice vocabulary the scenario '${title}' in Swiss-German.`;
-    const canonicalUrl = `https://learn-swiss.ch/stories/${title}/${mode}`;
+    const pageTitle = `Learn-Swiss: ${scenario.title}`;
+    const description = `Practice vocabulary the scenario '${scenario.title}' in Swiss-German.`;
+    const canonicalUrl = `https://learn-swiss.ch/stories/${scenario.title}/${mode}`;
     const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": pageTitle, "description": description, "url": canonicalUrl };
 
-    const [shownSteps, setShownSteps] = useState([steps[0]]); // start with first step
+    const [shownSteps, setShownSteps] = useState([scenario.steps[0]]); // start with first step
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
     async function onCheckAnswer({ step, responseText }, callback) {
@@ -39,8 +39,8 @@ export default function ScenarioPage() {
 
             // Show next step if available
             setCurrentStepIndex(currentStepIndex + 1);
-            if (currentStepIndex + 1 < steps.length) {
-              setShownSteps([...shownSteps, steps[currentStepIndex + 1]]);
+            if (currentStepIndex + 1 < scenario.steps.length) {
+              setShownSteps([...shownSteps, scenario.steps[currentStepIndex + 1]]);
             } else {
               completeScenario();
             }
@@ -55,7 +55,10 @@ export default function ScenarioPage() {
     if(user && mode === 'review'){
       const token = user && await user.getIdToken();
       const headers = token ? { authtoken: token } : {};
-      await api.post(`/scenarios/${title}/complete`, null, { headers });
+      await api.post(`/scenarios/${scenario.title}/complete`, null, { headers });
+
+      const requestBody = { contentId: scenario._id, type: 'scenario', isCorrect: true, mode: mode };
+      await api.post(`/userProgress`, requestBody);
     }
   }
 
@@ -66,19 +69,19 @@ export default function ScenarioPage() {
         <title>{pageTitle}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
+        <meta property="og:title" content={scenario.title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
         <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
     </Helmet>
     <div>
-      <h1>{title}</h1>
-      <p>Category: {category} | Difficulty: {difficulty} | Tags: {tags.join(', ')}</p>
+      <h1>{scenario.title}</h1>
+      <p>Category: {scenario.category} | Difficulty: {scenario.difficulty} | Tags: {scenario.tags.join(', ')}</p>
       {shownSteps.map((step, index) => (
         <DisplayScenario key={index} step={step} mode={mode} onCheckAnswer={onCheckAnswer} />
       ))}
-      {currentStepIndex === steps.length && (
+      {currentStepIndex === scenario.steps.length && (
           <div style={{ textAlign: 'center' }}>
             <img src={imgCelebration} alt="Celebrating Hedgehog" style={{ display: 'block', margin: '0 auto' }} />
             <p>Congratulations! You've completed the scenario.</p>
@@ -93,6 +96,6 @@ export default function ScenarioPage() {
 
 export async function loader ({params}) {
   const response = await api.get(`/scenarios/${params.title}`);
-  const {title, category, difficulty, tags, steps} = response.data;
-  return {title, category, difficulty, tags, steps};
+  const scenario = response.data;
+  return {scenario};
 }
