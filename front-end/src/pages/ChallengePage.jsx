@@ -47,10 +47,8 @@ export default function ChallengePage() {
   async function recordSuccess(challengeId) {
     setNumCorrect(numCorrect + 1);
     if(user){
-      const token = user && await user.getIdToken();
-      const headers = token ? { authtoken: token } : {};
       const requestBody = { contentId: challengeId, type: 'challenge', isCorrect: true, mode: mode };
-      await api.post(`/userProgress`, requestBody, { headers });
+      await api.post(`/userProgress`, requestBody);
     }
   }
 

@@ -29,7 +29,7 @@ export const router = express.Router();
 router.get('/categories/:secondLanguage', optionalAuth, async (req: EnrichedRequest, res: Response) => {
     const { secondLanguage } = req.params;
     try {
-        if(secondLanguage === undefined)
+        if(!secondLanguage || typeof secondLanguage !== 'string')
             throw new Error("No second language provided.")
         const categories = await getFlashcardCategories(secondLanguage);
         console.log("Retrieved categories", categories);
@@ -53,9 +53,9 @@ router.get('/:category/:secondLanguage', optionalAuth, async (req: EnrichedReque
     const uid = req.user?.uid; 
 
     try {
-      if(category === undefined)
+      if(!category || typeof category !== 'string')
         throw new Error("No category provided.")
-    if(secondLanguage === undefined)
+      if(!secondLanguage || typeof secondLanguage !== 'string')
         throw new Error("No second language provided.")
 
       const result = await getFlashcardsByCategory(uid, category, secondLanguage);
@@ -80,7 +80,7 @@ router.post('/:id/guess', requireAuth, async (req: EnrichedRequest, res: Respons
     const { guessedCorrectly } = req.body as { guessedCorrectly: boolean };
 
     try {
-        if(!id)
+        if(!id || typeof id !== 'string')
           throw new Error("No Id provided");
 
         const result = await guessFlashcard(id, uid, guessedCorrectly); 
@@ -168,8 +168,10 @@ router.patch('/:id', requireAuth, requireAdmin, async (req: EnrichedRequest, res
     }
 
     try {
-        if(!id)
+        if(!id || typeof id !== 'string')
           throw new Error("Missing Id.");
+        if(!secondLanguage || typeof secondLanguage !== 'string')
+          throw new Error("Missing second language.");
         const result = await updateFlashcard(id, uid, category, firstLanguage, firstLanguageText, secondLanguage, secondLanguageText, formal, tags);
 
         return res.json(result);

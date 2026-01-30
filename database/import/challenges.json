@@ -1,422 +1,422 @@
 [
   {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Ich suche ein {{target}} Haus.",
-      "baseWord": "groß",
-      "correctAnswer": "großes",
-      "options": ["großes", "große", "großer", "großen"]
+      "sentenceTemplate": "Ich gehe spazieren, {{target}} es regnet.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "weil", "aber"]
     },
     "metadata": {
-      "noun": "das Haus",
-      "gender": "neuter",
-      "case": "Akkusativ",
-      "articleType": "indefinite",
+      "noun": "Syntax: Verb at end",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
       "degree": "positive",
-      "explanation": "Neuter Accusative with an indefinite article ('ein') takes the ending '-es'."
+      "explanation": "The verb 'regnet' is at the end of the clause, which requires the subordinating conjunction 'obwohl'."
     },
-    "tags": ["housing", "akkusativ", "positive", "mixed_declension"]
+    "tags": ["syntax", "conjunctions", "subordinate-clause"]
   },
   {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Er ist ein {{target}} Fahrer.",
-      "baseWord": "schnell",
-      "correctAnswer": "schnellerer",
-      "options": ["schnellere", "schnellerer", "schnelleren", "schnelleres"]
+      "sentenceTemplate": "Es regnet. {{target}} gehe ich spazieren.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "denn", "und"]
     },
     "metadata": {
-      "noun": "der Fahrer",
-      "gender": "masculine",
-      "case": "Nominativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Masculine Nominative with an indefinite article ('ein') in the comparative degree ('schneller') takes the ending '-er'."
-    },
-    "tags": ["transport", "nominativ", "comparative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Das war ein {{target}} Erlebnis.",
-      "baseWord": "schön",
-      "correctAnswer": "schönstes",
-      "options": ["schönste", "schönstes", "schönsten", "schönster"]
-    },
-    "metadata": {
-      "noun": "das Erlebnis",
-      "gender": "neuter",
-      "case": "Nominativ",
-      "articleType": "indefinite",
-      "degree": "superlative",
-      "explanation": "Neuter Nominative with an indefinite article ('ein') in the superlative degree ('schönst-') takes the ending '-es'."
-    },
-    "tags": ["abstract", "nominativ", "superlative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Sie trägt eine {{target}} Hose.",
-      "baseWord": "kurz",
-      "correctAnswer": "kürzere",
-      "options": ["kürzerer", "kürzeren", "kürzeres", "kürzere"]
-    },
-    "metadata": {
-      "noun": "die Hose",
-      "gender": "feminine",
-      "case": "Akkusativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Feminine Accusative with an indefinite article ('eine') in the comparative degree ('kürzer') takes the ending '-e'."
-    },
-    "tags": ["clothing", "akkusativ", "comparative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Ich wohne in einer {{target}} Stadt.",
-      "baseWord": "klein",
-      "correctAnswer": "kleinen",
-      "options": ["kleiner", "kleine", "kleinen", "kleines"]
-    },
-    "metadata": {
-      "noun": "die Stadt",
-      "gender": "feminine",
-      "case": "Dativ",
-      "articleType": "indefinite",
+      "noun": "Syntax: Verb in position 2",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
       "degree": "positive",
-      "explanation": "Feminine Dative with an indefinite article ('einer') always takes the ending '-en'."
+      "explanation": "'Trotzdem' acts as a connector at the start of a main clause, forcing the verb 'gehe' into the second position."
     },
-    "tags": ["city", "dativ", "positive", "mixed_declension"]
+    "tags": ["syntax", "adverbs", "main-clause"]
   },
   {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Das ist ein {{target}} Computer.",
-      "baseWord": "teuer",
-      "correctAnswer": "teurerer",
-      "options": ["teurerer", "teurere", "teureren", "teureres"]
+      "sentenceTemplate": "{{target}} er müde ist, arbeitet er weiter.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "trotz", "dennoch"]
     },
     "metadata": {
-      "noun": "der Computer",
-      "gender": "masculine",
-      "case": "Nominativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Masculine Nominative with an indefinite article ('ein') in the comparative degree ('teurer') takes the ending '-er'."
-    },
-    "tags": ["technology", "nominativ", "comparative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Er liest ein {{target}} Buch.",
-      "baseWord": "spannend",
-      "correctAnswer": "spannendes",
-      "options": ["spannende", "spannenden", "spannender", "spannendes"]
-    },
-    "metadata": {
-      "noun": "das Buch",
-      "gender": "neuter",
-      "case": "Akkusativ",
-      "articleType": "indefinite",
+      "noun": "Syntax: Verb at end",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
       "degree": "positive",
-      "explanation": "Neuter Accusative with an indefinite article ('ein') takes the ending '-es'."
+      "explanation": "When starting a sentence with a contrast, 'obwohl' is used if the verb ('ist') moves to the end of that first clause."
     },
-    "tags": ["media", "akkusativ", "positive", "mixed_declension"]
+    "tags": ["syntax", "conjunctions", "sentence-start"]
   },
   {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Wir essen in einem {{target}} Restaurant.",
-      "baseWord": "gut",
-      "correctAnswer": "besten",
-      "options": ["beste", "besten", "bester", "bestes"]
+      "sentenceTemplate": "Er hat kein Geld. {{target}} kauft er das teure Auto.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "weil", "oder"]
     },
     "metadata": {
-      "noun": "das Restaurant",
-      "gender": "neuter",
-      "case": "Dativ",
-      "articleType": "indefinite",
-      "degree": "superlative",
-      "explanation": "Neuter Dative with an indefinite article ('einem') in the superlative degree ('best-') takes the ending '-en'."
-    },
-    "tags": ["food", "dativ", "superlative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Ich kenne einen {{target}} Arzt.",
-      "baseWord": "alt",
-      "correctAnswer": "älteren",
-      "options": ["ältere", "älteren", "älterer", "älteres"]
-    },
-    "metadata": {
-      "noun": "der Arzt",
-      "gender": "masculine",
-      "case": "Akkusativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Masculine Accusative with an indefinite article ('einen') in the comparative degree ('älter') takes the ending '-en'."
-    },
-    "tags": ["people", "akkusativ", "comparative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Sie hat eine {{target}} Schwester.",
-      "baseWord": "jung",
-      "correctAnswer": "jüngste",
-      "options": ["jüngste", "jüngsten", "jüngster", "jüngstes"]
-    },
-    "metadata": {
-      "noun": "die Schwester",
-      "gender": "feminine",
-      "case": "Nominativ",
-      "articleType": "indefinite",
-      "degree": "superlative",
-      "explanation": "Feminine Nominative with an indefinite article ('eine') in the superlative degree ('jüngst-') takes the ending '-e'."
-    },
-    "tags": ["family", "nominativ", "superlative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Wir brauchen einen {{target}} Tisch.",
-      "baseWord": "groß",
-      "correctAnswer": "großen",
-      "options": ["großer", "große", "großen", "großes"]
-    },
-    "metadata": {
-      "noun": "der Tisch",
-      "gender": "masculine",
-      "case": "Akkusativ",
-      "articleType": "indefinite",
+      "noun": "Syntax: Inversion",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
       "degree": "positive",
-      "explanation": "Masculine Accusative with an indefinite article ('einen') takes the ending '-en'."
+      "explanation": "'Trotzdem' is followed by the verb 'kauft' (inversion), signaling a main clause."
     },
-    "tags": ["furniture", "akkusativ", "positive", "mixed_declension"]
+    "tags": ["syntax", "contrast", "inversion"]
   },
   {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Er spricht mit einer {{target}} Frau.",
-      "baseWord": "freundlich",
-      "correctAnswer": "freundlicheren",
-      "options": ["freundlichere", "freundlicheren", "freundlicherer", "freundlicheres"]
+      "sentenceTemplate": "Wir haben den Bus verpasst, {{target}} wir gerannt sind.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "dass", "wenn"]
     },
     "metadata": {
-      "noun": "die Frau",
-      "gender": "feminine",
-      "case": "Dativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Feminine Dative with an indefinite article ('einer') in the comparative degree ('freundlicher') takes the ending '-en'."
-    },
-    "tags": ["people", "dativ", "comparative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Das ist ein {{target}} Film.",
-      "baseWord": "langweilig",
-      "correctAnswer": "langweiligster",
-      "options": ["langweiligste", "langweiligster", "langweiligsten", "langweiligstes"]
-    },
-    "metadata": {
-      "noun": "der Film",
-      "gender": "masculine",
-      "case": "Nominativ",
-      "articleType": "indefinite",
-      "degree": "superlative",
-      "explanation": "Masculine Nominative with an indefinite article ('ein') in the superlative degree ('langweiligst-') takes the ending '-er'."
-    },
-    "tags": ["media", "nominativ", "superlative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Ich fahre mit einem {{target}} Fahrrad.",
-      "baseWord": "neu",
-      "correctAnswer": "neueren",
-      "options": ["neuere", "neueren", "neuerer", "neueres"]
-    },
-    "metadata": {
-      "noun": "das Fahrrad",
-      "gender": "neuter",
-      "case": "Dativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Neuter Dative with an indefinite article ('einem') in the comparative degree ('neuer') takes the ending '-en'."
-    },
-    "tags": ["transport", "dativ", "comparative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Sie sucht eine {{target}} Wohnung.",
-      "baseWord": "billig",
-      "correctAnswer": "billigere",
-      "options": ["billigere", "billigeren", "billigerer", "billigeres"]
-    },
-    "metadata": {
-      "noun": "die Wohnung",
-      "gender": "feminine",
-      "case": "Akkusativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Feminine Accusative with an indefinite article ('eine') in the comparative degree ('billiger') takes the ending '-e'."
-    },
-    "tags": ["housing", "akkusativ", "comparative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Das ist ein {{target}} Apfel.",
-      "baseWord": "sauer",
-      "correctAnswer": "saurerer",
-      "options": ["saurere", "saurerer", "saureren", "saureres"]
-    },
-    "metadata": {
-      "noun": "der Apfel",
-      "gender": "masculine",
-      "case": "Nominativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Masculine Nominative with an indefinite article ('ein') in the comparative degree ('saurer') takes the ending '-er'."
-    },
-    "tags": ["food", "nominativ", "comparative", "mixed_declension"]
-  },
-  {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Ich hätte gern eine {{target}} Pizza.",
-      "baseWord": "kalt",
-      "correctAnswer": "kalte",
-      "options": ["kalte", "kalter", "kalten", "kaltes"]
-    },
-    "metadata": {
-      "noun": "die Pizza",
-      "gender": "feminine",
-      "case": "Akkusativ",
-      "articleType": "indefinite",
+      "noun": "Syntax: Subordinate clause",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
       "degree": "positive",
-      "explanation": "Feminine Accusative with an indefinite article ('eine') takes the ending '-e'."
+      "explanation": "'Obwohl' introduces the reason for the contrast and sends 'sind' to the end."
     },
-    "tags": ["food", "akkusativ", "positive", "mixed_declension"]
+    "tags": ["syntax", "transport", "verbs-at-end"]
   },
   {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Wir spielen in einem {{target}} Garten.",
-      "baseWord": "groß",
-      "correctAnswer": "größeren",
-      "options": ["größere", "größeren", "größerer", "größeres"]
+      "sentenceTemplate": "Das Restaurant war voll. Wir haben {{target}} einen Tisch bekommen.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "ob", "weil"]
     },
     "metadata": {
-      "noun": "der Garten",
-      "gender": "masculine",
-      "case": "Dativ",
-      "articleType": "indefinite",
-      "degree": "comparative",
-      "explanation": "Masculine Dative with an indefinite article ('einem') in the comparative degree ('größer') takes the ending '-en'."
+      "noun": "Syntax: Mid-sentence adverb",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "'Trotzdem' can appear in the middle of a sentence after the verb, unlike 'obwohl'."
     },
-    "tags": ["nature", "dativ", "comparative", "mixed_declension"]
+    "tags": ["syntax", "restaurant", "adverb-position"]
   },
   {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Er ist ein {{target}} Sportler.",
-      "baseWord": "stark",
-      "correctAnswer": "stärkster",
-      "options": ["stärkste", "stärkster", "stärksten", "stärkstes"]
+      "sentenceTemplate": "{{target}} sie wenig Zeit hat, hilft sie mir.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "da", "sofern"]
     },
     "metadata": {
-      "noun": "der Sportler",
-      "gender": "masculine",
-      "case": "Nominativ",
-      "articleType": "indefinite",
-      "degree": "superlative",
-      "explanation": "Masculine Nominative with an indefinite article ('ein') in the superlative degree ('stärkst-') takes the ending '-er'."
+      "noun": "Syntax: First clause",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "The placement of 'hat' at the end of the first part of the sentence identifies this as a subordinating conjunction requirement."
     },
-    "tags": ["people", "nominativ", "superlative", "mixed_declension"]
+    "tags": ["syntax", "help", "clause-structure"]
   },
   {
-    "reference": "indefinite-adjective-declination",
-    "title": "Indefinite Adjective Declination",
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Sie kauft ein {{target}} Auto.",
-      "baseWord": "teuer",
-      "correctAnswer": "teuerstes",
-      "options": ["teuerste", "teuerstes", "teuersten", "teuerster"]
+      "sentenceTemplate": "Der Film war langweilig. Ich habe ihn {{target}} bis zum Ende gesehen.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "damit", "ob"]
     },
     "metadata": {
-      "noun": "das Auto",
-      "gender": "neuter",
-      "case": "Akkusativ",
-      "articleType": "indefinite",
-      "degree": "superlative",
-      "explanation": "Neuter Accusative with an indefinite article ('ein') in the superlative degree ('teuerst-') takes the ending '-es'."
+      "noun": "Syntax: Adverbial use",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "'Trotzdem' provides the logical link between two independent sentences."
     },
-    "tags": ["vehicles", "akkusativ", "superlative", "mixed_declension"]
+    "tags": ["media", "syntax", "contrast"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Ich trinke den Kaffee, {{target}} er schon kalt ist.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "wenn", "als"]
+    },
+    "metadata": {
+      "noun": "Syntax: Verb position",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "'Obwohl' is a subordinator; the verb 'ist' confirms it must be used here."
+    },
+    "tags": ["drinks", "syntax", "subordinate"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Es war sehr teuer. Ich habe es {{target}} gekauft.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "denn", "aber"]
+    },
+    "metadata": {
+      "noun": "Syntax: Main clause",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "Used as an adverb here to show 'in spite of that'."
+    },
+    "tags": ["shopping", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "{{target}} wir uns beeilt haben, kamen wir zu spät.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "während", "bevor"]
+    },
+    "metadata": {
+      "noun": "Syntax: Nebensatz",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "The auxiliary verb 'haben' is at the end, so 'obwohl' is correct."
+    },
+    "tags": ["time", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Ich habe Kopfschmerzen. {{target}} muss ich arbeiten.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "sonst", "darum"]
+    },
+    "metadata": {
+      "noun": "Syntax: Position 1",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "'Trotzdem' takes position 1, immediately followed by the modal verb 'muss'."
+    },
+    "tags": ["work", "health", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Die Sonne scheint, {{target}} es kalt ist.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "bis", "seit"]
+    },
+    "metadata": {
+      "noun": "Syntax: Subordinate",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "Contrast is expressed in the subordinate clause where 'ist' is final."
+    },
+    "tags": ["weather", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Er hat viel gelernt. {{target}} war die Prüfung schwer.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "weil", "denn"]
+    },
+    "metadata": {
+      "noun": "Syntax: Main clause inversion",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "Verb 'war' is in position 2, indicating 'trotzdem' is the connector."
+    },
+    "tags": ["education", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "{{target}} es verboten ist, raucht er hier.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "falls", "da"]
+    },
+    "metadata": {
+      "noun": "Syntax: Subordinate start",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "Starts the sentence with a subordinate clause ('ist' at end)."
+    },
+    "tags": ["rules", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Sie ist krank. Sie geht {{target}} zur Party.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "nämlich", "zuerst"]
+    },
+    "metadata": {
+      "noun": "Syntax: Mid-clause",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "'Trotzdem' fits logically as an adverb within the main clause."
+    },
+    "tags": ["social", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Ich verstehe ihn nicht, {{target}} er laut spricht.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "dass", "ob"]
+    },
+    "metadata": {
+      "noun": "Syntax: End verb",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "The placement of 'spricht' requires the conjunction 'obwohl'."
+    },
+    "tags": ["communication", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Es ist spät. {{target}} rufen wir ihn an.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "daher", "also"]
+    },
+    "metadata": {
+      "noun": "Syntax: Inversion",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "'Trotzdem' is followed by the verb 'rufen'."
+    },
+    "tags": ["time", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Wir haben gewonnen, {{target}} wir schlecht gespielt haben.",
+      "baseWord": "obwohl",
+      "correctAnswer": "obwohl",
+      "options": ["obwohl", "trotzdem", "damit", "weil"]
+    },
+    "metadata": {
+      "noun": "Syntax: Subordinate",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "'Haben' at the end indicates 'obwohl' is the correct conjunction."
+    },
+    "tags": ["sports", "syntax"]
+  },
+  {
+    "reference": "obwohl-vs-trotzdem",
+    "title": "Connectors: Obwohl vs Trotzdem",
+    "language": "German",
+    "difficulty": "B1",
+    "content": {
+      "sentenceTemplate": "Das Radio ist kaputt. {{target}} hört er Musik.",
+      "baseWord": "trotzdem",
+      "correctAnswer": "trotzdem",
+      "options": ["trotzdem", "obwohl", "dennoch", "sonst"]
+    },
+    "metadata": {
+      "noun": "Syntax: Verb position 2",
+      "gender": "n/a",
+      "case": "n/a",
+      "articleType": "n/a",
+      "degree": "positive",
+      "explanation": "'Trotzdem' is the connector used when the verb remains in the second position of the sentence."
+    },
+    "tags": ["media", "syntax"]
   }
 ]

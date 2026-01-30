@@ -29,7 +29,7 @@ router.get('/:reference', async (req: EnrichedRequest, res: Response) => {
   const { reference } = req.params;
   try {
 
-    if (!reference) 
+    if (!reference || typeof reference !== 'string') 
       return res.status(400).send('No reference Provided.');
 
     const story = await getStoryByReference(uid, reference);
