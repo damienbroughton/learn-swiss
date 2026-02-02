@@ -103,7 +103,7 @@ export default function AdminPage() {
           </label>
           </div>
           {!isLoading && categories.map(category => (
-          <button key={category} style={{ margin: '10px' }} onClick={() => setCategory(category)}>{category}</button>
+          <button key={category.category} style={{ margin: '10px' }} onClick={() => setCategory(category.category)}>{category.category}</button>
           ))}
           <div id="flashcards">
             {!isLoading && flashcardDeck && <h3>Cards in deck:</h3> }

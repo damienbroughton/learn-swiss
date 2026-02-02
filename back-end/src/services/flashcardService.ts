@@ -7,14 +7,75 @@ import type { FlashcardDocument, EnrichedFlashcardSummary, FlashcardError } from
  * Retreive list of flashcard categories
  *
  */
-export async function getFlashcardCategories(secondLanguage: string) {
+export async function getFlashcardCategories(secondLanguage: string, uid?: string) {
   try {
-    if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
-    const flashcards = await db.collection<FlashcardDocument>('flashcards').find({secondLanguage}).toArray();
-    const categories = [...new Set(flashcards.map(flashcard => flashcard.category))];
-    return categories;
+    if (!db) throw new Error('Database connection not initialized.');
+
+    const pipeline: any[] = [
+      // 1. Filter by language first
+      { $match: { secondLanguage } }
+    ];
+
+    // 2. Join with userProgress if a user is logged in
+    console.log("UID in getFlashcardCategories:", uid);
+    if (uid) {
+      pipeline.push({
+        $lookup: {
+          from: 'userProgress',
+          let: { flashcardId: '$_id' },
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  $and: [
+                    { $eq: ['$contentId', '$$flashcardId'] },
+                    { $eq: ['$uid', uid] },
+                    { $eq: ['$contentType', 'flashcard'] },
+                    { $gt: ['$successes', 0] }
+                  ]
+                }
+              }
+            }
+          ],
+          as: 'progress'
+        }
+      });
+    }
+
+    // 3. Group by category and calculate stats
+    pipeline.push({
+      $group: {
+        _id: "$category",
+        totalFlashcards: { $sum: 1 },
+        firstLanguage: { $first: "$firstLanguage" },
+        secondLanguage: { $first: "$secondLanguage" },
+        // If uid exists, count how many flashcards have at least one success in the progress array
+        completedByUser: uid 
+          ? { $sum: { $cond: [{ $gt: [{ $size: "$progress" }, 0] }, 1, 0] } }
+          : { $sum: 0 }
+      }
+    });
+
+    // 4. Clean up the output
+    pipeline.push({
+      $project: {
+        _id: 0,
+        category: "$_id",
+        firstLanguage: 1,
+        secondLanguage: 1,
+        totalFlashcards: 1,
+        completedByUser: 1
+      }
+    });
+
+    // 5. Sort alphabetically
+    pipeline.push({ $sort: { category: 1 } });
+
+    const results = await db.collection('flashcards').aggregate(pipeline).toArray();
+    return results;
+
   } catch (error) {
-    console.error('Error fetching categories:', error);
+    console.error('Error fetching flashcard categories:', error);
     throw new Error('Internal server error');
   }
 }

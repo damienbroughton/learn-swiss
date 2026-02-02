@@ -1,422 +1,222 @@
 [
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Ich gehe spazieren, {{target}} es regnet.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "weil", "aber"]
+      "sentenceTemplate": "Ich {{target}} gern ein großes Eis.",
+      "baseWord": "hätte",
+      "showBaseWord": false,
+      "correctAnswer": "hätte",
+      "options": ["hätte", "wäre", "würde", "könnte"]
     },
     "metadata": {
-      "noun": "Syntax: Verb at end",
+      "noun": "Possession/Wish",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "The verb 'regnet' is at the end of the clause, which requires the subordinating conjunction 'obwohl'."
+      "explanation": "'Hätte' is the Konjunktiv II of 'haben', used here to express a polite wish for a physical object (ice cream)."
     },
-    "tags": ["syntax", "conjunctions", "subordinate-clause"]
+    "tags": ["verbs", "polite-requests", "food"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Es regnet. {{target}} gehe ich spazieren.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "denn", "und"]
+      "sentenceTemplate": "Wenn ich reich {{target}}, würde ich ein Haus kaufen.",
+      "baseWord": "wäre",
+      "showBaseWord": false,
+      "correctAnswer": "wäre",
+      "options": ["wäre", "hätte", "könnte", "würde"]
     },
     "metadata": {
-      "noun": "Syntax: Verb in position 2",
+      "noun": "Condition/State",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "'Trotzdem' acts as a connector at the start of a main clause, forcing the verb 'gehe' into the second position."
+      "explanation": "'Wäre' is the Konjunktiv II of 'sein', used for hypothetical states (being rich)."
     },
-    "tags": ["syntax", "adverbs", "main-clause"]
+    "tags": ["hypothetical", "verbs", "condition"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "{{target}} er müde ist, arbeitet er weiter.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "trotz", "dennoch"]
+      "sentenceTemplate": "{{target}} du mir bitte helfen?",
+      "baseWord": "könntest",
+      "showBaseWord": false,
+      "correctAnswer": "könntest",
+      "options": ["könntest", "hättest", "wärest", "würdest"]
     },
     "metadata": {
-      "noun": "Syntax: Verb at end",
+      "noun": "Ability/Request",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "When starting a sentence with a contrast, 'obwohl' is used if the verb ('ist') moves to the end of that first clause."
+      "explanation": "'Könntest' is used for polite requests concerning ability or possibility."
     },
-    "tags": ["syntax", "conjunctions", "sentence-start"]
+    "tags": ["polite-requests", "modal-verbs"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Er hat kein Geld. {{target}} kauft er das teure Auto.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "weil", "oder"]
+      "sentenceTemplate": "Ich {{target}} gern nach Japan fliegen.",
+      "baseWord": "würde",
+      "showBaseWord": false,
+      "correctAnswer": "würde",
+      "options": ["würde", "hätte", "wäre", "könnte"]
     },
     "metadata": {
-      "noun": "Syntax: Inversion",
+      "noun": "Future/Intent",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "'Trotzdem' is followed by the verb 'kauft' (inversion), signaling a main clause."
+      "explanation": "'Würde' + infinitive ('fliegen') is the standard way to form the Konjunktiv II for most verbs."
     },
-    "tags": ["syntax", "contrast", "inversion"]
+    "tags": ["travel", "future-intent", "verbs"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Wir haben den Bus verpasst, {{target}} wir gerannt sind.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "dass", "wenn"]
+      "sentenceTemplate": "Wenn ich Zeit {{target}}, käme ich vorbei.",
+      "baseWord": "hätte",
+      "showBaseWord": false,
+      "correctAnswer": "hätte",
+      "options": ["hätte", "wäre", "könnte", "würde"]
     },
     "metadata": {
-      "noun": "Syntax: Subordinate clause",
+      "noun": "Possession/Time",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "'Obwohl' introduces the reason for the contrast and sends 'sind' to the end."
+      "explanation": "To 'have time' in a hypothetical sense requires 'hätte'."
     },
-    "tags": ["syntax", "transport", "verbs-at-end"]
+    "tags": ["hypothetical", "time", "condition"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Das Restaurant war voll. Wir haben {{target}} einen Tisch bekommen.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "ob", "weil"]
+      "sentenceTemplate": "Das {{target}} toll!",
+      "baseWord": "wäre",
+      "showBaseWord": false,
+      "correctAnswer": "wäre",
+      "options": ["wäre", "hätte", "würde", "könnte"]
     },
     "metadata": {
-      "noun": "Syntax: Mid-sentence adverb",
+      "noun": "State",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "'Trotzdem' can appear in the middle of a sentence after the verb, unlike 'obwohl'."
+      "explanation": "Used to describe a hypothetical state or feeling ('That would be great!')."
     },
-    "tags": ["syntax", "restaurant", "adverb-position"]
+    "tags": ["expression", "social"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "{{target}} sie wenig Zeit hat, hilft sie mir.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "da", "sofern"]
+      "sentenceTemplate": "{{target}} Sie mir sagen, wie spät es ist?",
+      "baseWord": "könnten",
+      "showBaseWord": false,
+      "correctAnswer": "könnten",
+      "options": ["könnten", "hätten", "wären", "würden"]
     },
     "metadata": {
-      "noun": "Syntax: First clause",
+      "noun": "Polite Query",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "The placement of 'hat' at the end of the first part of the sentence identifies this as a subordinating conjunction requirement."
+      "explanation": "'Könnten' is the go-to for polite questions in formal settings."
     },
-    "tags": ["syntax", "help", "clause-structure"]
+    "tags": ["polite-requests", "formal"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Der Film war langweilig. Ich habe ihn {{target}} bis zum Ende gesehen.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "damit", "ob"]
+      "sentenceTemplate": "Ich {{target}} an deiner Stelle nicht gehen.",
+      "baseWord": "würde",
+      "showBaseWord": false,
+      "correctAnswer": "würde",
+      "options": ["würde", "hätte", "wäre", "könnte"]
     },
     "metadata": {
-      "noun": "Syntax: Adverbial use",
+      "noun": "Advice",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "'Trotzdem' provides the logical link between two independent sentences."
+      "explanation": "'Würde' is used with the phrase 'an deiner Stelle' to give hypothetical advice."
     },
-    "tags": ["media", "syntax", "contrast"]
+    "tags": ["advice", "social"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Ich trinke den Kaffee, {{target}} er schon kalt ist.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "wenn", "als"]
+      "sentenceTemplate": "Wenn wir mehr Geld {{target}}, würden wir reisen.",
+      "baseWord": "hätten",
+      "showBaseWord": false,
+      "correctAnswer": "hätten",
+      "options": ["hätten", "wären", "könnten", "würden"]
     },
     "metadata": {
-      "noun": "Syntax: Verb position",
+      "noun": "Condition/Possession",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "'Obwohl' is a subordinator; the verb 'ist' confirms it must be used here."
+      "explanation": "Plural Konjunktiv II of 'haben' for a hypothetical condition."
     },
-    "tags": ["drinks", "syntax", "subordinate"]
+    "tags": ["money", "hypothetical"]
   },
   {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
+    "reference": "konjunktiv-ii-verbs",
+    "title": "Subjunctive II: Verbs",
     "language": "German",
     "difficulty": "B1",
     "content": {
-      "sentenceTemplate": "Es war sehr teuer. Ich habe es {{target}} gekauft.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "denn", "aber"]
+      "sentenceTemplate": "Es {{target}} besser, wenn du schläfst.",
+      "baseWord": "wäre",
+      "showBaseWord": false,
+      "correctAnswer": "wäre",
+      "options": ["wäre", "hätte", "würde", "könnte"]
     },
     "metadata": {
-      "noun": "Syntax: Main clause",
+      "noun": "Advice/State",
       "gender": "n/a",
       "case": "n/a",
       "articleType": "n/a",
       "degree": "positive",
-      "explanation": "Used as an adverb here to show 'in spite of that'."
+      "explanation": "Hypothetical state ('It would be better')."
     },
-    "tags": ["shopping", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "{{target}} wir uns beeilt haben, kamen wir zu spät.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "während", "bevor"]
-    },
-    "metadata": {
-      "noun": "Syntax: Nebensatz",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "The auxiliary verb 'haben' is at the end, so 'obwohl' is correct."
-    },
-    "tags": ["time", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Ich habe Kopfschmerzen. {{target}} muss ich arbeiten.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "sonst", "darum"]
-    },
-    "metadata": {
-      "noun": "Syntax: Position 1",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "'Trotzdem' takes position 1, immediately followed by the modal verb 'muss'."
-    },
-    "tags": ["work", "health", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Die Sonne scheint, {{target}} es kalt ist.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "bis", "seit"]
-    },
-    "metadata": {
-      "noun": "Syntax: Subordinate",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "Contrast is expressed in the subordinate clause where 'ist' is final."
-    },
-    "tags": ["weather", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Er hat viel gelernt. {{target}} war die Prüfung schwer.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "weil", "denn"]
-    },
-    "metadata": {
-      "noun": "Syntax: Main clause inversion",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "Verb 'war' is in position 2, indicating 'trotzdem' is the connector."
-    },
-    "tags": ["education", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "{{target}} es verboten ist, raucht er hier.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "falls", "da"]
-    },
-    "metadata": {
-      "noun": "Syntax: Subordinate start",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "Starts the sentence with a subordinate clause ('ist' at end)."
-    },
-    "tags": ["rules", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Sie ist krank. Sie geht {{target}} zur Party.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "nämlich", "zuerst"]
-    },
-    "metadata": {
-      "noun": "Syntax: Mid-clause",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "'Trotzdem' fits logically as an adverb within the main clause."
-    },
-    "tags": ["social", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Ich verstehe ihn nicht, {{target}} er laut spricht.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "dass", "ob"]
-    },
-    "metadata": {
-      "noun": "Syntax: End verb",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "The placement of 'spricht' requires the conjunction 'obwohl'."
-    },
-    "tags": ["communication", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Es ist spät. {{target}} rufen wir ihn an.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "daher", "also"]
-    },
-    "metadata": {
-      "noun": "Syntax: Inversion",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "'Trotzdem' is followed by the verb 'rufen'."
-    },
-    "tags": ["time", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Wir haben gewonnen, {{target}} wir schlecht gespielt haben.",
-      "baseWord": "obwohl",
-      "correctAnswer": "obwohl",
-      "options": ["obwohl", "trotzdem", "damit", "weil"]
-    },
-    "metadata": {
-      "noun": "Syntax: Subordinate",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "'Haben' at the end indicates 'obwohl' is the correct conjunction."
-    },
-    "tags": ["sports", "syntax"]
-  },
-  {
-    "reference": "obwohl-vs-trotzdem",
-    "title": "Connectors: Obwohl vs Trotzdem",
-    "language": "German",
-    "difficulty": "B1",
-    "content": {
-      "sentenceTemplate": "Das Radio ist kaputt. {{target}} hört er Musik.",
-      "baseWord": "trotzdem",
-      "correctAnswer": "trotzdem",
-      "options": ["trotzdem", "obwohl", "dennoch", "sonst"]
-    },
-    "metadata": {
-      "noun": "Syntax: Verb position 2",
-      "gender": "n/a",
-      "case": "n/a",
-      "articleType": "n/a",
-      "degree": "positive",
-      "explanation": "'Trotzdem' is the connector used when the verb remains in the second position of the sentence."
-    },
-    "tags": ["media", "syntax"]
+    "tags": ["health", "advice"]
   }
 ]
