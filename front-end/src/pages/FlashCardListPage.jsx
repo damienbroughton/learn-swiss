@@ -34,17 +34,17 @@ export default function FlashCardListPage() {
           <p>{description}</p>
           <ul className="scenario-list">
             {categories.map(category => (
-              <li key={category} className="scenario-list-item">
+              <li key={category.category} className="scenario-list-item">
                 <div
                   className="scenario-card"
-                  onClick={() => navigate(`/flashcard/${category}`)}
+                  onClick={() => navigate(`/flashcard/${category.category}`)}
                   tabIndex={0}
                   role="button"
-                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/flashcard/${category}`); } }}
-                  aria-label={`Open flashcard category: ${category}`}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/flashcard/${category.category}`); } }}
+                  aria-label={`Open flashcard category: ${category.category}`}
                 >
-                  <img src={imgFlashCards} alt={category} className="scenario-card-img" />
-                  <div className="scenario-card-title">{category}</div>
+                  <img src={imgFlashCards} alt={category.category} className="scenario-card-img" />
+                  <div className="scenario-card-title">{category.category}<br />({category.totalFlashcards > 0 ? Math.trunc(category.completedByUser/category.totalFlashcards * 100) : 0}% complete)</div>
                 </div>
               </li>
             ))}
