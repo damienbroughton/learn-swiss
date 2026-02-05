@@ -71,7 +71,7 @@ export default function StoryPage() {
                     <button
                     onClick={() => handleSectionButton({...story.sections[section.sectionId-1]})}
                     disabled={section.sectionId === currentSection.sectionId}
-                    >{section.sectionId}</button>
+                    >{section.sectionId} <small style={{marginLeft: '6px', opacity: 0.8}}>({section.flashcardsKnownCount / (section.flashcards?.length || 1) * 100}%)</small></button>
                 </li>
                 ))}
                 <li key="Story" style={{listStyle: "none"}}>

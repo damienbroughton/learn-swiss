@@ -35,7 +35,7 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
           question={flashcard.secondLanguageText} 
           answer={flashcard.firstLanguageText} 
           formality={flashcard.formal} 
-          previouslyCorrect={flashcard.userGuess?.guessedCorrectly} 
+          previouslyCorrect={flashcard.successes > 0} 
           setAnswerChecked={setAnswerChecked} 
         />
       )}

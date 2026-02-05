@@ -90,4 +90,9 @@ export interface EnrichedFlashcardSummary extends Omit<FlashcardDocument, 'guess
         /** The total number of times the user has guessed this card. */
         totalGuesses: number;
     };
+
+    /** Progress summary fields (attempts, successes, lastCompletedAt) to match `userProgress` */
+    attempts: number;
+    successes: number;
+    lastCompletedAt: Date | null;
 }

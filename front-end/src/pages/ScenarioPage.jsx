@@ -53,10 +53,6 @@ export default function ScenarioPage() {
 
   async function completeScenario() {
     if(user && mode === 'review'){
-      const token = user && await user.getIdToken();
-      const headers = token ? { authtoken: token } : {};
-      await api.post(`/scenarios/${scenario.title}/complete`, null, { headers });
-
       const requestBody = { contentId: scenario._id, type: 'scenario', isCorrect: true, mode: mode };
       await api.post(`/userProgress`, requestBody);
     }
