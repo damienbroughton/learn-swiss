@@ -8,6 +8,7 @@ import ScenarioPage, {loader as scenarioLoader} from './pages/ScenarioPage'
 import ArticlesList from './pages/ArticlesListPage'
 import ArticlePage, {loader as articleLoader} from './pages/ArticlePage'
 import ChallengeListPage, {loader as challengeListLoader} from './pages/ChallengeListPage'
+import Dashboard, {loader as dashboardLoader} from './pages/DashboardPage'
 import ChallengePage, {loader as challengeLoader} from './pages/ChallengePage'
 import Layout from './Layout'
 import NotFoundPage from './pages/NotFoundPage'
@@ -64,6 +65,11 @@ const routes = [{
     path: '/challenges',
     element: <ChallengeListPage />,
     loader: challengeListLoader
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />,
+    loader: dashboardLoader
   },
   {
     path: '/challenges/:reference/:mode',

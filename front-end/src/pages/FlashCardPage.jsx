@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import FlashCardReview from "../FlashCardReview";
@@ -8,9 +8,9 @@ export default function FlashCardPage() {
   const { flashcards } = useLoaderData();
   const navigate = useNavigate();
 
-  const category = flashcards[0].category;
+  const category = flashcards[0]?.category || 'Flashcards';
   const title = `Learn-Swiss: ${category} flashcards`;
-  const description = `Practice vocabulary from the category: '${category}' in ${flashcards[0].secondLanguage}.`;
+  const description = `Practice vocabulary from the category: '${category}' in ${flashcards[0]?.secondLanguage || 'Swiss-German'}.`;
   const canonicalUrl = `https://learn-swiss.ch/stories/${category}`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
@@ -42,7 +42,16 @@ export default function FlashCardPage() {
 }
 
 export async function loader ({params}) {
-  const response = await api.get(`/flashcards/${params.category}/Swiss-German`);
-  const flashcards = response.data;
-  return {flashcards};
+  try {
+    const response = await api.get(`/flashcards/${params.category}/Swiss-German?forReview=true`);
+    const flashcards = response.data;
+    return { flashcards };
+  } catch (err) {
+    if (err && err.response && err.response.status === 401) {
+      // Fallback for unauthenticated users: return unfiltered flashcards
+      const fallback = await api.get(`/flashcards/${params.category}/Swiss-German`);
+      return { flashcards: fallback.data };
+    }
+    throw err;
+  }
 }

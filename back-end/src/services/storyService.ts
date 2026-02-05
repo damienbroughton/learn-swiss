@@ -73,15 +73,35 @@ export async function getStoryByReference(uid: string | undefined, reference: st
 
     const allSectionFlashcards = (story.sectionsFlashcardsData || []) as FlashcardDocument[];
 
+    // If a user is present, fetch progress records for all section flashcards in one query
+    const progressMap: Record<string, { attempts: number; successes: number; lastCompletedAt: Date | null }> = {};
+    if (uid && allSectionFlashcards.length > 0) {
+      const ids = allSectionFlashcards.map(fc => fc._id);
+      const progressDocs = await db.collection('userProgress').find({ uid, contentType: 'flashcard', contentId: { $in: ids } }).toArray();
+      for (const p of progressDocs) {
+        const key = (p.contentId as ObjectId).toHexString();
+        progressMap[key] = { attempts: p.attempts || 0, successes: p.successes || 0, lastCompletedAt: p.lastCompletedAt || null };
+      }
+    }
+
     const enrichedSections = story.sections.map((section: StorySection) => {
         // Find the full flashcard documents that belong to this section
         const sectionFcs = allSectionFlashcards.filter(fc => 
             section.flashcards != null && section.flashcards.some(id => id.equals(fc._id))
         );
         
+        const sectionFlashcards = sectionFcs.map(fc => {
+            const prog = progressMap[fc._id.toHexString()] || { attempts: 0, successes: 0, lastCompletedAt: null };
+            const fcWithProgress = { ...fc, attempts: prog.attempts, successes: prog.successes, lastCompletedAt: prog.lastCompletedAt } as unknown as FlashcardDocument;
+            return enrichFlashcard(fcWithProgress, uid);
+        });
+
+        const flashcardsKnownCount = sectionFlashcards.reduce((count, fc) => count + ((fc.successes && fc.successes > 0) ? 1 : 0), 0);
+
         return {
             ...section,
-            flashcards: sectionFcs.map(fc => enrichFlashcard(fc, uid))
+            flashcardsKnownCount,
+            flashcards: sectionFlashcards
         };
     });
 
