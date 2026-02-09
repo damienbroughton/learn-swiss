@@ -16,6 +16,16 @@ export function useFlashCardReview(initialFlashcards) {
 
   const { user } = useUser();
 
+  // Function to shuffle an array using Fisher-Yates algorithm
+  const shuffleCards = useCallback((cards) => {
+    const shuffled = [...cards];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }, []);
+
   // Function to get the next random card and remove it from the deck
   const getNextCard = useCallback((currentCards) => {
     if (currentCards.length === 0) {
@@ -79,14 +89,15 @@ export function useFlashCardReview(initialFlashcards) {
     setFlashcard(getNextCard(flashcardDeck)); // Pass the current deck state
   }, [flashcard, flashcardDeck, completeCard, getNextCard]);
 
-  // Handler for an incorrect guess (Thumbs Down)
+  // Handler to retry the deck with shuffled cards
   const onRetryDeck = useCallback(() => {
     setNumCorrect(0);
     setNumIncorrect(0);
     setAnswerChecked(false);
-    setFlashcardDeck([...initialFlashcards]);
-    setFlashcard(getNextCard([...initialFlashcards])); // Pass the current deck state
-  }, [flashcard, flashcardDeck, completeCard, getNextCard]);
+    const shuffledDeck = shuffleCards(initialFlashcards);
+    setFlashcardDeck([...shuffledDeck]);
+    setFlashcard(getNextCard([...shuffledDeck])); // Pass the shuffled deck
+  }, [initialFlashcards, shuffleCards, getNextCard]);
 
   // Memoize the previous score calculation
   const previousScore = useMemo(() => {

@@ -1,6 +1,7 @@
 import api from "../api";
-import { useLoaderData, Link } from "react-router-dom";
+import { useLoaderData, Link, useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
+import { getAuth, signOut } from "firebase/auth";
 import useAppUser from '../hooks/useAppUser';
 import imgFlashCards from '../assets/HedgeHogFlashCards.png';
 import imgChallenges from '../assets/Eber-Happy.png';
@@ -16,6 +17,8 @@ export default function Dashboard() {
   const description = `Your learning progress in German and Swiss-German — today and all time.`;
   const canonicalUrl = `https://learn-swiss.ch/dashboard`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -65,7 +68,7 @@ export default function Dashboard() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td><Link to="/flashcards"><img src={imgFlashCards} alt="Hedgehog with flashcards" className="scenario-card-img" /><br />Flashcards</Link></td>
+                    <td><button onClick={() => navigate('/flashcards')}><img src={imgFlashCards} alt="Hedgehog with flashcards" className="scenario-card-img" /><br />Flashcards</button></td>
                     <td className="numeric">{summary?.flashcard?.German?.todaySuccesses ?? 0}</td>
                     <td className="numeric">{summary?.flashcard?.German?.allTimeSuccesses ?? 0}</td>
                     <td className="numeric">{summary?.flashcard['Swiss-German']?.todaySuccesses ?? 0}</td>
@@ -74,7 +77,7 @@ export default function Dashboard() {
                     <td className="numeric">{( (summary?.flashcard?.German?.allTimeSuccesses||0) + (summary?.flashcard['Swiss-German']?.allTimeSuccesses||0) + (summary?.flashcard?.Unknown?.allTimeSuccesses||0) )}</td>
                   </tr>
                   <tr>
-                    <td><Link to="/challenges"><img src={imgChallenges} alt="Boar with challenges" className="scenario-card-img" /><br />Challenges</Link></td>
+                    <td><button onClick={() => navigate('/challenges')}><img src={imgChallenges} alt="Boar with challenges" className="scenario-card-img" /><br />Challenges</button></td>
                     <td className="numeric">{summary?.challenge?.German?.todaySuccesses ?? 0}</td>
                     <td className="numeric">{summary?.challenge?.German?.allTimeSuccesses ?? 0}</td>
                     <td className="numeric">{summary?.challenge['Swiss-German']?.todaySuccesses ?? 0}</td>
@@ -83,7 +86,7 @@ export default function Dashboard() {
                     <td className="numeric">{( (summary?.challenge?.German?.allTimeSuccesses||0) + (summary?.challenge['Swiss-German']?.allTimeSuccesses||0) + (summary?.challenge?.Unknown?.allTimeSuccesses||0) )}</td>
                   </tr>
                   <tr>
-                    <td><Link to="/stories"><img src={imgStories} alt="Hedgehog with stories" className="scenario-card-img" /><br />Stories</Link></td>
+                    <td><button onClick={() => navigate('/stories')}><img src={imgStories} alt="Hedgehog with stories" className="scenario-card-img" /><br />Stories</button></td>
                     <td className="numeric">{summary?.story?.German?.todaySuccesses ?? 0}</td>
                     <td className="numeric">{summary?.story?.German?.allTimeSuccesses ?? 0}</td>
                     <td className="numeric">{summary?.story['Swiss-German']?.todaySuccesses ?? 0}</td>
@@ -92,7 +95,7 @@ export default function Dashboard() {
                     <td className="numeric">{( (summary?.story?.German?.allTimeSuccesses||0) + (summary?.story['Swiss-German']?.allTimeSuccesses||0) + (summary?.story?.Unknown?.allTimeSuccesses||0) )}</td>
                   </tr>
                   <tr>
-                    <td><Link to="/scenarios"><img src={imgScenarios} alt="Hedgehog with scenarios" className="scenario-card-img" /><br />Scenarios</Link></td>
+                    <td><button onClick={() => navigate('/scenarios')}><img src={imgScenarios} alt="Hedgehog with scenarios" className="scenario-card-img" /><br />Scenarios</button></td>
                     <td className="numeric">{summary?.scenario?.German?.todaySuccesses ?? 0}</td>
                     <td className="numeric">{summary?.scenario?.German?.allTimeSuccesses ?? 0}</td>
                     <td className="numeric">{summary?.scenario['Swiss-German']?.todaySuccesses ?? 0}</td>
@@ -111,6 +114,7 @@ export default function Dashboard() {
                   </tr>
                 </tbody>
               </table>
+              <button style={{float: "right", margin: "10px"}} onClick={() => signOut(getAuth())}>Sign Out</button>
             </div>
           )}
         </div>

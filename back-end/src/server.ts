@@ -47,6 +47,12 @@ app.use("/api/scenarios", scenarioRoutes);
 app.use("/api/stories", storyRoutes);
 app.use("/api/challenges", challengeRoutes);
 
+// API fallback to catch unmatched /api paths and log them (helps diag for 404s)
+app.use('/api', (req, res) => {
+  console.warn(`[API-FALLTHROUGH] ${req.method} ${req.originalUrl}`);
+  res.status(404).send('API route not found');
+});
+
 const PORT = process.env.PORT || 8000;
 
 async function startServer() {

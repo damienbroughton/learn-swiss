@@ -14,13 +14,13 @@ export const router = express.Router();
  */
 router.post('/', requireAuth, async (req: EnrichedRequest, res: Response) => {
   const uid = req.user?.uid; 
-  const { contentId, type, isCorrect } = req.body;
+  const { contentId, type, isCorrect, metadata } = req.body;
 
   try {
     if (!uid) 
       return res.status(401).send('Unauthorized. User not logged in.');
     
-    let user = await recordUserProgress( uid, contentId, type, isCorrect );
+    let user = await recordUserProgress( uid, contentId, type, isCorrect, metadata );
     return res.json(user);
   } catch (err) {
     console.error('Error creating or updating user:', err);
