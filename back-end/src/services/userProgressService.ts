@@ -7,7 +7,8 @@ export async function getUserProgress(
   uid: string, 
   contentId: string, 
   type: 'challenge' | 'flashcard' | 'story' | 'scenario',
-  isCorrect: boolean = true
+  isCorrect: boolean = true,
+  metadata?: Record<string, any>
 ) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
@@ -18,12 +19,17 @@ export async function getUserProgress(
       contentType: type 
     };
 
+    const setFields: Record<string, any> = { lastCompletedAt: new Date() };
+    if (metadata) {
+      setFields.metadata = metadata;
+    }
+
     const update = {
       $inc: { 
         attempts: 1, 
         successes: isCorrect ? 1 : 0 
       },
-      $set: { lastCompletedAt: new Date() }
+      $set: setFields
     };
 
     await db.collection<UserProgressDocument>('userProgress').updateOne(
@@ -43,7 +49,8 @@ export async function recordUserProgress(
   uid: string, 
   contentId: string, 
   type: 'challenge' | 'flashcard' | 'story' | 'scenario',
-  isCorrect: boolean = true
+  isCorrect: boolean = true,
+  metadata?: Record<string, any>
 ) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
@@ -54,12 +61,17 @@ export async function recordUserProgress(
       contentType: type 
     };
 
+    const setFields: Record<string, any> = { lastCompletedAt: new Date() };
+    if (metadata) {
+      setFields.metadata = metadata;
+    }
+
     const update = {
       $inc: { 
         attempts: 1, 
         successes: isCorrect ? 1 : 0 
       },
-      $set: { lastCompletedAt: new Date() }
+      $set: setFields
     };
 
     await db.collection<UserProgressDocument>('userProgress').updateOne(

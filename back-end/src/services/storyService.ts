@@ -9,19 +9,39 @@ import { enrichFlashcard } from "./flashcardService.js";
  * Retreive list of stories
  *
  */
-export async function getStories() {
+export async function getStories(uid?: string) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
     const stories = await db.collection<StoryDocument>('stories').find().toArray();
+
+    // If user is logged in, fetch their progress metadata for all stories
+    const metadataMap: Record<string, any> = {};
+    if (uid) {
+      const progressDocs = await db.collection('userProgress').find({ uid, contentType: 'story' }).toArray();
+      for (const p of progressDocs) {
+        const key = (p.contentId as ObjectId).toHexString();
+        metadataMap[key] = p.metadata || null;
+      }
+    }
+
     const response = stories.map(story => {
-      return {
+      const storyId = story._id.toHexString();
+      const result: any = {
         _id: story._id,
         reference: story.reference,
         title: story.title,
         category: story.category,
         language: story.language,
         translatedLanguage: story.translatedLanguage,
+        sectionsCount: story.sections?.length || 0
       };
+
+      // Include metadata if user is logged in and has progress on this story
+      if (uid && metadataMap[storyId]) {
+        result.metadata = metadataMap[storyId];
+      }
+
+      return result;
     });
 
     return response;
@@ -105,7 +125,16 @@ export async function getStoryByReference(uid: string | undefined, reference: st
         };
     });
 
-    const response = {
+    // If user is logged in, fetch story-level progress metadata
+    let storyMetadata = null;
+    if (uid) {
+      const storyProgress = await db.collection('userProgress').findOne({ uid, contentType: 'story', contentId: story._id });
+      if (storyProgress?.metadata) {
+        storyMetadata = storyProgress.metadata;
+      }
+    }
+
+    const response: any = {
         id: story._id,
         reference: story.reference,
         title: story.title,
@@ -113,6 +142,11 @@ export async function getStoryByReference(uid: string | undefined, reference: st
         content: story.content,
         sections: enrichedSections
     };
+
+    // Include metadata if user is logged in and has metadata for this story
+    if (uid && storyMetadata) {
+        response.metadata = storyMetadata;
+    }
 
     return response;
     
