@@ -6,10 +6,10 @@ import {
     getFlashcardCategories, 
     getFlashcardsByCategory, 
     createFlashcard, 
-    guessFlashcard, 
     updateFlashcard, 
     generateFlashcardList 
 } from "../services/flashcardService.js";
+import { recordUserProgress } from '../services/userProgressService.js';
 import type { Response } from 'express';
 import type { EnrichedRequest } from '../types/requestInterfaces.js'; 
 
@@ -29,7 +29,6 @@ router.get('/categories/:secondLanguage', optionalAuth, async (req: EnrichedRequ
         if(!secondLanguage || typeof secondLanguage !== 'string')
             throw new Error("No second language provided.")
         const categories = await getFlashcardCategories(secondLanguage, uid);
-        console.log("Retrieved categories", categories);
         return res.json(categories);
     } catch (error) {
         console.error('Error in /categories:', error);
@@ -48,47 +47,27 @@ router.get('/categories/:secondLanguage', optionalAuth, async (req: EnrichedRequ
 router.get('/:category/:secondLanguage', optionalAuth, async (req: EnrichedRequest, res: Response) => {
     const { category, secondLanguage } = req.params;
     const uid = req.user?.uid; 
+    const qForReview = req.query.forReview;
+    const forReview = (typeof qForReview === 'string' && (qForReview === 'true' || qForReview === '1')) || false;
+    const limit = req.query.limit ? parseInt(String(req.query.limit)) : undefined;
 
     try {
       if(!category || typeof category !== 'string')
         throw new Error("No category provided.")
       if(!secondLanguage || typeof secondLanguage !== 'string')
-        throw new Error("No second language provided.")
+        throw new Error("No second language provided")
 
-      const result = await getFlashcardsByCategory(uid, category, secondLanguage);
+      if(forReview && !uid) {
+        return res.status(401).send('Authentication required for review');
+      }
+
+      const options: any = { forReview };
+      if (limit !== undefined) options.limit = limit;
+
+      const result = await getFlashcardsByCategory(uid, category, secondLanguage, options);
       return res.json(result);
     } catch (error) {
         console.error(`Error in /${category}:`, error);
-        return res.status(500).send('Internal server error');
-    }
-});
-
-
-/**
- * POST /:id/guess
- * Add a guess to a flashcard.
- *
- * Requires authentication (`req.user` is guaranteed to exist).
- */
-router.post('/:id/guess', requireAuth, async (req: EnrichedRequest, res: Response) => {
-    // req.user is guaranteed to be defined by requireAuth middleware
-    const { id } = req.params;
-    const uid = req.user!.uid; 
-    const { guessedCorrectly } = req.body as { guessedCorrectly: boolean };
-
-    try {
-        if(!id || typeof id !== 'string')
-          throw new Error("No Id provided");
-
-        const result = await guessFlashcard(id, uid, guessedCorrectly); 
-
-        if (result) {
-            return res.status(200).json(result);
-        } else {
-            return res.status(404).send('Flashcard not found');
-        }
-    } catch (error) {
-        console.error('Error in /:id/guess:', error);
         return res.status(500).send('Internal server error');
     }
 });

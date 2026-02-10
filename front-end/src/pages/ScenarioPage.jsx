@@ -14,7 +14,7 @@ export default function ScenarioPage() {
 
     const pageTitle = `Learn-Swiss: ${scenario.title}`;
     const description = `Practice vocabulary the scenario '${scenario.title}' in Swiss-German.`;
-    const canonicalUrl = `https://learn-swiss.ch/stories/${scenario.title}/${mode}`;
+    const canonicalUrl = `https://learn-swiss.ch/scenarios/${scenario.title}/${mode}`;
     const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": pageTitle, "description": description, "url": canonicalUrl };
 
     const [shownSteps, setShownSteps] = useState([scenario.steps[0]]); // start with first step
@@ -53,10 +53,6 @@ export default function ScenarioPage() {
 
   async function completeScenario() {
     if(user && mode === 'review'){
-      const token = user && await user.getIdToken();
-      const headers = token ? { authtoken: token } : {};
-      await api.post(`/scenarios/${scenario.title}/complete`, null, { headers });
-
       const requestBody = { contentId: scenario._id, type: 'scenario', isCorrect: true, mode: mode };
       await api.post(`/userProgress`, requestBody);
     }

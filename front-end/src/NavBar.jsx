@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
 import useAppUser from './hooks/useAppUser';
 import iggyImage from './assets/IggyLogo54x64.png';
 
@@ -22,7 +21,7 @@ export default function NavBar(){
                     {appUser && appUser.role == "admin" && (<li><Link to="/admin">Admin</Link></li>)}
                     <li>
                         {appUser 
-                        ? <button onClick={() => signOut(getAuth())}>Sign Out</button>
+                        ? <button onClick={() => navigate('/dashboard')}>Dashboard</button>
                         : <button onClick={() => navigate('/login')}>Sign In</button>}
                     </li>
                     </>

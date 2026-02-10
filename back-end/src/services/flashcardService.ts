@@ -17,7 +17,6 @@ export async function getFlashcardCategories(secondLanguage: string, uid?: strin
     ];
 
     // 2. Join with userProgress if a user is logged in
-    console.log("UID in getFlashcardCategories:", uid);
     if (uid) {
       pipeline.push({
         $lookup: {
@@ -100,22 +99,11 @@ export function enrichFlashcard(flashcard: FlashcardDocument, uid: string | unde
         tags: flashcard.tags,
         createdAt: flashcard.createdAt,
         updatedAt: flashcard.updatedAt,
+        // Progress fields (default when not present)
+        attempts: (flashcard as any).attempts ?? 0,
+        successes: (flashcard as any).successes ?? 0,
+        lastCompletedAt: (flashcard as any).lastCompletedAt ?? null
     };
-
-    if (uid && Array.isArray(flashcard.guesses)) {
-        const userGuesses = flashcard.guesses.filter(g => g.guessedBy === uid);
-        
-        if (userGuesses.length > 0) {
-            const lastGuess = userGuesses[userGuesses.length - 1];
-            if(lastGuess) {
-              enriched.userGuess = {
-                  guessedCorrectly: lastGuess.guessedCorrectly,
-                  lastGuessDate: lastGuess.guessDate,
-                  totalGuesses: userGuesses.length
-              };
-            }
-        }
-    }
     return enriched;
 }
 
@@ -123,20 +111,104 @@ export function enrichFlashcard(flashcard: FlashcardDocument, uid: string | unde
  * Retreive list of flashcards by category
  *
  */
-export async function getFlashcardsByCategory(uid: string | undefined, category: string, secondLanguage: string) {
+export async function getFlashcardsByCategory(uid: string | undefined, category: string, secondLanguage: string, options?: { forReview?: boolean, limit?: number }) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
-    const flashcards = await db.collection<FlashcardDocument>('flashcards').find({ category, secondLanguage }).toArray();
 
-    console.log(`Found ${flashcards.length} flashcards in category ${category}, second language: ${secondLanguage}, User: ${uid}`);
+    // If not review mode, return up to `limit` flashcards (default 20)
+    if (!options?.forReview) {
+      const limit = options?.limit ?? 20;
 
-    const result = flashcards.map(flashcard => enrichFlashcard(flashcard, uid));
+      if (uid) {
+        // Aggregation to include user's progress fields for each flashcard
+        const pipeline: any[] = [
+          { $match: { category, secondLanguage } },
+          { $lookup: {
+              from: 'userProgress',
+              let: { flashId: '$_id' },
+              pipeline: [
+                { $match: { $expr: { $and: [ { $eq: ['$contentId', '$$flashId'] }, { $eq: ['$uid', uid] }, { $eq: ['$contentType', 'flashcard'] } ] } } },
+                { $limit: 1 }
+              ],
+              as: 'userProgress'
+            } },
+          { $addFields: { progress: { $arrayElemAt: ['$userProgress', 0] } } },
+          { $addFields: {
+              attempts: { $ifNull: ['$userProgress.attempts', 0] },
+              successes: { $ifNull: ['$userProgress.successes', 0] },
+              lastCompletedAt: { $ifNull: ['$userProgress.lastCompletedAt', null] }
+            } },
+          { $project: { userProgress: 0, progress: 0 } },
+          { $limit: limit }
+        ];
+
+        const docs = await db.collection<FlashcardDocument>('flashcards').aggregate(pipeline).toArray();
+        console.log(`Returning ${docs.length} flashcards (limit: ${limit}) for category ${category}, secondLanguage: ${secondLanguage}, User: ${uid}`);
+        return docs.map(doc => enrichFlashcard(doc as FlashcardDocument, uid));
+      } else {
+        // Guest users: return limited set and attach default progress fields
+        const limit = options?.limit ?? 20;
+        const flashcards = await db.collection<FlashcardDocument>('flashcards').find({ category, secondLanguage }).limit(limit).toArray();
+        console.log(`Returning ${flashcards.length} flashcards (limit: ${limit}) for category ${category}, secondLanguage: ${secondLanguage}, User: guest`);
+        const docsWithProgress = flashcards.map(f => ({ ...f, attempts: 0, successes: 0, lastCompletedAt: null }));
+        return docsWithProgress.map(doc => enrichFlashcard(doc as FlashcardDocument, uid));
+      }
+    }
+
+    // Review mode: select up to limit flashcards matching spaced-repetition criteria
+    if (!uid) throw new Error('Authentication required for review');
+
+    const limit = options?.limit ?? 20;
+    const weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 7);
+
+    const pipeline: any[] = [
+      { $match: { category, secondLanguage } },
+      // lookup user progress for this user and this flashcard
+      { $lookup: {
+          from: 'userProgress',
+          let: { flashId: '$_id' },
+          pipeline: [
+            { $match: { $expr: { $and: [ { $eq: ['$contentId', '$$flashId'] }, { $eq: ['$uid', uid] }, { $eq: ['$contentType', 'flashcard'] } ] } } },
+            { $limit: 1 }
+          ],
+          as: 'progress'
+      }},
+      // extract user's progress fields if present
+      { $addFields: {
+        progress: { $arrayElemAt: ['$progress', 0] },
+        attempts: { $ifNull: [{ $arrayElemAt: ['$progress.attempts', 0] }, 0] },
+        successes: { $ifNull: [{ $arrayElemAt: ['$progress.successes', 0] }, 0] },
+        lastCompletedAt: { $ifNull: [{ $arrayElemAt: ['$progress.lastCompletedAt', 0] }, null] },
+        userSuccesses: { $ifNull: [{ $arrayElemAt: ['$progress.successes', 0] }, 0] }
+      }},
+      // spaced repetition conditions: include if successes < 4 OR never reviewed (lastCompletedAt null) OR not reviewed in last week
+      { $match: {
+        $or: [
+          { userSuccesses: { $lt: 4 } },
+          { lastCompletedAt: { $lt: weekAgo } },
+          { lastCompletedAt: { $exists: false } },
+          { lastCompletedAt: null }
+        ]
+      }},
+      // prioritize by fewest successes and oldest review time
+      { $sort: { userSuccesses: 1, lastCompletedAt: 1 } },
+      { $limit: limit },
+      { $project: { progress: 0 } }
+    ];
+
+    const selected = await db.collection<FlashcardDocument>('flashcards').aggregate<FlashcardDocument>(pipeline).toArray();
+
+    console.log(`Selected ${selected.length} flashcards for review in category ${category} (limit: ${limit}), User: ${uid}`);
+
+    const result = selected.map(flashcard => enrichFlashcard(flashcard as FlashcardDocument, uid));
     return result;
+
   } catch (error) {
     console.error(`Error fetching flashcards for category "${category}":`, error);
     throw new Error('Internal server error');
   }
-}
+} 
 
 /**
  * Create new flashcard
@@ -268,42 +340,7 @@ export async function updateFlashcard(id: string, uid: string, category: string,
  * Update exisiting flashcard with a guess from user
  *
  */
-export async function guessFlashcard(id: string, uid: string, guessedCorrectly: boolean) {
-  if (typeof guessedCorrectly !== 'boolean') {
-      throw new Error('Invalid guess value');
-  }
 
-  try {
-    const currentDate = new Date();
-
-    if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
-
-    const result = await db.collection<FlashcardDocument>('flashcards').findOneAndUpdate(
-      { _id: new ObjectId(id) },
-      { $push: { guesses: { guessedBy: uid, guessedCorrectly, guessDate: currentDate } } },
-      { returnDocument: 'after' }
-    );
-
-    if(!result)
-      throw new Error("No document returned.");
-
-    const response = {
-      _id: result._id,
-      category: result.category,
-      firstLanguage: result.firstLanguage,
-      firstLanguageText: result.firstLanguageText,
-      secondLanguage: result.secondLanguage,
-      secondLanguageText: result.secondLanguageText,
-      formal: result.formal,
-      tags: result.tags
-    };
-
-    return response;
-  } catch (error) {
-    console.error(`Error adding guess to flashcard ID "${id}":`, error);
-    throw new Error('Internal server error');
-  }
-}
 
 /**
  * Generate new flashcard list using gemini ai

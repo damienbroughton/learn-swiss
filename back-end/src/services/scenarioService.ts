@@ -105,31 +105,3 @@ export async function getScenarioByTitle(title: string) {
     throw new Error('Internal server error');
   }
 }
-
-/**
- * Mark a scenario as completed by the authenticated user.
- */
-export async function completeScenarioByTitle (uid: string, title: string){
-  try {
-    if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
-    const scenario = await db.collection<ScenarioDocument>('scenarios').findOne({ title });
-
-    if (!scenario) {
-      throw new Error('Scenario not found');
-    }
-
-    const completions = scenario.completions || [];
-    if (uid && !completions.includes(uid)) {
-      await db.collection<ScenarioDocument>('scenarios').updateOne(
-        { title },
-        { $push: { completions: uid } }
-      );
-      return 'OK';
-    } else {
-      return 'OK - Previously Completed';
-    }
-  } catch (err) {
-    console.error('Error marking scenario as complete:', err);
-    throw new Error('Internal server error');
-  }
-}

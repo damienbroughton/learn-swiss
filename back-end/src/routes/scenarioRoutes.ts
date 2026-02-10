@@ -1,7 +1,7 @@
 import express from "express";
 import type { Response } from 'express';
 import { requireAuth } from '../middleware/requireAuth.js';
-import { getScenarios, getScenarioByTitle, completeScenarioByTitle } from "../services/scenarioService.js";
+import { getScenarios, getScenarioByTitle } from "../services/scenarioService.js";
 import type { EnrichedRequest } from '../types/requestInterfaces.js'; 
 
 export const router = express.Router();
@@ -48,34 +48,6 @@ router.get('/:title', async (req: EnrichedRequest, res: Response) => {
     }
 
     return res.json(scenario);
-  } catch (err) {
-    return res.status(500).send('Internal server error');
-  }
-});
-
-
-/**
- * POST /:title/complete
- * Mark a scenario as completed by the authenticated user.
- *
- * Requires authentication.
- *
- * @param {string} title - Title of the scenario to mark as completed
- */
-router.post('/:title/complete', requireAuth, async (req: EnrichedRequest, res: Response) => {
-  try {
-    const { title } = req.params;
-    const uid = req.user?.uid; 
-
-    if (!uid) 
-      return res.status(401).send('Unauthorized. User not logged in.');
-
-    if (!title || typeof title !== 'string') 
-      return res.status(400).send('No Title Provided.');
-
-    const responseMessage = await completeScenarioByTitle(uid, title);
-    return res.status(200).send(responseMessage);
-    
   } catch (err) {
     return res.status(500).send('Internal server error');
   }
