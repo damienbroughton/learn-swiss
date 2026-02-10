@@ -12,8 +12,9 @@ export const router = express.Router();
  * Retrieve a list of all stories
  */
 router.get('/', async (req: EnrichedRequest, res: Response) => {
+  const uid = req.user?.uid; // undefined if not logged in
   try {
-    const response = await getStories();
+    const response = await getStories(uid);
 
     return res.json(response);
   } catch (err) {

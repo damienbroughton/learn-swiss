@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from "react-router-dom";
 import iggyImage from '../assets/IggyLogo.png';
 import useAppUser from '../hooks/useAppUser';
 
@@ -7,7 +8,7 @@ export default function Homepage() {
 
   const title = `Learn-Swiss`;
   const description = `Learn Swiss-German by practicing with flashcards, rehearsing fun scenarios, and learning stories.`;
-  const canonicalUrl = `https://learn-swiss.ch/flashcards`;
+  const canonicalUrl = `https://learn-swiss.ch/`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   return (
@@ -25,7 +26,8 @@ export default function Homepage() {
     </Helmet>
     <div className="container center">
       <div className="card">
-        <p>Welcome to Learn-Swiss{appUser && `, ${appUser.username}`}. {description}</p>
+        {!appUser && <p>Welcome to Learn-Swiss. {description}</p>}
+        {appUser && <p>Welcome back to Learn-Swiss{appUser && `, ${appUser.username}`}. Go to <Link to="/dashboard">Dashboard</Link></p>}
         <h1>Welcome to the World of Schwiizertüütsch!</h1>
         <div style={{ display: 'flex' }}>
           <img src={iggyImage} alt="Iggy the Hedgehog mascot" className="homepage-img" />

@@ -9,19 +9,39 @@ import { enrichFlashcard } from "./flashcardService.js";
  * Retreive list of stories
  *
  */
-export async function getStories() {
+export async function getStories(uid?: string) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
     const stories = await db.collection<StoryDocument>('stories').find().toArray();
+
+    // If user is logged in, fetch their progress metadata for all stories
+    const metadataMap: Record<string, any> = {};
+    if (uid) {
+      const progressDocs = await db.collection('userProgress').find({ uid, contentType: 'story' }).toArray();
+      for (const p of progressDocs) {
+        const key = (p.contentId as ObjectId).toHexString();
+        metadataMap[key] = p.metadata || null;
+      }
+    }
+
     const response = stories.map(story => {
-      return {
+      const storyId = story._id.toHexString();
+      const result: any = {
         _id: story._id,
         reference: story.reference,
         title: story.title,
         category: story.category,
         language: story.language,
         translatedLanguage: story.translatedLanguage,
+        sectionsCount: story.sections?.length || 0
       };
+
+      // Include metadata if user is logged in and has progress on this story
+      if (uid && metadataMap[storyId]) {
+        result.metadata = metadataMap[storyId];
+      }
+
+      return result;
     });
 
     return response;
@@ -73,19 +93,48 @@ export async function getStoryByReference(uid: string | undefined, reference: st
 
     const allSectionFlashcards = (story.sectionsFlashcardsData || []) as FlashcardDocument[];
 
+    // If a user is present, fetch progress records for all section flashcards in one query
+    const progressMap: Record<string, { attempts: number; successes: number; lastCompletedAt: Date | null }> = {};
+    if (uid && allSectionFlashcards.length > 0) {
+      const ids = allSectionFlashcards.map(fc => fc._id);
+      const progressDocs = await db.collection('userProgress').find({ uid, contentType: 'flashcard', contentId: { $in: ids } }).toArray();
+      for (const p of progressDocs) {
+        const key = (p.contentId as ObjectId).toHexString();
+        progressMap[key] = { attempts: p.attempts || 0, successes: p.successes || 0, lastCompletedAt: p.lastCompletedAt || null };
+      }
+    }
+
     const enrichedSections = story.sections.map((section: StorySection) => {
         // Find the full flashcard documents that belong to this section
         const sectionFcs = allSectionFlashcards.filter(fc => 
             section.flashcards != null && section.flashcards.some(id => id.equals(fc._id))
         );
         
+        const sectionFlashcards = sectionFcs.map(fc => {
+            const prog = progressMap[fc._id.toHexString()] || { attempts: 0, successes: 0, lastCompletedAt: null };
+            const fcWithProgress = { ...fc, attempts: prog.attempts, successes: prog.successes, lastCompletedAt: prog.lastCompletedAt } as unknown as FlashcardDocument;
+            return enrichFlashcard(fcWithProgress, uid);
+        });
+
+        const flashcardsKnownCount = sectionFlashcards.reduce((count, fc) => count + ((fc.successes && fc.successes > 0) ? 1 : 0), 0);
+
         return {
             ...section,
-            flashcards: sectionFcs.map(fc => enrichFlashcard(fc, uid))
+            flashcardsKnownCount,
+            flashcards: sectionFlashcards
         };
     });
 
-    const response = {
+    // If user is logged in, fetch story-level progress metadata
+    let storyMetadata = null;
+    if (uid) {
+      const storyProgress = await db.collection('userProgress').findOne({ uid, contentType: 'story', contentId: story._id });
+      if (storyProgress?.metadata) {
+        storyMetadata = storyProgress.metadata;
+      }
+    }
+
+    const response: any = {
         id: story._id,
         reference: story.reference,
         title: story.title,
@@ -93,6 +142,11 @@ export async function getStoryByReference(uid: string | undefined, reference: st
         content: story.content,
         sections: enrichedSections
     };
+
+    // Include metadata if user is logged in and has metadata for this story
+    if (uid && storyMetadata) {
+        response.metadata = storyMetadata;
+    }
 
     return response;
     
