@@ -188,7 +188,7 @@ export default function Dashboard() {
             </>
           )}
         </div>
-        <button style={{float: "right", margin: "10px"}} onClick={() => signOut(getAuth())}>Sign Out</button>
+        {appUser && <button style={{float: "right", margin: "10px"}} onClick={() => signOut(getAuth())}>Sign Out</button>}
       </div>
     </>
   );
