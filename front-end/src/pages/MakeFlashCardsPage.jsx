@@ -4,7 +4,7 @@ import GenerateFlashCardList from "../GenerateFlashCardList.jsx";
 export default function MakeFlashCardsPage() {
   const title = `Learn-Swiss: Generate Flash Cards with AI`;
   const description = `Use AI to generate your own story with flashcards to help learn Swiss-German and German in context.`;
-  const canonicalUrl = `https://learn-swiss.ch/make-flashcards`;
+  const canonicalUrl = `https://www.learn-swiss.ch/make-flashcards`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
   
   return (

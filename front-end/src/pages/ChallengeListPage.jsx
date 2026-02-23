@@ -10,7 +10,7 @@ export default function ChallengeListPage() {
   
   const title = `Learn-Swiss: Challenges`;
   const description = `Challenge your Swiss-German & German knowledge!`;
-  const canonicalUrl = `https://learn-swiss.ch/challenges`;
+  const canonicalUrl = `https://www.learn-swiss.ch/challenges`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   const navigate = useNavigate();
