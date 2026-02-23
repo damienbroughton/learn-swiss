@@ -1,8 +1,14 @@
 service: default
-includes:
-  - app-prod-env.yaml
 runtime: nodejs22
 instance_class: F1
+
+env_variables: 
+  GOOGLE_PROJECT_ID: "513090361622"
+  GOOGLE_PROJECT_REF: "learn-swiss-german-eff37"
+  GOOGLE_CLOUD_LOCATION: "global"
+  GOOGLE_CLOUD_QUEUE_LOCATION: "europe-central2"
+  GOOGLE_GENAI_USE_VERTEXAI: "true"
+  WORKER_SERVICE_URL: "https://worker-dot-learn-swiss-german-eff37.lm.r.appspot.com/process-job"
 
 # Use automatic scaling, as this service handles fluctuating web traffic.
 automatic_scaling:
