@@ -59,11 +59,13 @@ jobs:
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: (Optional) Install backend deps and build
-        run: |
-          if [ -f back-end/package.json ]; then
-            npm --prefix back-end ci --production
-          fi
+      - name: Install backend deps
+        run: npm ci
+        working-directory: back-end
+
+      - name: Build backend
+        run: npm run build
+        working-directory: back-end
 
       - name: Deploy to App Engine
         run: |
