@@ -142,3 +142,4 @@ back-end/build/
 back-end/app-prod-env.yaml
 back-end/worker-prod-env.yaml
 database/*
+key.json
