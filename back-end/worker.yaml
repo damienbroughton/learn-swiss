@@ -3,6 +3,7 @@ runtime: nodejs20
 instance_class: F1
 
 env_variables: 
+  MONGODB_USERNAME: "learn-swss-german-server"
   GOOGLE_PROJECT_ID: "513090361622"
   GOOGLE_CLOUD_LOCATION: "global"
   GOOGLE_GENAI_USE_VERTEXAI: "true"
