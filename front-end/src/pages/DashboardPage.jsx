@@ -6,7 +6,7 @@ import useAppUser from '../hooks/useAppUser';
 import imgFlashCards from '../assets/HedgeHogFlashCards.png';
 import imgChallenges from '../assets/Eber-Happy.png';
 import imgStories from '../assets/HedgeHogBook.png';
-import imgScenarios from '../assets/HedgeHogGruezi.png';
+import imgScenarios from '../assets/HedgehogGruezi.png';
 
 
 export default function Dashboard() {
