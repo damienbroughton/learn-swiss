@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
+
   build_frontend:
     name: Build front-end
     runs-on: ubuntu-latest
@@ -20,14 +21,12 @@ jobs:
           cache: 'npm'
 
       - name: Install front-end deps
-        run: |
-          cd front-end
-          npm ci
+        run: npm ci
+        working-directory: front-end
 
       - name: Build front-end
-        run: |
-          cd front-end
-          npm run build
+        run: npm run build
+        working-directory: front-end
 
       - name: Upload `dist` artifact
         uses: actions/upload-artifact@v4
