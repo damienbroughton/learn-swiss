@@ -9,7 +9,7 @@ export default function ScenarioListPage() {
 
   const title = `Learn-Swiss: Scenarios`;
   const description = `Learn Swiss-German stories by practicing common scenarios!`;
-  const canonicalUrl = `https://learn-swiss.ch/scenarios`;
+  const canonicalUrl = `https://www.learn-swiss.ch/scenarios`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   const [practiceMode, setPracticeMode] = useState(() => {

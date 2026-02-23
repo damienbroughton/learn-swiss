@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   const title = `Learn-Swiss: Dashboard`;
   const description = `Your learning progress in German and Swiss-German — today and all time.`;
-  const canonicalUrl = `https://learn-swiss.ch/dashboard`;
+  const canonicalUrl = `https://www.learn-swiss.ch/dashboard`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   const navigate = useNavigate();

@@ -141,3 +141,4 @@ vite.config.ts.timestamp-*
 back-end/build/
 back-end/app-prod-env.yaml
 back-end/worker-prod-env.yaml
+database/*
