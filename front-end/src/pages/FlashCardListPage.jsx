@@ -10,7 +10,7 @@ export default function FlashCardListPage() {
   
   const title = `Learn-Swiss: Flashcards`;
   const description = `Build your Swiss-German vocabulary by practicing with flashcards!`;
-  const canonicalUrl = `https://learn-swiss.ch/flashcards`;
+  const canonicalUrl = `https://www.learn-swiss.ch/flashcards`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   const navigate = useNavigate();

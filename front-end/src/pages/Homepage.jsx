@@ -8,7 +8,7 @@ export default function Homepage() {
 
   const title = `Learn-Swiss`;
   const description = `Learn Swiss-German by practicing with flashcards, rehearsing fun scenarios, and learning stories.`;
-  const canonicalUrl = `https://learn-swiss.ch/`;
+  const canonicalUrl = `https://www.learn-swiss.ch/`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   return (
