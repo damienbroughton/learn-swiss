@@ -1,12 +1,15 @@
 service: worker
 runtime: nodejs20
 instance_class: F1
+
+env_variables: 
+  GOOGLE_PROJECT_ID: "513090361622"
+  GOOGLE_CLOUD_LOCATION: "global"
+  GOOGLE_GENAI_USE_VERTEXAI: "true"
+
 automatic_scaling:
   min_instances: 0 # Scales to zero when no jobs are running
   max_instances: 5 # Limits your concurrent workers to control costs
   target_cpu_utilization: 0.6
 
 entrypoint: node build/workers/worker.js
-
-includes:
-  - worker-prod-env.yaml
