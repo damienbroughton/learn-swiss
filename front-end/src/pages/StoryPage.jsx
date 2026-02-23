@@ -36,7 +36,7 @@ export default function StoryPage() {
 
     const title = `Learn-Swiss: ${story.title}`;
     const description = `Practice vocabulary from the story '${story.title}' in ${story.language}.`;
-    const canonicalUrl = `https://learn-swiss.ch/stories/${story.reference}`;
+    const canonicalUrl = `https://www.learn-swiss.ch/stories/${story.reference}`;
     const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
     const currentSection = story.sections?.[currentSectionIndex];

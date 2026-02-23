@@ -11,7 +11,7 @@ export default function FlashCardPage() {
   const category = flashcards[0]?.category || 'Flashcards';
   const title = `Learn-Swiss: ${category} flashcards`;
   const description = `Practice vocabulary from the category: '${category}' in ${flashcards[0]?.secondLanguage || 'Swiss-German'}.`;
-  const canonicalUrl = `https://learn-swiss.ch/flashcards/${category}`;
+  const canonicalUrl = `https://www.learn-swiss.ch/flashcards/${category}`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   // Define the completion handler to navigate back

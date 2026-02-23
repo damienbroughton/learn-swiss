@@ -21,7 +21,7 @@ export default function ChallengePage() {
 
   const pageTitle = `Learn-Swiss: ${currentChallenge.title}`;
   const description = `Challenge yourself with '${currentChallenge.title}' in ${currentChallenge.language}.`;
-  const canonicalUrl = `https://learn-swiss.ch/challenges/${currentChallenge.reference}/${mode}`;
+  const canonicalUrl = `https://www.learn-swiss.ch/challenges/${currentChallenge.reference}/${mode}`;
   const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": pageTitle, "description": description, "url": canonicalUrl };
 
   async function onNext() {

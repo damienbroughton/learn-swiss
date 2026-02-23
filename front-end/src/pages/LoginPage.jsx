@@ -14,7 +14,7 @@ export default function LoginPage() {
 
   const title = `Learn-Swiss: Login`;
   const description = `Login to Swiss-German to save progress when practicing with flashcards, rehearsing fun scenarios, and learning stories. AI Generate your own story with flashcards.`;
-  const canonicalUrl = `https://learn-swiss.ch/login`;
+  const canonicalUrl = `https://www.learn-swiss.ch/login`;
   const schema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
 
   const navigate = useNavigate();
