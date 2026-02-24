@@ -19,7 +19,6 @@ export default function PageHelmet({ title, description, canonicalUrl, schema, k
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={siteImage} />
-      <meta name="msvalidate.01" content="08131B1A53199AD9ADD8224049611D24" />
       <script type="application/ld+json">{JSON.stringify(schema)}</script>
     </Helmet>
   );
