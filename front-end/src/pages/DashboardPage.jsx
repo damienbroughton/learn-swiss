@@ -1,6 +1,7 @@
 import api from "../api";
 import { useLoaderData, Link, useNavigate } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import { getAuth, signOut } from "firebase/auth";
 import useAppUser from '../hooks/useAppUser';
 import imgFlashCards from '../assets/HedgeHogFlashCards.png';
@@ -13,10 +14,14 @@ export default function Dashboard() {
   const { summary, totals } = useLoaderData();
   const { appUser, isLoading } = useAppUser();
 
-  const title = `Learn-Swiss: Dashboard`;
-  const description = `Your learning progress in German and Swiss-German — today and all time.`;
-  const canonicalUrl = `https://www.learn-swiss.ch/dashboard`;
-  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn-Swiss: Your Learning Dashboard - Track Your Progress`,
+    description: `View your learning progress in Swiss-German and German. Track completed lessons, flashcards, scenarios, and challenges across all your study sessions.`,
+    canonicalUrl: `https://www.learn-swiss.ch/dashboard`,
+    robotsDirective: 'noindex, follow',
+    keywords: `learning dashboard, progress tracking, study statistics`,
+    schema: { "@context": "https://schema.org", "@type": "WebApplication", "name": "Learning Dashboard", "url": "https://www.learn-swiss.ch/dashboard", "applicationCategory": "EducationApplication" }
+  });
 
   const navigate = useNavigate();
 
@@ -47,20 +52,11 @@ export default function Dashboard() {
 
   return (
     <>
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-      </Helmet>
+      <PageHelmet {...meta} />
       <div className="container center">
         <div className="card">
           <h1>Dashboard</h1>
-          <p>{description}</p>
+          <p>{meta.description}</p>
 
           {isLoading ? (
             <p>Loading your account...</p>

@@ -1,37 +1,31 @@
 import api from "../api";
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import imgDE from '../assets/Eber-Happy.png';
 
 
 export default function ChallengeListPage() {
   const {challenges} = useLoaderData();
   
-  const title = `Learn-Swiss: Challenges`;
-  const description = `Challenge your Swiss-German & German knowledge!`;
-  const canonicalUrl = `https://www.learn-swiss.ch/challenges`;
-  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn-Swiss: Challenges - Test Your Swiss-German Skills`,
+    description: `Challenge your Swiss-German & German knowledge with interactive exercises. Test vocabulary, grammar, and comprehension across multiple difficulty levels.`,
+    canonicalUrl: `https://www.learn-swiss.ch/challenges`,
+    keywords: `Swiss German challenges, German language exercises, Schwiizertüütsch, dialect learning`,
+    schema: { "@context": "https://schema.org", "@type": "CollectionPage", "headline": "Challenges", "description": "Challenge your Swiss-German & German knowledge", "url": "https://www.learn-swiss.ch/challenges" }
+  });
 
   const navigate = useNavigate();
 
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <div className="container center">
       <div className="card" >
         <h1>Challenges</h1>
-          <p>{description}</p>
+          <p>{meta.description}</p>
           <ul className="scenario-list">
             {challenges.map(challenge => (
               <li key={challenge.reference} className="scenario-list-item">

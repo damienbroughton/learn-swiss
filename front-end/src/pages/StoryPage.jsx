@@ -1,7 +1,8 @@
 import api from "../api";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import useStoryPolling from "../hooks/useStoryPolling.js"
 import useUser from "../hooks/useUser";
 import FlashCardReview from "../FlashCardReview";
@@ -34,10 +35,16 @@ export default function StoryPage() {
         setIsReviewingFlashcards(true);
     }, [story]);
 
-    const title = `Learn-Swiss: ${story.title}`;
-    const description = `Practice vocabulary from the story '${story.title}' in ${story.language}.`;
+    const title = `Learn-Swiss: ${story.title} - Read Swiss-German Stories`;
+    const description = `Read the story '${story.title}' in ${story.language}. Learn vocabulary with AI-generated flashcards and practice language skills through authentic content.`;
     const canonicalUrl = `https://www.learn-swiss.ch/stories/${story.reference}`;
-    const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+    const meta = useSEOMeta({
+      title: title,
+      description: description,
+      canonicalUrl: canonicalUrl,
+      keywords: `${story.title}, Swiss German story, reading practice, language learning, ${story.language}`,
+      schema: { "@context": "https://schema.org", "@type": "LearningResource", "name": title, "description": description, "url": canonicalUrl, "learningResourceType": "Interactive story", "inLanguage": "en" }
+    });
 
     const currentSection = story.sections?.[currentSectionIndex];
     const hasFlashcards = currentSection?.flashcards?.length > 0;
@@ -85,17 +92,7 @@ export default function StoryPage() {
 
     return (
         <>
-        <Helmet>
-            {/* Dynamic Meta Tags */}
-            <title>{title}</title>
-            <meta name="description" content={description} />
-            <link rel="canonical" href={canonicalUrl} />
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
-            <meta property="og:url" content={canonicalUrl} />
-            <meta property="og:type" content="article" />
-            <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-        </Helmet>
+        <PageHelmet {...meta} />
         <div>
             <h1>{story.title}</h1>
             

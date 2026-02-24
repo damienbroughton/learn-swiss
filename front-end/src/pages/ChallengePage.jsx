@@ -1,7 +1,8 @@
 import api from "../api";
 import { useState } from "react";
 import { useParams, useLoaderData, useNavigate, Link } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import DisplayChallenge from "../DisplayChallenge";
 import imgCelebration from '../assets/Eber-Celebration.png';
 import gifLoading from '../assets/LoadingAnimation.gif';
@@ -19,10 +20,13 @@ export default function ChallengePage() {
   const [numCorrect, setNumCorrect] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const pageTitle = `Learn-Swiss: ${currentChallenge.title}`;
-  const description = `Challenge yourself with '${currentChallenge.title}' in ${currentChallenge.language}.`;
-  const canonicalUrl = `https://www.learn-swiss.ch/challenges/${currentChallenge.reference}/${mode}`;
-  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": pageTitle, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn-Swiss: ${currentChallenge.title} - Test Your Skills`,
+    description: `Challenge yourself with '${currentChallenge.title}' in ${currentChallenge.language}. Practice and test your Swiss-German comprehension and vocabulary.`,
+    canonicalUrl: `https://www.learn-swiss.ch/challenges/${currentChallenge.reference}/${mode}`,
+    keywords: `Swiss German challenge, comprehension exercise, language practice, ${currentChallenge.language}`,
+    schema: { "@context": "https://schema.org", "@type": "LearningResource", "name": `${currentChallenge.title} - Test Your Skills`, "url": `https://www.learn-swiss.ch/challenges/${currentChallenge.reference}/${mode}`, "learningResourceType": "Practice exercise", "inLanguage": "en" }
+  });
 
   async function onNext() {
     // Show next step if available
@@ -54,17 +58,7 @@ export default function ChallengePage() {
 
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{pageTitle}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={currentChallenge.title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <div className="container center">
       <div className="card" style={{textAlign: "center"}}>
         <h2>{currentChallenge.title}</h2>

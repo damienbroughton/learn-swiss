@@ -2,7 +2,8 @@ import api from "../api";
 import { useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 
 export default function LoginPage() {
   const [searchParams] = useSearchParams();
@@ -12,10 +13,14 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(prevPage ? "You need to be logged in to perform that action" : "");
 
-  const title = `Learn-Swiss: Login`;
-  const description = `Login to Swiss-German to save progress when practicing with flashcards, rehearsing fun scenarios, and learning stories. AI Generate your own story with flashcards.`;
-  const canonicalUrl = `https://www.learn-swiss.ch/login`;
-  const schema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn-Swiss: Login to Your Account`,
+    description: `Sign in to Learn-Swiss to save your progress, track learning statistics, and unlock all features for learning Swiss-German.`,
+    canonicalUrl: `https://www.learn-swiss.ch/login`,
+    keywords: `login, sign in, account, Learn-Swiss, language learning`,
+    robotsDirective: 'index, follow',
+    schema: { "@context": "https://schema.org", "@type": "WebApplication", "name": "Login", "url": "https://www.learn-swiss.ch/login", "applicationCategory": "EducationApplication" }
+  });
 
   const navigate = useNavigate();
 
@@ -54,17 +59,7 @@ export default function LoginPage() {
 
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <div className="container center">
       <div className="card" style={{ maxWidth: 400, width: '100%', margin: '0 auto', padding: '2.5em 2em', boxSizing: 'border-box' }}>
         <h1 style={{ textAlign: 'center', marginBottom: '1.5em' }}>Login</h1>
