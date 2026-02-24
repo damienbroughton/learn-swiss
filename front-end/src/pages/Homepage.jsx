@@ -1,32 +1,33 @@
-import { Helmet } from 'react-helmet-async';
 import { Link } from "react-router-dom";
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import iggyImage from '../assets/IggyLogo.png';
 import useAppUser from '../hooks/useAppUser';
 
 export default function Homepage() {
   const { appUser } = useAppUser();
 
-  const title = `Learn-Swiss`;
-  const description = `Learn Swiss-German by practicing with flashcards, rehearsing fun scenarios, and learning stories.`;
-  const canonicalUrl = `https://www.learn-swiss.ch/`;
-  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn Swiss German (Schwiizertüütsch) - Free Lessons & Flashcards`,
+    description: `Master Swiss German with interactive flashcards, real-world scenarios, and authentic stories. Learn Schwiizertüütsch dialects from Zurich, Bern, Basel & more.`,
+    canonicalUrl: `https://www.learn-swiss.ch/`,
+    keywords: `Swiss German, Schwiizertüütsch, language learning, dialects, Zurich, Bern, Basel, language lessons, flashcards`,
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Learn-Swiss",
+      "url": "https://www.learn-swiss.ch/",
+      "logo": "https://www.learn-swiss.ch/IggyLogo.png",
+      "description": "Master Swiss German with interactive flashcards, real-world scenarios, and authentic stories."
+    }
+  });
 
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <div className="container center">
       <div className="card">
-        {!appUser && <p>Welcome to Learn-Swiss. {description}</p>}
+        {!appUser && <p>Welcome to Learn-Swiss. {meta.description}</p>}
         {appUser && <p>Welcome back to Learn-Swiss{appUser && `, ${appUser.username}`}. Go to <Link to="/dashboard">Dashboard</Link></p>}
         <h1>Welcome to the World of Schwiizertüütsch!</h1>
         <div style={{ display: 'flex' }}>
@@ -38,8 +39,8 @@ export default function Homepage() {
         </div>
         <hr />
         <h2>Is it different from High German?</h2>
-        <p>In short: Yes. While "High German" (Hochdeutsch) is what you’ll find in textbooks or on the evening news, Swiss German is what people actually use to joke with friends, order coffee, and talk to their families.
-        <br /><br />Think of it this way: High German is the language of the head (formal and structured), while Swiss German is the language of the heart. The grammar is different, the vocabulary is unique, and the pronunciation is much more "throaty" and rhythmic.</p>
+        <p>In short: Yes. While "High German" (Hochdeutsch) is what you’ll find in textbooks or on the evening news, Swiss German is what people actually use to joke with friends, order coffee, and talk to their families.</p>
+        <p>Think of it this way: High German is the language of the head (formal and structured), while Swiss German is the language of the heart. The grammar is different, the vocabulary is unique, and the pronunciation is much more "throaty" and rhythmic.</p>
         <h2>A Mosaic of Dialects</h2>
         <p>One of the most beautiful things about Swiss German is that there is no single "standard" version. Instead, it’s a mosaic of regional dialects:</p>
         <ul>
@@ -67,7 +68,7 @@ export default function Homepage() {
             <li>A cookie (Guetz<strong>li</strong>) is basically mandatory with coffee.</li>
             <li>Even a cat (Chatz) becomes a Chätz<strong>li</strong>.</li>
           </ul>
-          If you want to sound friendly and local, adding a -li to the end of a noun is the fastest way to a Swiss person’s heart!
+          <p>If you want to sound friendly and local, adding a -li to the end of a noun is the fastest way to a Swiss person’s heart!</p>
         <hr />
         <h2>Some words & phrases to get you started</h2>
         <div className="table-wrapper">

@@ -2,7 +2,8 @@ import api from "../api";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 
 export default function CreateAccountPage() {
     const [email, setEmail] = useState("");
@@ -11,10 +12,14 @@ export default function CreateAccountPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
 
-    const title = `Learn-Swiss: Create Account`;
-    const description = `Login to Swiss-German to save progress when practicing with flashcards, rehearsing fun scenarios, and learning stories. AI Generate your own story with flashcards.`;
-    const canonicalUrl = `https://www.learn-swiss.ch/create-account`;
-    const schema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+    const meta = useSEOMeta({
+      title: `Learn-Swiss: Create Account - Start Learning Swiss-German`,
+      description: `Create your Learn-Swiss account to track progress, save your learning history, and unlock premium features for learning Swiss-German.`,
+      canonicalUrl: `https://www.learn-swiss.ch/create-account`,
+      keywords: `Swiss German learning account, sign up, create account, language learning`,
+      robotsDirective: 'index, follow',
+      schema: { "@context": "https://schema.org", "@type": "WebApplication", "name": "Create Account", "url": "https://www.learn-swiss.ch/create-account", "applicationCategory": "EducationApplication" }
+    });
 
     const navigate = useNavigate();
 
@@ -61,17 +66,7 @@ export default function CreateAccountPage() {
 
     return (
         <>
-        <Helmet>
-            {/* Dynamic Meta Tags */}
-            <title>{title}</title>
-            <meta name="description" content={description} />
-            <link rel="canonical" href={canonicalUrl} />
-            <meta property="og:title" content={title} />
-            <meta property="og:description" content={description} />
-            <meta property="og:url" content={canonicalUrl} />
-            <meta property="og:type" content="article" />
-            <script type="application/ld+json">{JSON.stringify(schema)}</script>
-        </Helmet>
+        <PageHelmet {...meta} />
         <div className="container center">
             <div className="card" style={{ maxWidth: 400, width: '100%', margin: '0 auto', padding: '2.5em 2em', boxSizing: 'border-box' }}>
                 <h1 style={{ textAlign: 'center', marginBottom: '1.5em' }}>Create Account</h1>

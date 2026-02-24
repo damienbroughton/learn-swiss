@@ -2,15 +2,19 @@ import api from "../api";
 import { useState, useEffect } from "react"
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 
 export default function ScenarioListPage() {
   const {scenarios} = useLoaderData();
 
-  const title = `Learn-Swiss: Scenarios`;
-  const description = `Learn Swiss-German stories by practicing common scenarios!`;
-  const canonicalUrl = `https://www.learn-swiss.ch/scenarios`;
-  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn-Swiss: Scenarios - Practice Real-World Swiss-German Conversations`,
+    description: `Learn Swiss-German through realistic scenarios and conversations. Practice common situational dialogues to improve comprehension and speaking skills.`,
+    canonicalUrl: `https://www.learn-swiss.ch/scenarios`,
+    keywords: `Swiss German scenarios, conversation practice, Schwiizertüütsch dialogues, situational learning`,
+    schema: { "@context": "https://schema.org", "@type": "CollectionPage", "headline": "Scenarios", "description": "Practice real-world conversations", "url": "https://www.learn-swiss.ch/scenarios" }
+  });
 
   const [practiceMode, setPracticeMode] = useState(() => {
     const saved = localStorage.getItem("practiceMode");
@@ -25,21 +29,11 @@ export default function ScenarioListPage() {
 
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <div className="container center">
       <div className="card" >
         <h1>Scenarios</h1>
-        <p>{description}</p>
+        <p>{meta.description}</p>
         <div>
             <label className="switch">
               <input type="checkbox" checked={practiceMode} onChange={e => setPracticeMode(e.target.checked)} />

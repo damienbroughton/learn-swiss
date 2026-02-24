@@ -1,25 +1,19 @@
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import GenerateFlashCardList from "../GenerateFlashCardList.jsx";
 
 export default function MakeFlashCardsPage() {
-  const title = `Learn-Swiss: Generate Flash Cards with AI`;
-  const description = `Use AI to generate your own story with flashcards to help learn Swiss-German and German in context.`;
-  const canonicalUrl = `https://www.learn-swiss.ch/make-flashcards`;
-  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn-Swiss: AI Flashcard Generator - Create Custom Learning Cards`,
+    description: `Use AI to generate custom flashcards from any text. Learn Swiss-German and German faster by creating personalized study materials with intelligent extraction of key vocabulary.`,
+    canonicalUrl: `https://www.learn-swiss.ch/make-flashcards`,
+    keywords: `AI flashcard generator, study tool, Swiss German learning, custom flashcards, vocabulary builder`,
+    schema: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Generate Flashcards", "url": "https://www.learn-swiss.ch/make-flashcards" }
+  });
   
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <div className="container center">
         <div className="card" >
             <h1>Generate Flash Cards with AI</h1>

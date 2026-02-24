@@ -1,7 +1,8 @@
 import api from "../api";
 import { useState } from "react";
 import { useParams, useLoaderData, useNavigate } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import DisplayScenario from "../DisplayScenario";
 import imgCelebration from '../assets/HedgeHogCelebration.png';
 import useUser from "../hooks/useUser";
@@ -12,10 +13,13 @@ export default function ScenarioPage() {
     const {scenario} = useLoaderData();
     const { user } = useUser();
 
-    const pageTitle = `Learn-Swiss: ${scenario.title}`;
-    const description = `Practice vocabulary the scenario '${scenario.title}' in Swiss-German.`;
-    const canonicalUrl = `https://www.learn-swiss.ch/scenarios/${scenario.title}/${mode}`;
-    const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": pageTitle, "description": description, "url": canonicalUrl };
+    const meta = useSEOMeta({
+      title: `Learn-Swiss: ${scenario.title} - Practice Real-World Dialogue`,
+      description: `Practice real-world conversation in the '${scenario.title}' scenario. Learn Swiss-German vocabulary and dialogue patterns in context.`,
+      canonicalUrl: `https://www.learn-swiss.ch/scenarios/${scenario.title}/${mode}`,
+      keywords: `${scenario.title}, Swiss German scenario, conversation practice, dialogue learning`,
+      schema: { "@context": "https://schema.org", "@type": "LearningResource", "name": `${scenario.title} - Practice Real-World Dialogue`, "url": `https://www.learn-swiss.ch/scenarios/${scenario.title}/${mode}`, "learningResourceType": "Interactive scenario", "inLanguage": "en" }
+    });
 
     const [shownSteps, setShownSteps] = useState([scenario.steps[0]]); // start with first step
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -60,17 +64,7 @@ export default function ScenarioPage() {
 
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{pageTitle}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={scenario.title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <div>
       <h1>{scenario.title}</h1>
       <p>Category: {scenario.category} | Difficulty: {scenario.difficulty} | Tags: {scenario.tags.join(', ')}</p>

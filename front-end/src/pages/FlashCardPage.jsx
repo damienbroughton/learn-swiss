@@ -1,6 +1,7 @@
 import { useLoaderData, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import FlashCardReview from "../FlashCardReview";
 import api from "../api"; 
 
@@ -9,10 +10,13 @@ export default function FlashCardPage() {
   const navigate = useNavigate();
 
   const category = flashcards[0]?.category || 'Flashcards';
-  const title = `Learn-Swiss: ${category} flashcards`;
-  const description = `Practice vocabulary from the category: '${category}' in ${flashcards[0]?.secondLanguage || 'Swiss-German'}.`;
-  const canonicalUrl = `https://www.learn-swiss.ch/flashcards/${category}`;
-  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn-Swiss: ${category} Flashcards - Practice ${flashcards[0]?.secondLanguage || 'Swiss-German'} Vocabulary`,
+    description: `Master vocabulary from the '${category}' category in ${flashcards[0]?.secondLanguage || 'Swiss-German'}. Interactive flashcard practice for vocabulary building and language retention.`,
+    canonicalUrl: `https://www.learn-swiss.ch/flashcards/${category}`,
+    keywords: `${category} flashcards, vocabulary practice, Swiss German, language learning`,
+    schema: { "@context": "https://schema.org", "@type": "LearningResource", "name": `${category} Flashcards`, "url": `https://www.learn-swiss.ch/flashcards/${category}`, "learningResourceType": "Interactive practice", "inLanguage": "en" }
+  });
 
   // Define the completion handler to navigate back
   const handleReviewComplete = () => {
@@ -21,17 +25,7 @@ export default function FlashCardPage() {
 
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <FlashCardReview 
       flashcards={flashcards}
       completeButtonText="Back to flashcards"

@@ -1,7 +1,8 @@
 import api from "../api";
 import { useEffect, useState } from "react";
 import { useNavigate, useLoaderData } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
+import useSEOMeta from '../hooks/useSEOMeta';
+import PageHelmet from '../components/PageHelmet';
 import imgStoriesCH from '../assets/HedgeHogBook.png';
 import imgStoriesDE from '../assets/Eber-Neutral.png';
 
@@ -15,10 +16,13 @@ export default function StoryListPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("All");
 
-  const title = `Learn-Swiss: Stories`;
-  const description = `Learn Swiss-German and German stories by building vocabulary with flashcards. You can generate your own with AI!`;
-  const canonicalUrl = `https://www.learn-swiss.ch/stories/`;
-  const storySchema = { "@context": "https://schema.org", "@type": "Article", "headline": title, "description": description, "url": canonicalUrl };
+  const meta = useSEOMeta({
+    title: `Learn-Swiss: Stories - Read Swiss-German & German Content`,
+    description: `Learn Swiss-German and German through authentic stories across multiple categories. Build vocabulary with AI-generated flashcards and contextual learning.`,
+    canonicalUrl: `https://www.learn-swiss.ch/stories/`,
+    keywords: `Swiss German stories, German stories, Schwiizertüütsch reading, language learning content`,
+    schema: { "@context": "https://schema.org", "@type": "CollectionPage", "headline": "Stories", "description": "Read authentic stories", "url": "https://www.learn-swiss.ch/stories/" }
+  });
 
   useEffect(() => {
     const lowerQuery = searchQuery.toLowerCase();
@@ -33,21 +37,11 @@ export default function StoryListPage() {
 
   return (
     <>
-    <Helmet>
-        {/* Dynamic Meta Tags */}
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        <script type="application/ld+json">{JSON.stringify(storySchema)}</script>
-    </Helmet>
+    <PageHelmet {...meta} />
     <div className="container center">
-      <div className="card" >
+      <div className="card">
         <h1>Stories</h1>
-        <p>{description}</p>
+        <p>Learn Swiss-German and German through authentic stories across multiple categories. Build vocabulary with AI-generated flashcards and contextual learning.</p>
           <div className="filters">
             {/* <label>First Language: 
               <select id="firstLanguage" value={firstLanguage} onChange={e => setFirstLanguage(e.target.value)} >
