@@ -9,8 +9,9 @@ import FlashCardReview from "../FlashCardReview";
 import DisplayStorySection from "../DisplayStorySection";
 import imgStoriesCH from '../assets/IgelFlashCardWriting.png';
 import imgStoriesDE from '../assets/Eber-FlashCardWriting.png';
+import imgCelebrationCH from '../assets/HedgeHogCelebration.png';
+import imgCelebrationDE from '../assets/Eber-Celebration.png';
 import imgError from '../assets/ErrorImage.png';
-import gifLoading from '../assets/LoadingAnimation.gif';
 
 
 
@@ -143,7 +144,8 @@ export default function StoryPage() {
                     <FlashCardReview 
                         flashcards={currentSection.flashcards} 
                         completeButtonText="Read the story section"
-                        onComplete={handleReviewComplete} 
+                        onComplete={handleReviewComplete}
+                        sourcePage="StoryPage" 
                     />
                     <button 
                         onClick={handleSkipFlashcards}
@@ -163,22 +165,25 @@ export default function StoryPage() {
                     />
                     
                     {/* Action Buttons After Reading */}
-                    <div style={{ textAlign: 'center', marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                        {hasFlashcards && (
-                            <button onClick={handleReviewAgain}>
-                                Review Words Again
-                            </button>
-                        )}
-                        {!isLastSection && (
-                            <button onClick={handleNextSection} style={{ fontWeight: 'bold' }}>
-                                Next Section
-                            </button>
-                        )}
-                        {isLastSection && (
-                            <div style={{ textAlign: 'center' }}>
-                                <p>🎉 Congratulations! You've completed the story.</p>
-                            </div>
-                        )}
+                    <div className="container">
+                        <div className="card" style={{ maxWidth: 400, width: '100%', margin: '0 auto', padding: '1.5em 1em', boxSizing: 'border-box', textAlign: 'center' }}>                            
+                            {isLastSection && (
+                                <div style={{ textAlign: 'center' }}>
+                                    <img src={story.language === "Swiss-German" ? imgCelebrationCH : imgCelebrationDE} alt="Iggy" className="button-icon" />
+                                    <p>Congratulations! You've completed the story.</p>
+                                </div>
+                            )}
+                            {!isLastSection && (
+                                <button onClick={handleNextSection} style={{ fontWeight: 'bold' }}>
+                                    Next Section
+                                </button>
+                            )}
+                            {hasFlashcards && (
+                                <button onClick={handleReviewAgain}>
+                                    Review Words Again
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}

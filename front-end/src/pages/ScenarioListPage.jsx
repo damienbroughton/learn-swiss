@@ -46,10 +46,10 @@ export default function ScenarioListPage() {
               <li key={scenario.title} className="scenario-list-item">
                 <div
                   className="scenario-card"
-                  onClick={() => navigate(`/scenarios/${scenario.title}/${practiceMode ? 'practice' : 'review'}`)}
+                  onClick={() => navigate(`/scenarios/${scenario.reference}/${practiceMode ? 'practice' : 'review'}`)}
                   tabIndex={0}
                   role="button"
-                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/scenarios/${scenario.title}/${practiceMode ? 'practice' : 'review'}`); } }}
+                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/scenarios/${scenario.reference}/${practiceMode ? 'practice' : 'review'}`); } }}
                   aria-label={`Open scenario: ${scenario.title}`}
                 >
                   <img src={scenario.image} alt={scenario.title} className="scenario-card-img" />
