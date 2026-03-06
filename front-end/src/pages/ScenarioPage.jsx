@@ -72,11 +72,13 @@ export default function ScenarioPage() {
         <DisplayScenario key={index} step={step} mode={mode} onCheckAnswer={onCheckAnswer} />
       ))}
       {currentStepIndex === scenario.steps.length && (
-          <div style={{ textAlign: 'center' }}>
-            <img src={imgCelebration} alt="Celebrating Hedgehog" style={{ display: 'block', margin: '0 auto' }} />
+        <div className="container">
+          <div className="card" style={{ maxWidth: 400, width: '100%', margin: '0 auto', padding: '1.5em 1em', boxSizing: 'border-box', textAlign: 'center' }}>                            
+            <img src={imgCelebration} alt="Celebrating Hedgehog"  className="button-icon" />
             <p>Congratulations! You've completed the scenario.</p>
             <button onClick={() => navigate('/scenarios')}>Try another Scenario</button>
           </div>
+        </div>
       )}
 
     </div>
@@ -85,7 +87,7 @@ export default function ScenarioPage() {
 }
 
 export async function loader ({params}) {
-  const response = await api.get(`/scenarios/${params.title}`);
+  const response = await api.get(`/scenarios/${params.reference}`);
   const scenario = response.data;
   return {scenario};
 }

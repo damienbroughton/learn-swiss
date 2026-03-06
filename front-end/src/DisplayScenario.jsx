@@ -46,7 +46,7 @@ export default function DisplayScenario({step, mode, onCheckAnswer }) {
             <p onClick={() => setTranslationText(step.translation)} key={step.translation}>{translationText}</p>
           </div>
           <div className={`speech-bubble-user ${responseText === "" ? "fade-in" : ""} ${isCorrect === false ? "shake" : ""}`}>
-            <label>Response: 
+            <label>{step.instruction} 
               <input id={`response-${step.order}`}
               type="text" 
               value={responseText} 

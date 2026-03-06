@@ -36,6 +36,8 @@ export interface ScenarioStep {
     speaker: 'npc' | 'user';
     /** The dialogue text in the target language. */
     text: string;
+    /** The instruction for the user's response. */
+    instruction: string;
     /** The translation of the dialogue text. */
     translation: string;
     /** Array of possible successful response patterns and their associated feedback/next steps.
@@ -54,6 +56,9 @@ export interface ScenarioDocument {
 
     /** The title of the scenario (e.g., "At the Bakery"). */
     title: string;
+
+    /** The reference to the scenario (e.g., "at-the-bakery"). */
+    reference: string;
 
     /** The primary category of the scenario (e.g., "shopping", "travel"). */
     category: string;

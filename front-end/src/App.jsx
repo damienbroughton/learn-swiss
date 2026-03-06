@@ -47,14 +47,14 @@ const routes = [{
     loader: scenarioListLoader
   },
   {
+    path: '/scenarios/:reference/:mode',
+    element: <ScenarioPage />,
+    loader: scenarioLoader
+  },
+  {
     path: '/stories',
     element: <StoryListPage />,
     loader: storyListLoader
-  },
-  {
-    path: '/stories/:reference',
-    element: <StoryPage />,
-    loader: storyLoader
   },
   {
     path: '/stories/:reference',
@@ -75,11 +75,6 @@ const routes = [{
     path: '/challenges/:reference/:mode',
     element: <ChallengePage />,
     loader: challengeLoader
-  },
-  {
-    path: '/scenarios/:title/:mode',
-    element: <ScenarioPage />,
-    loader: scenarioLoader
   },
   {
     path: '/articles',
