@@ -1,7 +1,5 @@
 import { useFlashCardReview } from "./hooks/useFlashCardReview";
 import DisplayFlashCard from "./DisplayFlashCard";
-import imgThumbsDown from './assets/HedgeHogThumbsDown.png'; 
-import imgThumbsUp from './assets/HedgeHogThumbsUp.png'; 
 
 
 /**
@@ -10,13 +8,13 @@ import imgThumbsUp from './assets/HedgeHogThumbsUp.png';
  * @param {Array} props.flashcards - The deck of flashcards to review.
  * @param {string} props.completeButtonText - text to display on complete button
  * @param {Function} props.onComplete - Callback function when the deck is finished.
+ * @param {string} props.sourcePage - The source page for the flashcard review (e.g., "flashcards", "stories").
  */
-export default function FlashCardReview({ flashcards, completeButtonText, onComplete }) {
+export default function FlashCardReview({ flashcards, completeButtonText, onComplete, sourcePage }) {
   const {
     flashcard,
     numCorrect,
     numIncorrect,
-    answerChecked,
     flashcardDeckLength,
     totalCards,
     previousScore,
@@ -24,7 +22,7 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
     onThumbsUp,
     onThumbsDown,
     onRetryDeck
-  } = useFlashCardReview(flashcards);
+  } = useFlashCardReview(flashcards, sourcePage);
 
   return (
     <div>
@@ -37,22 +35,9 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
           formality={flashcard.formal} 
           previouslyCorrect={flashcard.successes > 0} 
           setAnswerChecked={setAnswerChecked} 
+          onThumbsDown={onThumbsDown}
+          onThumbsUp={onThumbsUp}
         />
-      )}
-      
-      {/* Display Thumbs Up/Down buttons if answer is checked */}
-      { answerChecked && (
-        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-          <p>Did you guess correctly?</p>
-          <button id="btnThumbsUp" onClick={onThumbsUp}>
-            <img src={imgThumbsUp} alt="Iggy" style={{ display: 'block', margin: '0 auto' , maxWidth: '70%' }} />
-            Yes
-          </button>
-          <button id="btnThumbsDown" onClick={onThumbsDown}>
-            <img src={imgThumbsDown} alt="Iggy" style={{ display: 'block', margin: '0 auto', maxWidth: '70%' }} />
-            No
-          </button>
-        </div>
       )}
 
       {/* Display Score and Remaining Cards */}
@@ -66,8 +51,12 @@ export default function FlashCardReview({ flashcards, completeButtonText, onComp
             <div>
               <p>You've completed the deck with a score of {numCorrect} out of {numCorrect + numIncorrect}!</p>
               {/* onComplete is a prop passed to handle navigation back */}
-              <button onClick={onComplete}>{completeButtonText}</button>
-              <button style={{marginTop: "5px"}} onClick={onRetryDeck}>Retry Deck</button>
+              <div className='button-container'>
+                <button className='feedback-btn btn-success' onClick={onComplete}>{completeButtonText}</button>
+                <button className='feedback-btn' onClick={onRetryDeck}>
+                  Retry Deck
+                </button>
+              </div>
             </div>
           )}
         </div>

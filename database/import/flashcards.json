@@ -1,42 +1,146 @@
 [
-  {"english": "Hello (formal)", "swissGerman": "Grüezi", "formal": true, "category": "Greetings"},
-  {"english": "Hello (to several people)", "swissGerman": "Grüezi mitenand", "formal": true, "category": "Greetings"},
-  {"english": "Good morning", "swissGerman": "Guete Morge", "formal": true, "category": "Greetings"},
-  {"english": "Good day", "swissGerman": "Guete Tag", "formal": true, "category": "Greetings"},
-  {"english": "Good evening", "swissGerman": "Guete Abig", "formal": true, "category": "Greetings"},
-  {"english": "Good night (parting)", "swissGerman": "Guet Nacht", "formal": true, "category": "Greetings"},
-  {"english": "How are you? (formal)", "swissGerman": "Wie gaht es Ihne?", "formal": true, "category": "Greetings"},
-  {"english": "Nice to meet you", "swissGerman": "Freut mi, Sie z kenne", "formal": true, "category": "Greetings"},
-  {"english": "Welcome (formal)", "swissGerman": "Willkomme", "formal": true, "category": "Greetings"},
-  {"english": "Goodbye (formal)", "swissGerman": "Uf Widerluege", "formal": true, "category": "Greetings"},
-  {"english": "Hi", "swissGerman": "Hoi", "formal": false, "category": "Greetings"},
-  {"english": "Hi everyone", "swissGerman": "Hoi zäme", "formal": false, "category": "Greetings"},
-  {"english": "Hello (casual)", "swissGerman": "Sali", "formal": false, "category": "Greetings"},
-  {"english": "Hello (very informal)", "swissGerman": "Salü", "formal": false, "category": "Greetings"},
-  {"english": "Hey", "swissGerman": "Hey", "formal": false, "category": "Greetings"},
-  {"english": "How are you? (informal)", "swissGerman": "Wie gahts?", "formal": false, "category": "Greetings"},
-  {"english": "What’s up?", "swissGerman": "Was lauft?", "formal": false, "category": "Greetings"},
-  {"english": "See you!", "swissGerman": "Bis glii", "formal": false, "category": "Greetings"},
-  {"english": "Goodbye (informal)", "swissGerman": "Tschüss", "formal": false, "category": "Greetings"},
-  {"english": "Bye everyone", "swissGerman": "Tschau zäme", "formal": false, "category": "Greetings"},
-  {"english": "Do you speak English? (formal)", "swissGerman": "Spreched Si Englisch?", "formal": true, "category": "Survival"},
-  {"english": "Could you please repeat that?", "swissGerman": "Chönd Si das bitte wiederhole?", "formal": true, "category": "Survival"},
-  {"english": "I don’t understand", "swissGerman": "Ich verstoh das nöd", "formal": true, "category": "Survival"},
-  {"english": "Can you please speak slower?", "swissGerman": "Chönd Si bitte langsam rede?", "formal": true, "category": "Survival"},
-  {"english": "Where is the toilet?", "swissGerman": "Wo isch s’WC, bitte?", "formal": true, "category": "Survival"},
-  {"english": "How much does it cost?", "swissGerman": "Was koschtet das?", "formal": true, "category": "Survival"},
-  {"english": "I need help", "swissGerman": "Ich bruuche Hilf", "formal": true, "category": "Survival"},
-  {"english": "Can you help me, please?", "swissGerman": "Chönd Si mir bitte helfe?", "formal": true, "category": "Survival"},
-  {"english": "I am lost", "swissGerman": "Ich ha mi verirrt", "formal": true, "category": "Survival"},
-  {"english": "Could you show me on the map?", "swissGerman": "Chönd Si mir das uf der Charte zeige?", "formal": true, "category": "Survival"},
-  {"english": "Do you speak English? (informal)", "swissGerman": "Schwätzisch Englisch?", "formal": false, "category": "Survival"},
-  {"english": "Can you repeat that?", "swissGerman": "Chasch das nomol säge?", "formal": false, "category": "Survival"},
-  {"english": "I don’t get it", "swissGerman": "Ich check das nöd", "formal": false, "category": "Survival"},
-  {"english": "Can you talk slower?", "swissGerman": "Chasch langsamer rede?", "formal": false, "category": "Survival"},
-  {"english": "Where’s the toilet?", "swissGerman": "Wo isch s’WC?", "formal": false, "category": "Survival"},
-  {"english": "How much is it?", "swissGerman": "Was koschtet?", "formal": false, "category": "Survival"},
-  {"english": "I need help!", "swissGerman": "Ich bruuch Hilf!", "formal": false, "category": "Survival"},
-  {"english": "Can you help me?", "swissGerman": "Chasch mir helfe?", "formal": false, "category": "Survival"},
-  {"english": "I’m lost", "swissGerman": "Ich ha mi verlaufe", "formal": false, "category": "Survival"},
-  {"english": "Can you show me?", "swissGerman": "Chasch mir das zeige?", "formal": false, "category": "Survival"}
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Thank you",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "Merci",
+    "formal": false,
+    "tags": "Social"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "You're welcome / Please",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "Gärn gscheh / Bitte",
+    "formal": false,
+    "tags": "Social"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Enjoy your meal",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "Än Guete",
+    "formal": false,
+    "tags": "Food"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Kitchen cupboard",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "Chuchichästli",
+    "formal": false,
+    "tags": "Common"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Carrot",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "Rüebli",
+    "formal": false,
+    "tags": "Food"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Work",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "Schaffe",
+    "formal": false,
+    "tags": "Verbs"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "A little bit",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "äs bizzeli",
+    "formal": false,
+    "tags": "Common"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "To walk / To go",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "laufe",
+    "formal": false,
+    "tags": "Verbs"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "House",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "Huus",
+    "formal": false,
+    "tags": "Vocabulary"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Child",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "Chind",
+    "formal": false,
+    "tags": "Vocabulary"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Quick / Fast",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "gschiid",
+    "formal": false,
+    "tags": "Vocabulary"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Yesterday",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "geschter",
+    "formal": false,
+    "tags": "Time"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Today",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "hüt",
+    "formal": false,
+    "tags": "Time"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Tomorrow",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "morn",
+    "formal": false,
+    "tags": "Time"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Everything",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "alles",
+    "formal": false,
+    "tags": "Common"
+  },
+  {
+    "category": "Basics",
+    "firstLanguage": "English",
+    "firstLanguageText": "Always",
+    "secondLanguage": "Swiss-German",
+    "secondLanguageText": "immer",
+    "formal": false,
+    "tags": "Common"
+  }
 ]

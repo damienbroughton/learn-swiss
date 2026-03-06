@@ -1,6 +1,7 @@
 import { db } from '../config/db.js';
 import { ObjectId } from 'mongodb';
 import type { ScenarioDocument } from '../types/scenarioInterfaces.js'; // Import interfaces
+import { ref } from 'process';
 
 
 /**
@@ -64,6 +65,7 @@ export async function getScenarios(uid: string | undefined) {
         const previouslyComplete = scenario.successes > 0;  
         return {
           title: scenario.title,
+          reference: scenario.reference,
           category: scenario.category,
           difficulty: scenario.difficulty,
           tags: scenario.tags,
@@ -78,6 +80,7 @@ export async function getScenarios(uid: string | undefined) {
     const scenarios = await db.collection('scenarios').find().toArray();
     return scenarios.map(scenario => ({
       title: scenario.title,
+      reference: scenario.reference,
       category: scenario.category,
       difficulty: scenario.difficulty,
       tags: scenario.tags,
@@ -91,13 +94,13 @@ export async function getScenarios(uid: string | undefined) {
 }
 
 /**
- * Retrieve full scenario details by title.
+ * Retrieve full scenario details by reference.
  */
-export async function getScenarioByTitle(title: string) {
+export async function getScenarioByReference(reference: string) {
   try {
     if (!db) throw new Error('Database connection not initialized. Check connectToDB call.');
 
-    const scenario = await db.collection('scenarios').findOne({ title });
+    const scenario = await db.collection('scenarios').findOne({ reference });
     return scenario;
 
   } catch (err) {

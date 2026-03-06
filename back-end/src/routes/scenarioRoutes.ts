@@ -1,7 +1,7 @@
 import express from "express";
 import type { Response } from 'express';
 import { requireAuth } from '../middleware/requireAuth.js';
-import { getScenarios, getScenarioByTitle } from "../services/scenarioService.js";
+import { getScenarios, getScenarioByReference } from "../services/scenarioService.js";
 import type { EnrichedRequest } from '../types/requestInterfaces.js'; 
 
 export const router = express.Router();
@@ -32,16 +32,16 @@ router.get('/', async (req: EnrichedRequest, res: Response) => {
  *
  * Public endpoint.
  *
- * @param {string} title - Title of the scenario
+ * @param {string} reference - Reference of the scenario
  */
-router.get('/:title', async (req: EnrichedRequest, res: Response) => {
+router.get('/:reference', async (req: EnrichedRequest, res: Response) => {
   try {
-    const { title } = req.params;
+    const { reference } = req.params;
 
-    if (!title || typeof title !== 'string') 
-      return res.status(400).send('No Title Provided.');
+    if (!reference || typeof reference !== 'string') 
+      return res.status(400).send('No Reference Provided.');
 
-    const scenario = await getScenarioByTitle( title );
+    const scenario = await getScenarioByReference( reference );
 
     if (!scenario) {
       return res.status(404).send('Scenario not found');
