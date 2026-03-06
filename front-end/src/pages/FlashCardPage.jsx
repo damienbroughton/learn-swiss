@@ -30,6 +30,7 @@ export default function FlashCardPage() {
       flashcards={flashcards}
       completeButtonText="Back to flashcards"
       onComplete={handleReviewComplete}
+      sourcePage="FlashCardPage"
     />
     </>
   );

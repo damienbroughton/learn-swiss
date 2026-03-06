@@ -5,9 +5,10 @@ import useUser from "./useUser";
 /**
  * Custom hook to manage the state and logic for flashcard review.
  * @param {Array} initialFlashcards - The initial array of flashcard objects.
+ * @param {string} sourcePage - The source page for the flashcard review (e.g., "flashcards", "stories").
  * @returns {Object} State and functions for the flashcard review.
  */
-export function useFlashCardReview(initialFlashcards) {
+export function useFlashCardReview(initialFlashcards, sourcePage) {
   // Use a copy of the initial array for the deck state
   const [flashcardDeck, setFlashcardDeck] = useState([]);
   const [numCorrect, setNumCorrect] = useState(0);
@@ -90,11 +91,21 @@ export function useFlashCardReview(initialFlashcards) {
   }, [flashcard, flashcardDeck, completeCard, getNextCard]);
 
   // Handler to retry the deck with shuffled cards
-  const onRetryDeck = useCallback(() => {
+  const onRetryDeck = useCallback(async () => {
+    const category = initialFlashcards[0]?.category;
+    const secondLanguage = initialFlashcards[0]?.secondLanguage;
+
+    let shuffledDeck;
+    if (sourcePage === "StoryPage") {
+      shuffledDeck = shuffleCards(initialFlashcards);
+    } else {
+      const newDeck = await api.get(`/flashcards/${category}/${secondLanguage}?forReview=true`);
+      shuffledDeck = shuffleCards(newDeck.data);
+    }
+
     setNumCorrect(0);
     setNumIncorrect(0);
     setAnswerChecked(false);
-    const shuffledDeck = shuffleCards(initialFlashcards);
     setFlashcardDeck([...shuffledDeck]);
     setFlashcard(getNextCard([...shuffledDeck])); // Pass the shuffled deck
   }, [initialFlashcards, shuffleCards, getNextCard]);
