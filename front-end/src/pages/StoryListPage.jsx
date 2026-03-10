@@ -90,7 +90,7 @@ export default function StoryListPage() {
                   tabIndex={0}
                   role="button"
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/stories/${story.reference}`); } }}
-                  aria-label={`Open flashcard category: ${story.reference}`}
+                  aria-label={`Open story: ${story.reference}`}
                 >
                   <img src={story.language === "Swiss-German" ? imgStoriesCH : imgStoriesDE} alt={story.title} className="scenario-card-img" />
                   <div className="scenario-card-title">{story.title}</div>

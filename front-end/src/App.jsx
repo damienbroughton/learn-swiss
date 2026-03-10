@@ -10,6 +10,7 @@ import ArticlePage, {loader as articleLoader} from './pages/ArticlePage'
 import ChallengeListPage, {loader as challengeListLoader} from './pages/ChallengeListPage'
 import Dashboard, {loader as dashboardLoader} from './pages/DashboardPage'
 import ChallengePage, {loader as challengeLoader} from './pages/ChallengePage'
+import ContactPage from './pages/ContactPage'
 import Layout from './Layout'
 import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from './pages/LoginPage'
@@ -65,6 +66,10 @@ const routes = [{
     path: '/challenges',
     element: <ChallengeListPage />,
     loader: challengeListLoader
+  },
+  {
+    path: '/contact',
+    element: <ContactPage />
   },
   {
     path: '/dashboard',

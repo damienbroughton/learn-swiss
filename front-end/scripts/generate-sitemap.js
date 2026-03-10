@@ -16,9 +16,13 @@ async function generateSitemap() {
         { url: '/', changefreq: 'daily', priority: 1.0 },
         { url: '/make-flashcards', changefreq: 'weekly', priority: 0.8 },
         { url: '/flashcards', changefreq: 'weekly', priority: 0.7 },
+        { url: '/flashcards/Basics', changefreq: 'weekly', priority: 0.5 },
         { url: '/scenarios', changefreq: 'weekly', priority: 0.6 },
         { url: '/challenges', changefreq: 'weekly', priority: 0.5 },
         { url: '/stories', changefreq: 'weekly', priority: 0.8 },
+        { url: '/stories/räbeliechtli', changefreq: 'weekly', priority: 0.8 },
+        { url: '/stories/-luftballons', changefreq: 'weekly', priority: 0.8 },
+        { url: '/stories/de-frühlig-isch-au-scho-uf-dberge-cho', changefreq: 'weekly', priority: 0.8 },
         { url: '/login', changefreq: 'weekly', priority: 0.5 },
         { url: '/create-account', changefreq: 'weekly', priority: 0.5 }
     ]
