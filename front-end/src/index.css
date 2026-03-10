@@ -8,6 +8,7 @@
   height: auto;
   object-fit: contain;
   margin: 0 auto 1.5em auto;
+  display: block;
 }
 /* Scenario list and card styles */
 .scenario-list {
@@ -152,8 +153,21 @@ body {
   min-height: 100vh;
   background: var(--primary-light);
   color: var(--text-dark);
+
+  display: flex;
+  flex-direction: column;
 }
 
+body > * {
+  width: 95%;
+}
+
+nav, main, footer {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 h1 {
   font-size: 2.5em;
@@ -239,7 +253,6 @@ button:focus-visible {
     height: auto;
 }
 
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -252,6 +265,11 @@ button:focus-visible {
     background-color: var(--primary);
     color: #fff;
   }
+}
+
+main {
+  flex: 1;
+  padding: 1rem 0;
 }
 
 nav {
@@ -395,6 +413,16 @@ a:hover {
   box-shadow: var(--shadow);
   padding: 0.1rem 1rem;
   transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
 }
 
 .speech-bubble-npc {
@@ -729,4 +757,18 @@ textarea:disabled {
   .table tr:last-child td:last-child {
     border-bottom: none;
   }
+}
+
+footer {
+  margin: auto;
+  background: var(--nav-bg);
+  color: var(--text-light);
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.8;
 }

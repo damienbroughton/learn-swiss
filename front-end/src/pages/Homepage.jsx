@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useSEOMeta from '../hooks/useSEOMeta';
 import PageHelmet from '../components/PageHelmet';
 import iggyImage from '../assets/IggyLogo.png';
-import useAppUser from '../hooks/useAppUser';
+import imgStoriesCH from '../assets/HedgeHogBook.png';
 
 export default function Homepage() {
-  const { appUser } = useAppUser();
+  const navigate = useNavigate();
+
+  const spotlightStory = {
+    title: "De Frühlig isch au scho uf d’Berge cho",
+    reference: "de-frühlig-isch-au-scho-uf-dberge-cho",
+    description: "Discover the beauty of Swiss German through our spotlight story, 'De Frühlig isch au scho uf d’Berge cho.' This engaging tale takes you on a journey through the Swiss Alps, capturing the essence of springtime in Switzerland."
+  }
 
   const meta = useSEOMeta({
     title: `Learn Swiss German (Schwiizertüütsch) - Free Lessons & Flashcards`,
@@ -27,8 +33,6 @@ export default function Homepage() {
     <PageHelmet {...meta} />
     <div className="container center">
       <div className="card">
-        {!appUser && <p>Welcome to Learn-Swiss. {meta.description}</p>}
-        {appUser && <p>Welcome back to Learn-Swiss{appUser && `, ${appUser.username}`}. Go to <Link to="/dashboard">Dashboard</Link></p>}
         <h1>Welcome to the World of Schwiizertüütsch!</h1>
         <div style={{ display: 'flex' }}>
           <img src={iggyImage} alt="Iggy the Hedgehog mascot" className="homepage-img" />
@@ -37,7 +41,33 @@ export default function Homepage() {
             <p>You’ve just encountered Swiss German (or Schwiizertüütsch), a vibrant, soulful, and surprisingly diverse collection of Alemannic dialects that serve as the heartbeat of everyday life in Switzerland.</p>
           </div>
         </div>
-        <hr />
+      </div>
+    </div>
+    <div className="container center">
+      <div className="card">
+        <h2>Learn Swiss German (Schwiizertüütsch) with stories</h2>
+          <ul className="scenario-list">
+            <li key="overview" className="scenario-list-item">Learn a swiss story, section by section with flashcards and then read the story with your newfound knowledge.</li>
+            <li key={spotlightStory.reference} className="scenario-list-item">
+              <div
+                className="scenario-card"
+                onClick={() => navigate(`/stories/${spotlightStory.reference}`)}
+                tabIndex={0}
+                role="button"
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/stories/${spotlightStory.reference}`); } }}
+                aria-label={`Open story: ${spotlightStory.title}`}
+              >
+                <img src={imgStoriesCH} alt={spotlightStory.title} className="scenario-card-img" />
+                <div className="scenario-card-title">{spotlightStory.title}</div>
+              </div>
+            </li>
+            <li key="spotlight" className="scenario-list-item">{spotlightStory.description}</li>
+
+          </ul>
+      </div>
+    </div> 
+    <div className="container center">
+      <div className="card">
         <h2>Is it different from High German?</h2>
         <p>In short: Yes. While "High German" (Hochdeutsch) is what you’ll find in textbooks or on the evening news, Swiss German is what people actually use to joke with friends, order coffee, and talk to their families.</p>
         <p>Think of it this way: High German is the language of the head (formal and structured), while Swiss German is the language of the heart. The grammar is different, the vocabulary is unique, and the pronunciation is much more "throaty" and rhythmic.</p>
@@ -70,6 +100,10 @@ export default function Homepage() {
           </ul>
           <p>If you want to sound friendly and local, adding a -li to the end of a noun is the fastest way to a Swiss person’s heart!</p>
         <hr />
+      </div>
+    </div>
+    <div className="container center">
+      <div className="card">
         <h2>Some words & phrases to get you started</h2>
         <div className="table-wrapper">
           <table className="table">

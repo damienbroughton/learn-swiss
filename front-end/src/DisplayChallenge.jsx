@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import imgNeutralDE from './assets/Eber-Neutral.png';
 import imgConfusedDE from './assets/Eber-Confused.png';
 import imgHappyDE from './assets/Eber-Happy.png';
@@ -45,6 +45,8 @@ export default function DisplayChallenge({challenge, mode, onNext, recordSuccess
             <img src={image} alt="Chatting Hedgehog" style={{ float:'left', marginRight: '10px', maxWidth: '180px', width: '50%' }} />
             <h4>{sentenceParts[0]}<u>{currentOption}</u>{sentenceParts[1]}</h4>
             <br />
+            <br />
+            <br />
             <div>
               {mode === 'practice' && isCorrect !== true && challenge.content.options.map((optionText, index) => (
                 <button key={`${index}`} 
@@ -58,14 +60,14 @@ export default function DisplayChallenge({challenge, mode, onNext, recordSuccess
             <button
               id={`check-answer-button-${challenge.reference}`}
               style={{ float: 'right', marginRight: '6%' }}
-              className="answerbutton"
+              className="btn-success"
               hidden={isCorrect === true}
               onClick={() => { onCheckAnswerClick(currentOption); }}>
               {isChecking ? 'Checking..' : 'Check Answer'}
             </button>
             <button
               id={`next-button-${challenge.reference}`}
-              className="answerbutton"
+              className="btn-success"
               style={{ float: 'right', marginRight: '6%' }}
               hidden={isCorrect !== true}
               onClick={() => { onNext(); }}>

@@ -1,6 +1,6 @@
 import api from "../api";
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useSEOMeta from '../hooks/useSEOMeta';
 import PageHelmet from '../components/PageHelmet';
 import useStoryPolling from "../hooks/useStoryPolling.js"
@@ -16,9 +16,12 @@ import imgError from '../assets/ErrorImage.png';
 
 
 export default function StoryPage() {
+    const navigate = useNavigate();
     const { story: initialStory } = useLoaderData();
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
-    const [showStory, setShowStory] = useState(false);
+    const [showStorySection, setShowStorySection] = useState(false);
+    const [showCompleteStory, setShowCompleteStory] = useState(false);
+    const [storyComplete, setStoryComplete] = useState(false);
     const [isReviewingFlashcards, setIsReviewingFlashcards] = useState(true);
 
     const { story, isLoading } = useStoryPolling(initialStory.reference, initialStory);
@@ -29,15 +32,22 @@ export default function StoryPage() {
         const sectionIndex = story.metadata?.sectionIndex;
         if (sectionIndex !== undefined && sectionIndex >= 0 && sectionIndex < story.sections?.length) {
             setCurrentSectionIndex(sectionIndex);
+            setShowCompleteStory(false);
+        } 
+        else if (sectionIndex === story.sections?.length) {
+            setCurrentSectionIndex(sectionIndex);
+            setShowCompleteStory(true);
+            setStoryComplete(true);
         } else {
             setCurrentSectionIndex(0);
+            setShowCompleteStory(false);
         }
-        setShowStory(false);
+        setShowStorySection(false);
         setIsReviewingFlashcards(true);
     }, [story]);
 
     const title = `Learn-Swiss: ${story.title} - Read Swiss-German Stories`;
-    const description = `Read the story '${story.title}' in ${story.language}. Learn vocabulary with AI-generated flashcards and practice language skills through authentic content.`;
+    const description = `Read the story '${story.title}' in ${story.language}. ${story.content.substring(0, 150)}`;
     const canonicalUrl = `https://www.learn-swiss.ch/stories/${story.reference}`;
     const meta = useSEOMeta({
       title: title,
@@ -54,7 +64,22 @@ export default function StoryPage() {
     // Handle completing flashcard review
     const handleReviewComplete = () => {
         setIsReviewingFlashcards(false);
-        setShowStory(true);
+        setShowStorySection(true);
+    };
+
+    // Handle navigating to a section
+    const handleShowSection = (sectionIndex) => {
+        setCurrentSectionIndex(sectionIndex);
+        setShowStorySection(false);
+        setShowCompleteStory(false);
+        setIsReviewingFlashcards(true);
+    };
+
+    // Handle navigating to final section
+    const handleShowFinalSection = () => {
+        setShowStorySection(false);
+        setIsReviewingFlashcards(false);
+        setShowCompleteStory(true);
     };
 
     // Handle moving to next section
@@ -62,21 +87,27 @@ export default function StoryPage() {
         await completeStorySection();
         if (!isLastSection) {
             setCurrentSectionIndex(currentSectionIndex + 1);
-            setShowStory(false);
+            setShowStorySection(false);
             setIsReviewingFlashcards(true);
         }
+    };
+
+    // Handle moving to next section
+    const handleFinalSection = async () => {
+        await completeStorySection();
+        handleShowFinalSection();
     };
 
     // Handle reviewing flashcards again
     const handleReviewAgain = () => {
         setIsReviewingFlashcards(true);
-        setShowStory(false);
+        setShowStorySection(false);
     };
 
     // Handle skipping flashcards
     const handleSkipFlashcards = () => {
         setIsReviewingFlashcards(false);
-        setShowStory(true);
+        setShowStorySection(true);
     };
 
     const completeStorySection = async () => {
@@ -101,18 +132,29 @@ export default function StoryPage() {
             {story.sections && story.sections.length > 0 && (
                 <div style={{ marginBottom: '20px', textAlign: 'center' }}>
                     <div style={{ display: 'flex', gap: '6px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                        {story.sections.map((section, idx) => (
-                            <button
-                                key={section.sectionId}
-                                disabled={idx !== currentSectionIndex}
-                                style={{
-                                    opacity: idx === currentSectionIndex ? 1 : 0.6,
-                                    cursor: idx === currentSectionIndex ? 'not-allowed' : 'pointer'
-                                }}
-                            >
-                                Section {idx + 1}
-                            </button>
-                        ))}
+                        {story.sections.map((section, idx) => {
+                            const isDisabled = !storyComplete && idx !== currentSectionIndex;
+
+                            return (
+                                <button
+                                    key={section.sectionId}
+                                    disabled={isDisabled}
+                                    style={{
+                                        opacity: isDisabled ? 0.6 : 1,
+                                        cursor: isDisabled ? 'not-allowed' : 'pointer'
+                                    }}
+                                    onClick={() => handleShowSection(idx)}
+                                >
+                                    Section {idx + 1}
+                                </button>
+                            );
+                        })}
+                        <button
+                            key="complete-story-button"
+                            onClick={() => handleShowFinalSection()}
+                        >
+                            Full Story
+                        </button>
                     </div>
                 </div>
             )}
@@ -157,7 +199,7 @@ export default function StoryPage() {
             )}
 
             {/* Step 2: Read Story Section */}
-            {!isLoading && showStory && currentSection && (
+            {!isLoading && showStorySection && currentSection && (
                 <div>
                     <DisplayStorySection 
                         id={currentSection.sectionId} 
@@ -170,11 +212,14 @@ export default function StoryPage() {
                             {isLastSection && (
                                 <div style={{ textAlign: 'center' }}>
                                     <img src={story.language === "Swiss-German" ? imgCelebrationCH : imgCelebrationDE} alt="Iggy" className="button-icon" />
-                                    <p>Congratulations! You've completed the story.</p>
+                                    <p>Congratulations! You have finished the last section.</p>
+                                    <button onClick={handleFinalSection} className='btn-success'>
+                                        Complete Story
+                                    </button>
                                 </div>
                             )}
                             {!isLastSection && (
-                                <button onClick={handleNextSection} style={{ fontWeight: 'bold' }}>
+                                <button onClick={handleNextSection} className='btn-success'>
                                     Next Section
                                 </button>
                             )}
@@ -185,6 +230,17 @@ export default function StoryPage() {
                             )}
                         </div>
                     </div>
+                </div>
+            )}
+
+            {/* Step Final: Read the complete story */}
+            {showCompleteStory && (
+                <div>
+                    <DisplayStorySection 
+                        id="complete-story"
+                        sectionText={story.content}
+                    />
+                    <button onClick={() => navigate('/stories')}>Try another Story</button>
                 </div>
             )}
 
