@@ -12,7 +12,7 @@ export default function ScenarioListPage() {
     title: `Learn-Swiss: Scenarios - Practice Real-World Swiss-German Conversations`,
     description: `Learn Swiss-German through realistic scenarios and conversations. Practice common situational dialogues to improve comprehension and speaking skills.`,
     canonicalUrl: `https://www.learn-swiss.ch/scenarios`,
-    keywords: `Swiss German scenarios, conversation practice, Schwiizertüütsch dialogues, situational learning`,
+    keywords: `Swiss German scenarios, conversation practice, Schwiizerdüütsch dialogues, situational learning`,
     schema: { "@context": "https://schema.org", "@type": "CollectionPage", "headline": "Scenarios", "description": "Practice real-world conversations", "url": "https://www.learn-swiss.ch/scenarios" }
   });
 

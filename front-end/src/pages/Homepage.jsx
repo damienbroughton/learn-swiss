@@ -14,10 +14,10 @@ export default function Homepage() {
   }
 
   const meta = useSEOMeta({
-    title: `Learn Swiss German (Schwiizertüütsch) - Free Lessons & Flashcards`,
-    description: `Master Swiss German with interactive flashcards, real-world scenarios, and authentic stories. Learn Schwiizertüütsch dialects from Zurich, Bern, Basel & more.`,
+    title: `Learn Swiss German (Schwiizerdüütsch) - Free Lessons & Flashcards`,
+    description: `Master Swiss German with interactive flashcards, real-world scenarios, and authentic stories. Learn Schwiizerdüütsch/Schwiizerdüütsch dialects from Zurich, Bern, Basel & more.`,
     canonicalUrl: `https://www.learn-swiss.ch/`,
-    keywords: `Swiss German, Schwiizertüütsch, language learning, dialects, Zurich, Bern, Basel, language lessons, flashcards`,
+    keywords: `Swiss German, Schwiizerdüütsch, Schwiizertüütsch,language learning, dialects, Zurich, Bern, Basel, language lessons, flashcards, stories, scenarios, challenges`,
     schema: {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -33,19 +33,19 @@ export default function Homepage() {
     <PageHelmet {...meta} />
     <div className="container center">
       <div className="card">
-        <h1>Welcome to the World of Schwiizertüütsch!</h1>
+        <h1>Welcome to the World of Schwiizerdüütsch!</h1>
         <div style={{ display: 'flex' }}>
           <img src={iggyImage} alt="Iggy the Hedgehog mascot" className="homepage-img" />
           <div>
             <p>Grüezi! If you’ve ever stepped off a train in Zurich or walked through a village in the Alps and thought, "I studied German in school, but I have no idea what these people are saying,"—don't worry, you aren’t alone.</p>
-            <p>You’ve just encountered Swiss German (or Schwiizertüütsch), a vibrant, soulful, and surprisingly diverse collection of Alemannic dialects that serve as the heartbeat of everyday life in Switzerland.</p>
+            <p>You’ve just encountered Swiss German (or Schwiizerdüütsch), a vibrant, soulful, and surprisingly diverse collection of Alemannic dialects that serve as the heartbeat of everyday life in Switzerland.</p>
           </div>
         </div>
       </div>
     </div>
     <div className="container center">
       <div className="card">
-        <h2>Learn Swiss German (Schwiizertüütsch) with stories</h2>
+        <h2>Learn Swiss German (Schwiizerdüütsch) with stories</h2>
           <ul className="scenario-list">
             <li key="overview" className="scenario-list-item">Learn a swiss story, section by section with flashcards and then read the story with your newfound knowledge.</li>
             <li key={spotlightStory.reference} className="scenario-list-item">
@@ -74,10 +74,10 @@ export default function Homepage() {
         <h2>A Mosaic of Dialects</h2>
         <p>One of the most beautiful things about Swiss German is that there is no single "standard" version. Instead, it’s a mosaic of regional dialects:</p>
         <ul>
-          <li><strong>Zurich German (Züritüütsch):</strong> The fast-paced, urban energy of Zurich.</li>
+          <li><strong>Zurich German (Züridüütsch):</strong> The fast-paced, urban energy of Zurich.</li>
           <li><strong>Bernese German (Bärndütsch):</strong> The singing, melodic tones of Bernese.</li>
           <li><strong>Basel German (Baseldytsch):</strong> The distinct, sharp sounds of Basel.</li>
-          <li><strong>Wallis German (Wallisdytsch):</strong> The deep, ancient-sounding dialects of the Wallis mountains.</li>
+          <li><strong>Wallis German (Walliserdytsch):</strong> The deep, ancient-sounding dialects of the Wallis mountains.</li>
         </ul>
         <p>Every valley and city has its own flavor, yet somehow, everyone understands each other. It’s a linguistic miracle!</p>
         <hr />
@@ -99,7 +99,6 @@ export default function Homepage() {
             <li>Even a cat (Chatz) becomes a Chätz<strong>li</strong>.</li>
           </ul>
           <p>If you want to sound friendly and local, adding a -li to the end of a noun is the fastest way to a Swiss person’s heart!</p>
-        <hr />
       </div>
     </div>
     <div className="container center">
@@ -146,12 +145,12 @@ export default function Homepage() {
               <td>Yes please</td>
             </tr>
             <tr>
-              <td>Nai, danke</td>
+              <td>Nei, danke</td>
               <td>Nein, danke</td>
               <td>No thank you</td>
             </tr>
             <tr>
-              <td>Enschuldigung</td>
+              <td>Entschuldigung</td>
               <td>Entschuldigung</td>
               <td>Excuse me</td>
             </tr>
@@ -166,7 +165,7 @@ export default function Homepage() {
               <td>I am.. / My name is..</td>
             </tr>
             <tr>
-              <td>Froit mich, di känna z'larna</td>
+              <td>Froit mich, dich känne z'lerne</td>
               <td>Freut mich, Sie kennenzulernen</td>
               <td>It's a pleasure to meet you</td>
             </tr>
@@ -181,12 +180,12 @@ export default function Homepage() {
               <td>Sorry, I don't understand you</td>
             </tr>
             <tr>
-              <td>Was händ Sii gsait?</td>
+              <td>Was händ Sii gseit?</td>
               <td>Was haben Sie gesagt?</td>
               <td>What did you say?</td>
             </tr>
             <tr>
-              <td>Wänd Sii öppis go trinkä?</td>
+              <td>Wetsch du öppis go trinke?</td>
               <td>Möchtest du etwas trinken gehen?</td>
               <td>Would you like to go for a drink?</td>
             </tr>       
