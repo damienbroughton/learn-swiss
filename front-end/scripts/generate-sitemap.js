@@ -5,6 +5,22 @@ import { SitemapStream, streamToPromise } from 'sitemap';
 
 const SITE_URL = "https://www.learn-swiss.ch"
 
+async function fetchJson(pathSegment) {
+    const url = `${SITE_URL}/api/${pathSegment}`;
+    try {
+        const res = await fetch(url);
+        if (!res.ok) {
+            console.error(`Failed to fetch ${url}: ${res.status} ${res.statusText}`);
+            return [];
+        }
+        const data = await res.json();
+        return Array.isArray(data) ? data : [];
+    } catch (err) {
+        console.error(`Error fetching ${url}:`, err);
+        return [];
+    }
+}
+
 async function generateSitemap() {
     console.log('Generating Sitemap...');
 
@@ -16,22 +32,70 @@ async function generateSitemap() {
         { url: '/', changefreq: 'daily', priority: 1.0 },
         { url: '/make-flashcards', changefreq: 'weekly', priority: 0.8 },
         { url: '/flashcards', changefreq: 'weekly', priority: 0.7 },
-        { url: '/flashcards/Basics', changefreq: 'weekly', priority: 0.5 },
         { url: '/scenarios', changefreq: 'weekly', priority: 0.6 },
         { url: '/challenges', changefreq: 'weekly', priority: 0.5 },
         { url: '/stories', changefreq: 'weekly', priority: 0.8 },
-        { url: '/stories/räbeliechtli', changefreq: 'weekly', priority: 0.8 },
-        { url: '/stories/-luftballons', changefreq: 'weekly', priority: 0.8 },
-        { url: '/stories/de-frühlig-isch-au-scho-uf-dberge-cho', changefreq: 'weekly', priority: 0.8 },
         { url: '/login', changefreq: 'weekly', priority: 0.5 },
         { url: '/create-account', changefreq: 'weekly', priority: 0.5 }
     ]
 
-    // Define dynamic pages
-    // TODO: individual story pages
+    // Fetch dynamic content for individual pages
+    const [
+        stories,
+        scenarios,
+        challenges,
+        flashcardCategories,
+    ] = await Promise.all([
+        // Stories collection – used for /stories/:reference
+        fetchJson('stories/'),
+        // Scenarios collection – used for /scenarios/:reference/:mode
+        fetchJson('scenarios/'),
+        // Challenges collection – used for /challenges/:reference/:mode
+        fetchJson('challenges/'),
+        // Flashcard categories for /flashcard/:category (Swiss-German)
+        fetchJson('flashcards/categories/Swiss-German'),
+    ]);
 
-    // combine static and TODO dynamic pages
-    const allLinks = [...staticPages];
+    const dynamicPages = [
+        // Individual story pages
+        ...stories
+            .filter(story => story && story.reference)
+            .map(story => ({
+                url: `/stories/${encodeURIComponent(story.reference)}`,
+                changefreq: 'weekly',
+                priority: 0.8,
+            })),
+
+        // Individual scenario pages – use "practice" as canonical mode
+        ...scenarios
+            .filter(scenario => scenario && scenario.reference)
+            .map(scenario => ({
+                url: `/scenarios/${encodeURIComponent(scenario.reference)}/practice`,
+                changefreq: 'weekly',
+                priority: 0.6,
+            })),
+
+        // Individual challenge pages – use "practice" as canonical mode
+        ...challenges
+            .filter(challenge => challenge && challenge.reference)
+            .map(challenge => ({
+                url: `/challenges/${encodeURIComponent(challenge.reference)}/practice`,
+                changefreq: 'weekly',
+                priority: 0.5,
+            })),
+
+        // Individual flashcard category pages
+        ...flashcardCategories
+            .filter(category => category && category.category)
+            .map(category => ({
+                url: `/flashcard/${encodeURIComponent(category.category)}`,
+                changefreq: 'weekly',
+                priority: 0.5,
+            })),
+    ];
+
+    // combine static and dynamic pages
+    const allLinks = [...staticPages, ...dynamicPages];
 
     //Create site map to stream
     const siteMapStream = new SitemapStream({
