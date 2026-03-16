@@ -1,13 +1,18 @@
 import api from "../api";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useSEOMeta from '../hooks/useSEOMeta';
 import PageHelmet from '../components/PageHelmet';
+import Filters from "../components/Filters";
 import imgDE from '../assets/Eber-Happy.png';
 
 
 export default function ChallengeListPage() {
-  const {challenges} = useLoaderData();
+  const {initialChallenges} = useLoaderData();
+
+  const [challenges, setChallenges] = useState([...initialChallenges]);
+  const [searchQuery, setSearchQuery] = useState("");
   
   const meta = useSEOMeta({
     title: `Learn-Swiss: Challenges - Test Your Swiss-German Skills`,
@@ -16,6 +21,13 @@ export default function ChallengeListPage() {
     keywords: `Swiss German challenges, German language exercises, Schwiizerdüütsch, dialect learning`,
     schema: { "@context": "https://schema.org", "@type": "CollectionPage", "headline": "Challenges", "description": "Challenge your Swiss-German & German knowledge", "url": "https://www.learn-swiss.ch/challenges" }
   });
+
+  useEffect(() => {
+    const lowerQuery = searchQuery.toLowerCase();
+    const filteredChallenges = initialChallenges.filter((challenge) =>
+        challenge.title.toLowerCase().includes(lowerQuery));
+      setChallenges(filteredChallenges);
+  }, [initialChallenges, searchQuery])
 
   const navigate = useNavigate();
 
@@ -26,6 +38,17 @@ export default function ChallengeListPage() {
       <div className="card" >
         <h1>Challenges</h1>
           <p>{meta.description}</p>
+          <Filters
+            items={[
+              {
+                type: "text",
+                id: "search-query",
+                label: "Search",
+                value: searchQuery,
+                onChange: (value) => setSearchQuery(value),
+              },
+            ]}
+          />
           <ul className="scenario-list">
             {challenges.map(challenge => (
               <li key={challenge.reference} className="scenario-list-item">
@@ -51,6 +74,6 @@ export default function ChallengeListPage() {
 
 export async function loader () {
   const response = await api.get(`/challenges/`);
-  const challenges = response.data;
-  return {challenges};
+  const initialChallenges = response.data;
+  return {initialChallenges};
 }
