@@ -1,14 +1,28 @@
 import api from "../api";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useSEOMeta from '../hooks/useSEOMeta';
 import PageHelmet from '../components/PageHelmet';
 import imgFlashCards from '../assets/HedgeHogFlashCards.png';
+import Filters from "../components/Filters";
 
 
 export default function FlashCardListPage() {
-  const {categories} = useLoaderData();
-  
+  const {initialFlashcardCategories} = useLoaderData();
+
+  const [flashcardCategories, setFlashcardCategories] = useState([...initialFlashcardCategories]);
+  const [secondLanguage, setSecondLanguage] = useState("Swiss-German");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const lowerQuery = searchQuery.toLowerCase();
+    const filteredCategories = initialFlashcardCategories.filter((category) =>
+        (category.secondLanguage === secondLanguage)
+        && category.category.toLowerCase().includes(lowerQuery));
+      setFlashcardCategories(filteredCategories);
+  }, [initialFlashcardCategories, secondLanguage, searchQuery])
+
   const meta = useSEOMeta({
     title: `Learn-Swiss: Flashcards - Swiss-German Vocabulary Builder`,
     description: `Build your Swiss-German vocabulary by practicing with interactive flashcards. Learn Schwiizerdüütsch words and phrases organized by category.`,
@@ -26,8 +40,30 @@ export default function FlashCardListPage() {
       <div className="card" >
         <h1>Flashcards</h1>
           <p>{meta.description}</p>
+          <Filters
+            items={[
+              {
+                type: "select",
+                id: "secondLanguage",
+                label: "Language",
+                value: secondLanguage,
+                onChange: (value) => setSecondLanguage(value),
+                options: [
+                  { value: "Swiss-German" },
+                  // { value: "German" },
+                ],
+              },
+              {
+                type: "text",
+                id: "search-query",
+                label: "Search",
+                value: searchQuery,
+                onChange: (value) => setSearchQuery(value),
+              },
+            ]}
+          />
           <ul className="scenario-list">
-            {categories.map(category => (
+            {flashcardCategories.map(category => (
               <li key={category.category} className="scenario-list-item">
                 <div
                   className="scenario-card"
@@ -51,6 +87,6 @@ export default function FlashCardListPage() {
 
 export async function loader () {
   const response = await api.get(`/flashcards/categories/Swiss-German`);
-  const categories = response.data;
-  return {categories};
+  const initialFlashcardCategories = response.data;
+  return {initialFlashcardCategories};
 }
