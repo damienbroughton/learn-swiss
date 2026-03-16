@@ -20,7 +20,7 @@ export default function StoryListPage() {
     title: `Learn-Swiss: Stories - Read Swiss-German & German Content`,
     description: `Learn Swiss-German and German through authentic stories across multiple categories. Build vocabulary with AI-generated flashcards and contextual learning.`,
     canonicalUrl: `https://www.learn-swiss.ch/stories/`,
-    keywords: `Swiss German stories, German stories, Schwiizertüütsch reading, language learning content`,
+    keywords: `Swiss German stories, German stories, Schwiizerdüütsch reading, language learning content`,
     schema: { "@context": "https://schema.org", "@type": "CollectionPage", "headline": "Stories", "description": "Read authentic stories", "url": "https://www.learn-swiss.ch/stories/" }
   });
 

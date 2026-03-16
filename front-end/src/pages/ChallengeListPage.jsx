@@ -13,7 +13,7 @@ export default function ChallengeListPage() {
     title: `Learn-Swiss: Challenges - Test Your Swiss-German Skills`,
     description: `Challenge your Swiss-German & German knowledge with interactive exercises. Test vocabulary, grammar, and comprehension across multiple difficulty levels.`,
     canonicalUrl: `https://www.learn-swiss.ch/challenges`,
-    keywords: `Swiss German challenges, German language exercises, Schwiizertüütsch, dialect learning`,
+    keywords: `Swiss German challenges, German language exercises, Schwiizerdüütsch, dialect learning`,
     schema: { "@context": "https://schema.org", "@type": "CollectionPage", "headline": "Challenges", "description": "Challenge your Swiss-German & German knowledge", "url": "https://www.learn-swiss.ch/challenges" }
   });
 

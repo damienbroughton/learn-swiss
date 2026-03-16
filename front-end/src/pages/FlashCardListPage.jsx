@@ -11,9 +11,9 @@ export default function FlashCardListPage() {
   
   const meta = useSEOMeta({
     title: `Learn-Swiss: Flashcards - Swiss-German Vocabulary Builder`,
-    description: `Build your Swiss-German vocabulary by practicing with interactive flashcards. Learn Schwiizertüütsch words and phrases organized by category.`,
+    description: `Build your Swiss-German vocabulary by practicing with interactive flashcards. Learn Schwiizerdüütsch words and phrases organized by category.`,
     canonicalUrl: `https://www.learn-swiss.ch/flashcards`,
-    keywords: `Swiss German flashcards, vocabulary learning, Schwiizertüütsch, language practice`,
+    keywords: `Swiss German flashcards, vocabulary learning, Schwiizerdüütsch, language practice`,
     schema: { "@context": "https://schema.org", "@type": "CollectionPage", "headline": "Flashcards", "description": "Build your Swiss-German vocabulary", "url": "https://www.learn-swiss.ch/flashcards" }
   });
 
