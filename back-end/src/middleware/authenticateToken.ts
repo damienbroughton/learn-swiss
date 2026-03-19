@@ -3,8 +3,8 @@ import firebaseAdmin from "../config/firebase.js";
 import type { AuthenticatedRequest } from '../types/requestInterfaces.js'; 
 
 /**
- * Middleware to authenticate Firebase ID tokens from the 'authtoken' header.
- * * If an 'authtoken' header is present, it verifies the token and attaches
+ * Middleware to authenticate Firebase ID tokens from the 'Authorization: Bearer <token>' header.
+ * * If an Authorization header is present, it verifies the token and attaches
  * the decoded user information to `req.user`.
  * * Note: This middleware is designed to be optional; it allows requests without a 
  * token to continue (useful for public endpoints). 
@@ -21,17 +21,20 @@ export async function authenticateToken(
     next: NextFunction
 ): Promise<void> {
     
-    // Check for the 'authtoken' header (Express converts header names to lowercase)
-    const authtoken = req.headers.authtoken as string | undefined;
+    // Get the token from the Authorization header
+    const authHeader = req.headers.authorization;
+    const token = typeof authHeader === 'string' && authHeader.startsWith('Bearer ')
+        ? authHeader.slice('Bearer '.length).trim()
+        : undefined;
 
-    if (!authtoken) {
+    if (!token) {
         // No token provided: allow the request to continue unauthenticated
         return next();
     }
 
     try {
         // Verify Firebase ID token using the admin SDK
-        const decodedToken = await firebaseAdmin.auth().verifyIdToken(authtoken);
+        const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
         
         // Attach decoded user info to the request object for downstream use
         req.user = decodedToken; 

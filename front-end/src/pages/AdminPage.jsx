@@ -1,12 +1,12 @@
 import api from "../api";
 import { useState, useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Navigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import EditFlashCard from "../EditFlashCard";
-import useUser from "../hooks/useUser";
+import useAppUser from "../hooks/useAppUser";
 
 export default function AdminPage() {
-    const { categories } = useLoaderData();
+    const { initialFlashcardCategories } = useLoaderData();
     const [flashcardDeck, setFlashcardDeck] = useState(null);
     const [category, setCategory] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ export default function AdminPage() {
 
     const title = `Learn-Swiss: Admin`;
 
-    const { user } = useUser();
+    const { isLoading: isAppUserLoading, appUser } = useAppUser();
 
     useEffect(() => {
         if (isLoading) return; // prevent multiple simultaneous requests
@@ -38,8 +38,6 @@ export default function AdminPage() {
     }, [category, secondLanguage])
 
     async function onUpdateFlashCard({flashcard, newFirstLanguage, newFirstLanguageText, newSecondLanguage, newSecondLanguageText, newCategory, newFormal, newTags}, callback) {
-      const token = user && await user.getIdToken();
-      const headers = token ? { authtoken: token } : {};
       const reqBody = { 
         firstLanguage: newFirstLanguage,
         firstLanguageText: newFirstLanguageText,
@@ -50,13 +48,13 @@ export default function AdminPage() {
         tags: newTags
       };
       if(flashcard._id) {
-        const response = await api.patch(`/flashcards/${flashcard._id}`, reqBody, { headers });
+        const response = await api.patch(`/flashcards/${flashcard._id}`, reqBody);
         const updatedFlashCard = response.data;
         setFlashcardDeck(prev =>
           prev.map(fc => fc._id === flashcard._id ? updatedFlashCard : fc)
         );
       } else {
-        const response = await api.post(`/flashcards/`, reqBody, { headers });
+        const response = await api.post(`/flashcards/`, reqBody);
         const newFlashCard = response.data;
         setFlashcardDeck(prev =>
           prev.map(fc => fc._id === flashcard._id ? newFlashCard : fc)
@@ -78,6 +76,27 @@ export default function AdminPage() {
         };
         setFlashcardDeck([...flashcardDeck, newFlashCard]);
     }
+
+  if (isAppUserLoading) {
+    return (
+      <div className="container center">
+        <div className="card">
+          <h1>Loading...</h1>
+        </div>
+      </div>
+    );
+  }
+
+  if (!appUser || appUser.role !== "admin") {
+    return (
+      <div className="container center">
+        <div className="card">
+          <h1>Access denied</h1>
+          <p>You do not have permission to view this page.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -102,8 +121,8 @@ export default function AdminPage() {
             </select>
           </label>
           </div>
-          {!isLoading && categories.map(category => (
-          <button key={category.category} style={{ margin: '10px' }} onClick={() => setCategory(category.category)}>{category.category}</button>
+          {!isLoading && initialFlashcardCategories && initialFlashcardCategories.map(category => (
+          <button key={`${firstLanguage}-${secondLanguage}-${category.category}`} style={{ margin: '10px' }} onClick={() => setCategory(category.category)}>{category.category}</button>
           ))}
           <div id="flashcards">
             {!isLoading && flashcardDeck && <h3>Cards in deck:</h3> }

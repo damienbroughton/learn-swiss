@@ -9,9 +9,6 @@ import type { Request } from 'express';
 export interface AuthenticatedRequest extends Request {
     /** Decoded Firebase ID token payload. Undefined if no token or token is invalid. */
     user?: admin.auth.DecodedIdToken; 
-    
-    /** Headers are strings in Express, but we check for authtoken specifically. */
-    headers: Request['headers'] & { authtoken?: string };
 }
 
 
