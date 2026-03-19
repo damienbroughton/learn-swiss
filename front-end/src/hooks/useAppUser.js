@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import axios from "axios";
+import api from "../api";
 import useUser from "./useUser";
 
 const useAppUser = () => { 
@@ -17,9 +17,7 @@ const useAppUser = () => {
         }
 
         const fetchUser = async () => {
-            const token = await firebaseUser.getIdToken();
-            const headers = token ? { authtoken: token } : {};
-            const res = await axios.get(`/api/user`, { headers });
+            const res = await api.get(`/user`);
             setAppUser(res.data);
             setIsLoading(false);
         };

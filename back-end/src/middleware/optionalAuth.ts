@@ -5,7 +5,7 @@ import type { EnrichedRequest } from '../types/requestInterfaces.js';
 /**
  * Middleware to optionally authenticate a user via Firebase.
  *
- * If a valid `authtoken` header is provided, the Firebase user is
+ * If a valid `Authorization: Bearer <token>` header is provided, the Firebase user is
  * attached to `req.user`. If no token is provided, or the token is invalid,
  * the request continues as anonymous.
  *
@@ -17,15 +17,18 @@ import type { EnrichedRequest } from '../types/requestInterfaces.js';
  * @param {import('express').NextFunction} next
  */
 export async function optionalAuth(req: EnrichedRequest, res: Response, next: NextFunction) {
-  const { authtoken } = req.headers;
+  const authHeader = req.headers.authorization;
+  const token = typeof authHeader === 'string' && authHeader.startsWith('Bearer ')
+    ? authHeader.slice('Bearer '.length).trim()
+    : undefined;
 
-  if (!authtoken) {
+  if (!token) {
     // No token → continue as anonymous
     return next();
   }
 
   try {
-    const user = await admin.auth().verifyIdToken(authtoken);
+    const user = await admin.auth().verifyIdToken(token);
     req.user = user; // attach user to request
   } catch (err) {
     console.warn('Invalid auth token provided, continuing as anonymous.');

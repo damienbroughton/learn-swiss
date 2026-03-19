@@ -18,17 +18,13 @@ export default function ArticlePage() {
     const article = articles.find(article => article.name === name);
 
     async function onUpvoteClicked() {
-      const token = user && await user.getIdToken();
-      const headers = token ? { authtoken: token } : {};
-      const response = await api.post(`/articles/${name}/upvote`, null, { headers });
+      const response = await api.post(`/articles/${name}/upvote`);
       const updatedArticleData = response.data;
       setUpvotes(updatedArticleData.upvotes);
     }
 
     async function onAddComment({nameText, commentText}) {
-      const token = user && await user.getIdToken();
-      const headers = token ? { authtoken: token } : {};
-      const response = await api.post(`/articles/${name}/comment`, { postedBy: nameText, text: commentText }, { headers });
+      const response = await api.post(`/articles/${name}/comment`, { postedBy: nameText, text: commentText });
       const updatedArticleData = response.data;
       setComments(updatedArticleData.comments);
     }
