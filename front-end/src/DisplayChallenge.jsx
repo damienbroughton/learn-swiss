@@ -7,6 +7,7 @@ import imgHappyDE from './assets/Eber-Happy.png';
 export default function DisplayChallenge({challenge, mode, onNext, recordSuccess }) {
 
     const sentenceParts = challenge.content.sentenceTemplate.split("{{target}}");
+    const options = challenge.content.options.sort((a, b) => a.localeCompare(b));
 
     const [currentOption, setCurrentOption] = useState(challenge.content.showBaseWord ? challenge.content.baseWord + "___" : "______");
     const [currentOptions, setCurrentOptions] = useState(Array(sentenceParts.length - 1).fill("______"));
@@ -61,7 +62,7 @@ export default function DisplayChallenge({challenge, mode, onNext, recordSuccess
             <br />
             <br />
             <div>
-              {mode === 'practice' && isCorrect !== true && challenge.content.options.map((optionText, index) => (
+              {mode === 'practice' && isCorrect !== true && options.map((optionText, index) => (
                 <button key={`${index}`} 
                   style={{ margin: '1%' }}               
                   className="answerbutton"
