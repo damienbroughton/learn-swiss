@@ -5,13 +5,15 @@ import { useNavigate } from "react-router-dom";
 import useSEOMeta from '../hooks/useSEOMeta';
 import PageHelmet from '../components/PageHelmet';
 import Filters from "../components/Filters";
-import imgDE from '../assets/Eber-Happy.png';
+import imgDE from '../assets/Eber-Confused.png';
+import imgCH from '../assets/Iggy-Confused.png';
 
 
 export default function ChallengeListPage() {
   const {initialChallenges} = useLoaderData();
 
   const [challenges, setChallenges] = useState([...initialChallenges]);
+  const [secondLanguage, setSecondLanguage] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   
   const meta = useSEOMeta({
@@ -25,11 +27,20 @@ export default function ChallengeListPage() {
   useEffect(() => {
     const lowerQuery = searchQuery.toLowerCase();
     const filteredChallenges = initialChallenges.filter((challenge) =>
-        challenge.title.toLowerCase().includes(lowerQuery));
+        challenge.title.toLowerCase().includes(lowerQuery) && 
+        (secondLanguage === "All" || challenge.language === secondLanguage));
       setChallenges(filteredChallenges);
-  }, [initialChallenges, searchQuery])
+  }, [initialChallenges, secondLanguage, searchQuery])
 
   const navigate = useNavigate();
+  
+  const getCompletionPercent = (completedByUser, totalItems) => {
+    if (totalItems <= 0) {
+      return 0;
+    }
+
+    return Math.max(0, Math.min(100, (completedByUser / totalItems) * 100));
+  };
 
   return (
     <>
@@ -41,6 +52,18 @@ export default function ChallengeListPage() {
           <Filters
             items={[
               {
+                type: "select",
+                id: "secondLanguage",
+                label: "Language",
+                value: secondLanguage,
+                onChange: (value) => setSecondLanguage(value),
+                options: [
+                  { value: "All" },
+                  { value: "Swiss-German" },
+                  { value: "German" },
+                ],
+              },
+              {
                 type: "text",
                 id: "search-query",
                 label: "Search",
@@ -50,21 +73,26 @@ export default function ChallengeListPage() {
             ]}
           />
           <ul className="scenario-list">
-            {challenges.map(challenge => (
+            {challenges.map(challenge => {
+              const completionPercent = getCompletionPercent(challenge.completedByUser, challenge.totalChallenges);
+
+              return (
               <li key={challenge.reference} className="scenario-list-item">
                 <div
                   className="scenario-card"
+                  style={{ "--completion-percent": `${completionPercent}%` }}
                   onClick={() => navigate(`/challenges/${challenge.reference}/practice`)}
                   tabIndex={0}
                   role="button"
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/challenges/${challenge.reference}/practice`); } }}
                   aria-label={`Open Challenge title: ${challenge.title}`}
                 >
-                  <img src={imgDE} alt={challenge.title} className="scenario-card-img" />
-                  <div className="scenario-card-title">{challenge.title} <br />({Math.trunc(challenge.completedByUser/challenge.totalChallenges * 100)}% complete)</div>
+                  <img src={challenge.language === "Swiss-German" ? imgCH : imgDE} alt={challenge.title} className="scenario-card-img" />
+                  <div className="scenario-card-title">{challenge.title}</div>
                 </div>
               </li>
-            ))}
+              );
+            })}
           </ul>
       </div>
     </div>

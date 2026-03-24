@@ -4,7 +4,8 @@ import { useParams, useLoaderData, useNavigate, Link } from "react-router-dom";
 import useSEOMeta from '../hooks/useSEOMeta';
 import PageHelmet from '../components/PageHelmet';
 import DisplayChallenge from "../DisplayChallenge";
-import imgCelebration from '../assets/Eber-Celebration.png';
+import imgCelebrationDE from '../assets/Eber-Celebration.png';
+import imgCelebrationCH from '../assets/Iggy-Celebration.png';
 import gifLoading from '../assets/LoadingAnimation.gif';
 import useUser from "../hooks/useUser";
 
@@ -68,7 +69,7 @@ export default function ChallengePage() {
         )}
         {currentStepIndex === challengeList.length && (
             <div style={{ textAlign: 'center' }}>
-              <img src={imgCelebration} alt="Celebrating Hedgehog" style={{ width: '75%', maxWidth: '300px' }} />
+              <img src={currentChallenge.language === "Swiss-German" ? imgCelebrationCH : imgCelebrationDE} alt="Celebrating Success" style={{ width: '75%', maxWidth: '300px' }} />
               <p>Hurra! You scored {numCorrect} out of {challengeList.length} on the challenges. <br /> You can play again with a different set of challenges.</p>
               <button onClick={() => onRetry()}>Play again</button>
               <button onClick={() => navigate(`/challenges`)}>Back to challenges</button>

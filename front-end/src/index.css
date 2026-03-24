@@ -1,3 +1,28 @@
+:root {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: #222;
+  background-color: #f6f8fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Swiss-inspired palette: soft red, white, neutral gray, gold accent */
+  --primary: #d72638; /* Swiss red, softened */
+  --primary-light: #f7f7f7; /* Swiss white */
+  --accent: #f4d35e; /* Gold accent */
+  --danger: #b22234; /* Muted red for errors */
+  --card-bg: #fff;
+  --shadow: 0 2px 16px 0 rgba(44,62,80,0.08);
+  --border-radius: 16px;
+  --nav-bg: #e63946; /* Slightly lighter Swiss red for nav */
+  --nav-hover: #f4d35e;
+  --text-dark: #222;
+  --text-light: #fff;
+}
+
 .filters {
   display: flex; 
   flex-wrap: wrap;           
@@ -38,7 +63,13 @@
   text-align: center;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
-  background: var(--primary);
+  background: linear-gradient(
+    270deg,
+    var(--primary) 0%,
+    var(--primary) calc(100% - var(--completion-percent, 0%)),
+    var(--accent) calc(100% - var(--completion-percent, 0%)),
+    var(--accent) 100%
+  );
   transition: box-shadow 0.2s, transform 0.1s;
   width: 100%;
   display: flex;
@@ -59,8 +90,11 @@
 .scenario-card-title {
   font-weight: 600;
   font-size: 1.1em;
-  color: var(--primary-light);
-  letter-spacing: 0.01em;
+  color: var(--text-light);
+  background: var(--primary);
+  padding: 0.2em 0.2em;
+  border-radius: var(--border-radius);
+  width: 100%;
 }
 /* Modern checkbox styles for Swiss-inspired theme */
 input[type="checkbox"] {
@@ -108,32 +142,6 @@ input[type="text"]:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 2px var(--accent);
 }
-/* Modernized root styles */
-:root {
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  line-height: 1.6;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: #222;
-  background-color: #f6f8fa;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Swiss-inspired palette: soft red, white, neutral gray, gold accent */
-  --primary: #d72638; /* Swiss red, softened */
-  --primary-light: #f7f7f7; /* Swiss white */
-  --accent: #f4d35e; /* Gold accent */
-  --danger: #b22234; /* Muted red for errors */
-  --card-bg: #fff;
-  --shadow: 0 2px 16px 0 rgba(44,62,80,0.08);
-  --border-radius: 16px;
-  --nav-bg: #e63946; /* Slightly lighter Swiss red for nav */
-  --nav-hover: #f4d35e;
-  --text-dark: #222;
-  --text-light: #fff;
-}
-
 
 a {
   font-weight: 500;

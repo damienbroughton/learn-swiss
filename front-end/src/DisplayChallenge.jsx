@@ -1,7 +1,10 @@
 import { useState } from "react"
 import imgNeutralDE from './assets/Eber-Neutral.png';
+import imgNeutralCH from './assets/Iggy-Neutral.png';
 import imgConfusedDE from './assets/Eber-Confused.png';
+import imgConfusedCH from './assets/Iggy-Confused.png';
 import imgHappyDE from './assets/Eber-Happy.png';
+import imgHappyCH from './assets/Iggy-Happy.png';
 
 
 export default function DisplayChallenge({challenge, mode, onNext, recordSuccess }) {
@@ -15,7 +18,7 @@ export default function DisplayChallenge({challenge, mode, onNext, recordSuccess
     const [isChecking, setIsChecking] = useState(false);
     const [isCorrect, setIsCorrect] = useState();
     const [attemptNumber, setAttemptNumber] = useState(0);
-    const [image, setImage] = useState(imgNeutralDE);
+    const [image, setImage] = useState(challenge.language === "Swiss-German" ? imgNeutralCH : imgNeutralDE);
 
 
     function onOptionClick(optionText) {
@@ -29,14 +32,14 @@ export default function DisplayChallenge({challenge, mode, onNext, recordSuccess
       setIsChecking(true);
       if (text.trim().toLowerCase() === challenge.content.correctAnswer.toLowerCase()) {
         setIsCorrect(true);
-        setImage(imgHappyDE);
+        setImage(challenge.language === "Swiss-German" ? imgHappyCH : imgHappyDE);
         setHintText(`Correct! ${challenge.metadata.explanation}`);
         // Record success only on first attempt
         if(attemptNumber < 1){
           await recordSuccess(challenge._id);
         }
       } else {
-        setImage(imgConfusedDE);
+        setImage(challenge.language === "Swiss-German" ? imgConfusedCH : imgConfusedDE);
         setHintText("Incorrect! Try again or click here to reveal a hint");
         setIsCorrect(false);
       }
