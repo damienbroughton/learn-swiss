@@ -35,6 +35,14 @@ export default function StoryListPage() {
 
   const navigate = useNavigate();
 
+  const getCompletionPercent = (completedByUser, totalItems) => {
+    if (!completedByUser || totalItems <= 0) {
+      return 0;
+    }
+
+    return Math.max(0, Math.min(100, (completedByUser / totalItems) * 100));
+  };
+
   return (
     <>
     <PageHelmet {...meta} />
@@ -88,12 +96,15 @@ export default function StoryListPage() {
             ]}
           />
           <ul className="scenario-list">
-            {stories.map(story => (
+            {stories.map(story => {
+              const completionPercent = getCompletionPercent(story.metadata?.sectionIndex, story.sectionsCount);
+              return  (
               <li key={story.reference} className="scenario-list-item">
                 <div
                   className="scenario-card"
                   onClick={() => navigate(`/stories/${story.reference}`)}
                   tabIndex={0}
+                  style={{ "--completion-percent": `${completionPercent}%` }}
                   role="button"
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/stories/${story.reference}`); } }}
                   aria-label={`Open story: ${story.reference}`}
@@ -102,7 +113,8 @@ export default function StoryListPage() {
                   <div className="scenario-card-title">{story.title}</div>
                 </div>
               </li>
-            ))}
+              );
+            })}
           </ul>
       </div>
       <button style={{marginTop: "10px", float: "right"}} onClick={() => navigate('/make-flashcards')}>Make your own</button>

@@ -30,6 +30,14 @@ export default function ChallengeListPage() {
   }, [initialChallenges, searchQuery])
 
   const navigate = useNavigate();
+  
+  const getCompletionPercent = (completedByUser, totalItems) => {
+    if (totalItems <= 0) {
+      return 0;
+    }
+
+    return Math.max(0, Math.min(100, (completedByUser / totalItems) * 100));
+  };
 
   return (
     <>
@@ -50,10 +58,14 @@ export default function ChallengeListPage() {
             ]}
           />
           <ul className="scenario-list">
-            {challenges.map(challenge => (
+            {challenges.map(challenge => {
+              const completionPercent = getCompletionPercent(challenge.completedByUser, challenge.totalChallenges);
+
+              return (
               <li key={challenge.reference} className="scenario-list-item">
                 <div
                   className="scenario-card"
+                  style={{ "--completion-percent": `${completionPercent}%` }}
                   onClick={() => navigate(`/challenges/${challenge.reference}/practice`)}
                   tabIndex={0}
                   role="button"
@@ -61,10 +73,11 @@ export default function ChallengeListPage() {
                   aria-label={`Open Challenge title: ${challenge.title}`}
                 >
                   <img src={imgDE} alt={challenge.title} className="scenario-card-img" />
-                  <div className="scenario-card-title">{challenge.title} <br />({Math.trunc(challenge.completedByUser/challenge.totalChallenges * 100)}% complete)</div>
+                  <div className="scenario-card-title">{challenge.title}</div>
                 </div>
               </li>
-            ))}
+              );
+            })}
           </ul>
       </div>
     </div>

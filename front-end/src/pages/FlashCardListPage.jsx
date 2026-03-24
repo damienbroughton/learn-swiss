@@ -32,6 +32,14 @@ export default function FlashCardListPage() {
   });
 
   const navigate = useNavigate();
+  
+  const getCompletionPercent = (completedByUser, totalItems) => {
+    if (totalItems <= 0) {
+      return 0;
+    }
+
+    return Math.max(0, Math.min(100, (completedByUser / totalItems) * 100));
+  };
 
   return (
     <>
@@ -63,10 +71,14 @@ export default function FlashCardListPage() {
             ]}
           />
           <ul className="scenario-list">
-            {flashcardCategories.map(category => (
+            {flashcardCategories.map(category => {
+              const completionPercent = getCompletionPercent(category.completedByUser, category.totalFlashcards);
+
+              return (
               <li key={category.category} className="scenario-list-item">
                 <div
                   className="scenario-card"
+                  style={{ "--completion-percent": `${completionPercent}%` }}
                   onClick={() => navigate(`/flashcard/${category.category}`)}
                   tabIndex={0}
                   role="button"
@@ -74,10 +86,11 @@ export default function FlashCardListPage() {
                   aria-label={`Open flashcard category: ${category.category}`}
                 >
                   <img src={imgFlashCards} alt={category.category} className="scenario-card-img" />
-                  <div className="scenario-card-title">{category.category}<br />({category.totalFlashcards > 0 ? Math.trunc(category.completedByUser/category.totalFlashcards * 100) : 0}% complete)</div>
+                  <div className="scenario-card-title">{category.category}</div>
                 </div>
               </li>
-            ))}
+              );
+            })}
           </ul>
       </div>
     </div>

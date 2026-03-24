@@ -62,7 +62,7 @@ export async function getScenarios(uid: string | undefined) {
       );
       const results = await db.collection('scenarios').aggregate(pipeline).toArray();
       return results.map(scenario => {
-        const previouslyComplete = scenario.successes > 0;  
+        const completedByUser = scenario.successes > 0 ? 1 : 0;  
         return {
           title: scenario.title,
           reference: scenario.reference,
@@ -70,7 +70,8 @@ export async function getScenarios(uid: string | undefined) {
           difficulty: scenario.difficulty,
           tags: scenario.tags,
           image: scenario.image,
-          previouslyComplete
+          completedByUser: completedByUser,
+          totalScenarios: 1
         };
       });
     }
@@ -85,7 +86,8 @@ export async function getScenarios(uid: string | undefined) {
       difficulty: scenario.difficulty,
       tags: scenario.tags,
       image: scenario.image,
-      previouslyComplete: false
+      completedByUser: 0,
+      totalScenarios: 1
     }));
   } catch (err) {
     console.error('Error fetching scenarios:', err);

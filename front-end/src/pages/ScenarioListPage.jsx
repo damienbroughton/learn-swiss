@@ -38,6 +38,14 @@ export default function ScenarioListPage() {
 
   const navigate = useNavigate();
 
+  const getCompletionPercent = (completedByUser, totalItems) => {
+    if (totalItems <= 0) {
+      return 0;
+    }
+
+    return Math.max(0, Math.min(100, (completedByUser / totalItems) * 100));
+  };
+
   return (
     <>
     <PageHelmet {...meta} />
@@ -57,24 +65,27 @@ export default function ScenarioListPage() {
             ]}
           />
           <ul className="scenario-list">
-            {scenarios.map(scenario => (
-              <li key={scenario.title} className="scenario-list-item">
-                <div
-                  className="scenario-card"
-                  onClick={() => navigate(`/scenarios/${scenario.reference}/${practiceMode ? 'practice' : 'review'}`)}
-                  tabIndex={0}
-                  role="button"
-                  onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/scenarios/${scenario.reference}/${practiceMode ? 'practice' : 'review'}`); } }}
-                  aria-label={`Open scenario: ${scenario.title}`}
-                >
+            { scenarios.map(scenario => {
+              const completionPercent = getCompletionPercent(scenario.completedByUser, scenario.totalScenarios);
+              return (
+                <li key={scenario.title} className="scenario-list-item">
+                  <div
+                    className="scenario-card"
+                    style={{ "--completion-percent": `${completionPercent}%` }}
+                    onClick={() => navigate(`/scenarios/${scenario.reference}/${practiceMode ? 'practice' : 'review'}`)}
+                    tabIndex={0}
+                    role="button"
+                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/scenarios/${scenario.reference}/${practiceMode ? 'practice' : 'review'}`); } }}
+                    aria-label={`Open scenario: ${scenario.title}`}
+                  >
                   <img src={scenario.image} alt={scenario.title} className="scenario-card-img" />
                   <div className="scenario-card-title">
                     {scenario.title}
-                    {scenario.previouslyComplete && (<span> ✅</span>)}
                   </div>
                 </div>
               </li>
-            ))}
+            )}
+          )}
           </ul>
           <div>
             <label className="switch">
