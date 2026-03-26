@@ -16,6 +16,7 @@ import userProgressRoutes from './routes/userProgressRoutes.js';
 import articleRoutes from './routes/articleRoutes.js';
 import storyRoutes from './routes/storyRoutes.js';
 import challengeRoutes from './routes/challengeRoutes.js';
+import explanationRoutes from "./routes/explanationRoutes.js";
 
 await initializeFirebase();
 
@@ -46,6 +47,8 @@ app.use("/api/flashcards", flashcardRoutes);
 app.use("/api/scenarios", scenarioRoutes);
 app.use("/api/stories", storyRoutes);
 app.use("/api/challenges", challengeRoutes);
+app.use("/api/explanations", explanationRoutes);
+
 
 // API fallback to catch unmatched /api paths and log them (helps diag for 404s)
 app.use('/api', (req, res) => {

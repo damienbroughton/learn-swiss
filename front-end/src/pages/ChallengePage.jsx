@@ -4,6 +4,7 @@ import { useParams, useLoaderData, useNavigate, Link } from "react-router-dom";
 import useSEOMeta from '../hooks/useSEOMeta';
 import PageHelmet from '../components/PageHelmet';
 import DisplayChallenge from "../DisplayChallenge";
+import DisplayExplanation from "../DisplayExplanation";
 import imgCelebrationDE from '../assets/Eber-Celebration.png';
 import imgCelebrationCH from '../assets/Iggy-Celebration.png';
 import gifLoading from '../assets/LoadingAnimation.gif';
@@ -12,7 +13,7 @@ import useUser from "../hooks/useUser";
 export default function ChallengePage() {
   const navigate = useNavigate();
   const { mode } = useParams();
-  const {challengeList} = useLoaderData();
+  const {challengeList, explanation} = useLoaderData();
   const { user } = useUser();
 
   const [currentChallengeList, setCurrentChallengeList] = useState(challengeList); // start with first step
@@ -20,6 +21,7 @@ export default function ChallengePage() {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [numCorrect, setNumCorrect] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [showExplanation, setShowExplanation] = useState(true);
 
   const meta = useSEOMeta({
     title: `Learn-Swiss: ${currentChallenge.title} - Test Your Skills`,
@@ -57,6 +59,19 @@ export default function ChallengePage() {
     }
   }
 
+  function onStartChallenge(){
+      setShowExplanation(false);
+  }
+
+  if(showExplanation && explanation){
+    return (
+      <>
+      <PageHelmet {...meta} />
+      <DisplayExplanation key={currentChallenge.reference} explanation={explanation} onStartChallenge={onStartChallenge}/>
+      </>
+    )
+  }
+
   return (
     <>
     <PageHelmet {...meta} />
@@ -91,5 +106,9 @@ export default function ChallengePage() {
 export async function loader ({params}) {
   const response = await api.get(`/challenges/${params.reference}`);
   const challengeList = response.data;
-  return {challengeList};
+
+  const explanationResponse = await api.get(`/explanations/${params.reference}`);
+  const explanation = explanationResponse.data;
+
+  return {challengeList, explanation};
 }
