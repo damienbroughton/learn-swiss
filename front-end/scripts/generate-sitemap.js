@@ -44,6 +44,7 @@ async function generateSitemap() {
         stories,
         scenarios,
         challenges,
+        explanations,
         flashcardCategories,
     ] = await Promise.all([
         // Stories collection – used for /stories/:reference
@@ -52,6 +53,8 @@ async function generateSitemap() {
         fetchJson('scenarios/'),
         // Challenges collection – used for /challenges/:reference/:mode
         fetchJson('challenges/'),
+        // Challenges explanations – used for /explations/:reference
+        fetchJson('explanations/'),        
         // Flashcard categories for /flashcard/:category (Swiss-German)
         fetchJson('flashcards/categories/Swiss-German'),
     ]);
@@ -83,6 +86,14 @@ async function generateSitemap() {
                 changefreq: 'weekly',
                 priority: 0.5,
             })),
+
+        // Individual explanations pages
+        ...explanations
+            .map(explanation => ({
+                url: `/explanations/${encodeURIComponent(explanation)}`,
+                changefreq: 'weekly',
+                priority: 0.5,
+            })),            
 
         // Individual flashcard category pages
         ...flashcardCategories
