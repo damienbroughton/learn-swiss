@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './App.css'
+import Layout from './Layout'
 import Homepage from './pages/Homepage'
 import FlashCardListPage, {loader as flashCardCategoryLoader} from './pages/FlashCardListPage'
 import FlashCardPage, {loader as flashCardLoader} from './pages/FlashCardPage'
@@ -8,10 +9,10 @@ import ScenarioPage, {loader as scenarioLoader} from './pages/ScenarioPage'
 import ArticlesList from './pages/ArticlesListPage'
 import ArticlePage, {loader as articleLoader} from './pages/ArticlePage'
 import ChallengeListPage, {loader as challengeListLoader} from './pages/ChallengeListPage'
+import ExplanationPage, {loader as explanationLoader} from './pages/ExplanationPage'
 import Dashboard, {loader as dashboardLoader} from './pages/DashboardPage'
 import ChallengePage, {loader as challengeLoader} from './pages/ChallengePage'
 import ContactPage from './pages/ContactPage'
-import Layout from './Layout'
 import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from './pages/LoginPage'
 import CreateAccountPage from './pages/CreateAccountPage'
@@ -80,6 +81,11 @@ const routes = [{
     path: '/challenges/:reference/:mode',
     element: <ChallengePage />,
     loader: challengeLoader
+  },
+  {
+    path: '/explanations/:reference',
+    element: <ExplanationPage />,
+    loader: explanationLoader
   },
   {
     path: '/articles',

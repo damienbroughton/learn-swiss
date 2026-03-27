@@ -33,7 +33,7 @@ export default function DisplayExplanation({ explanation, onStartChallenge }) {
                 <button 
                     onClick={() => {onStartChallenge()}} 
                     className="btn-success">
-                    Start Challenge
+                    {currentExplanation.language == "German" ? "Herausforderung starten" : "Start Challenge"}
                 </button>
             </div>
         </div>

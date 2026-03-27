@@ -67,7 +67,7 @@ export default function ChallengePage() {
     return (
       <>
       <PageHelmet {...meta} />
-      <DisplayExplanation key={currentChallenge.reference} explanation={explanation} onStartChallenge={onStartChallenge}/>
+      <DisplayExplanation key={explanation.reference} explanation={explanation} onStartChallenge={onStartChallenge}/>
       </>
     )
   }
